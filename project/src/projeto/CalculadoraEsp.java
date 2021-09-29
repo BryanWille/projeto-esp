@@ -5,6 +5,12 @@ import java.util.ArrayList;
 
 public class CalculadoraEsp {
     public static ArrayList<Integer> list;
+/*
+* Programa Criado Por
+* Bryan Wille
+* Pedro Gabriel
+* */
+
 
     public static void main(String[] args){
         System.out.println(leitura());
