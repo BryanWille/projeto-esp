@@ -11,7 +11,6 @@ public class CalculadoraEsp {
 * Pedro Gabriel
 * */
 
-
     public static void main(String[] args){
         System.out.println(leitura());
         System.out.println("Desordenado:" +exibirVetor(leitura()));
