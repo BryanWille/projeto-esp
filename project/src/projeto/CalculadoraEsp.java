@@ -86,6 +86,12 @@ public class CalculadoraEsp {
                     j = i;
                     int maiorModaTemp = 0;
 
+                    do {
+                        j++;
+                        maiorModaTemp ++;
+                    } while (t[j].equals(t[j+1]) &&  (j+1 < t.length) );
+
+                    /* While funcional
                     while(t[j].equals(t[j+1])){
                         j++;
                         maiorModaTemp ++;
@@ -93,7 +99,7 @@ public class CalculadoraEsp {
                             maiorModaTemp++;
                             break;
                         }
-                    }
+                    } */
 
                     if(maiorModaTemp >= maiorModa) {
                         if(maiorModaTemp != maiorModa && list != null){
