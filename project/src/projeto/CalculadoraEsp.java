@@ -23,7 +23,7 @@ public class CalculadoraEsp {
 
     public static Integer[] leitura(){
         list = new ArrayList<Integer>();
-        Scanner keyb = new Scanner(CalculadoraEsp.class.getResourceAsStream("dadosbrutos2.txt"));
+        Scanner keyb = new Scanner(CalculadoraEsp.class.getResourceAsStream("dadosbrutos3.txt"));
         int i = 0;
         while(keyb.hasNextLine()){
             list.add(i, Integer.parseInt(keyb.nextLine()));
@@ -77,7 +77,8 @@ public class CalculadoraEsp {
         return mediana;
     }
 
-    public static float moda(Integer[] t){
+    public static ArrayList<Integer> moda(Integer[] t){
+            list = new ArrayList<Integer>();
             int j, maiorModa = 0;
             float maiorElemento = 0;
             String moda = "";
@@ -91,15 +92,21 @@ public class CalculadoraEsp {
                         maiorModaTemp ++;
                     }
 
-                    if (maiorModaTemp >= maiorModa){
+                    if(maiorModaTemp >= maiorModa) {
+                        list.add(t[i]);
+                        System.out.println("maior moda: "+maiorModa);
+                        if(maiorModaTemp != maiorModa && list != null){
+                            list.clear();
+                        }
                         maiorModa = maiorModaTemp;
                         maiorElemento = t[i];
                     }
-
                     i = j;
 
+                    System.out.println(maiorModaTemp);
                 }
             }
-            return maiorElemento;
+
+            return list;
         }
 }
