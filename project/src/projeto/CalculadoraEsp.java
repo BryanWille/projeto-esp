@@ -74,11 +74,9 @@ public class CalculadoraEsp {
     public static float moda(Integer[] t){
             int j, maiorModa = 0;
             float maiorElemento = 0;
-            boolean existeModa = false;
             String moda = "";
             for(int i = 0; i < t.length-1; i++){
                 if(t[i].equals(t[i+1])){
-                    existeModa = true;
                     j = i;
                     int maiorModaTemp = 0;
 
