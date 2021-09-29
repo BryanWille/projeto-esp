@@ -92,20 +92,17 @@ public class CalculadoraEsp {
                     }
 
                     if(maiorModaTemp >= maiorModa) {
-                        list.add(t[i]);
-                        System.out.println("maior moda: "+maiorModa);
                         if(maiorModaTemp != maiorModa && list != null){
                             list.clear();
                         }
+                        list.add(t[i]);
                         maiorModa = maiorModaTemp;
                         maiorElemento = t[i];
                     }
                     i = j;
-
-                    System.out.println(maiorModaTemp);
                 }
             }
-
+        System.out.println(maiorElemento);
             return list;
         }
 }
