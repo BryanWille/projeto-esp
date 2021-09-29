@@ -71,51 +71,31 @@ public class CalculadoraEsp {
         return mediana;
     }
 
-    public static String moda(Integer[] t){
+    public static float moda(Integer[] t){
             int j, maiorModa = 0;
             float maiorElemento = 0;
             boolean existeModa = false;
             String moda = "";
             for(int i = 0; i < t.length-1; i++){
-                if(t[i] == t[i+1]){
+                if(t[i].equals(t[i+1])){
                     existeModa = true;
                     j = i;
                     int maiorModaTemp = 0;
-                    while(t[j] == t[j+1]){
+
+                    while(t[j].equals(t[j+1]) && (j+1 < t.length-1)){
                         j++;
                         maiorModaTemp ++;
-                        if(j+1 > t.length-1)
-                            break;
-                }
+                    }
+
                     if (maiorModaTemp >= maiorModa){
                         maiorModa = maiorModaTemp;
                         maiorElemento = t[i];
-                        moda += maiorElemento;
                     }
+
                     i = j;
 
                 }
-        }
+            }
             return maiorElemento;
         }
-
 }
-
-
-
-/*
-    2
-    3
-    4
-    5
-    5
-    5
-    6
-    6
-    7
-    7
-    7
-
-    quantModa = 3
-
- */
