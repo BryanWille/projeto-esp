@@ -86,9 +86,13 @@ public class CalculadoraEsp {
                     j = i;
                     int maiorModaTemp = 0;
 
-                    while(t[j].equals(t[j+1]) && (j+1 < t.length-1)){
+                    while(t[j].equals(t[j+1])){
                         j++;
                         maiorModaTemp ++;
+                        if((j+1 == t.length-1) && t[j].equals(t[j+1])) {
+                            maiorModaTemp++;
+                            break;
+                        }
                     }
 
                     if(maiorModaTemp >= maiorModa) {
