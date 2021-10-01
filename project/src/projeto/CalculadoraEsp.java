@@ -3,7 +3,7 @@ package projeto;
 import java.util.*;
 
 public class CalculadoraEsp {
-    public static ArrayList<Integer> list;
+    public static ArrayList<float> list;
 /*
 * Programa Criado Por
 * Bryan Wille
