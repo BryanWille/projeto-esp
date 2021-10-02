@@ -12,16 +12,15 @@ public class CalculadoraEsp {
 
     public static void main(String[] args){
         ArrayList<Double> moda;
-        Collections.sort(MetodosCalcEsp.leitura());
-        System.out.println(MetodosCalcEsp.list);
+        Collections.sort(Leitura.leitura());
 
         double media, mediana, variancia, desvioPadrao, coeficienteVariacao;
-        media = MetodosCalcEsp.media(MetodosCalcEsp.leitura());
-        mediana = MetodosCalcEsp.mediana(MetodosCalcEsp.leitura());
-        moda = MetodosCalcEsp.moda(MetodosCalcEsp.leitura());
-        variancia = MetodosCalcEsp.variancia(MetodosCalcEsp.leitura());
-        desvioPadrao = MetodosCalcEsp.desvioPadrao(variancia);
-        coeficienteVariacao = MetodosCalcEsp.coeficienteVariacao(desvioPadrao, media);
+        media = DadosBrutos.media(Leitura.leitura());
+        mediana = DadosBrutos.mediana(Leitura.leitura());
+        moda = DadosBrutos.moda(Leitura.leitura());
+        variancia = DadosBrutos.variancia(Leitura.leitura());
+        desvioPadrao = DadosBrutos.desvioPadrao(variancia);
+        coeficienteVariacao = DadosBrutos.coeficienteVariacao(desvioPadrao, media);
 
         System.out.println("Media: " + media);
         System.out.println("Mediana: " + mediana);
