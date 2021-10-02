@@ -8,7 +8,7 @@ public class MetodosCalcEsp {
     public static ArrayList<Double> list;
 
     public static ArrayList<Double> leitura(){
-        list = new ArrayList<Double>();
+        list = new ArrayList<>();
         Scanner keyb = new Scanner(CalculadoraEsp.class.getResourceAsStream("dadosbrutos3.txt"));
         int i = 0;
         while(keyb.hasNextLine()){
@@ -38,7 +38,7 @@ public class MetodosCalcEsp {
     }
 
     public static ArrayList<Double> moda(ArrayList<Double> v){
-        list = new ArrayList<Double>();
+        list = new ArrayList<>();
         Double maiorScore = 0.0, score;
         for(int i = 0; i < v.size()-1; i++){
             if(v.get(i).equals(v.get(i+1))){
@@ -54,7 +54,7 @@ public class MetodosCalcEsp {
                     }
                 }
                 if(score >= maiorScore){ 
-                    if(score != maiorScore){
+                    if(!score.equals(maiorScore)){
                         list.clear();
                     }
                     list.add(num);
@@ -68,8 +68,7 @@ public class MetodosCalcEsp {
     }
 
     public static Double variancia(ArrayList<Double> v){
-        double media,variancia = 0,fator ;
-        media = media(v);
+        double variancia = 0,fator ;
         for (int i = 0; i < v.size(); i++) {
             fator = v.get(i) - media(v);
             variancia += Math.pow(fator, 2);
