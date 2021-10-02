@@ -1,74 +1,71 @@
 package projeto;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class MetodosCalcEsp {
 
     public static ArrayList<Double> list;
 
-    public static ArrayList<Double> leitura(){
+    public static ArrayList<Double> leitura() {
         list = new ArrayList<>();
         Scanner keyb = new Scanner(CalculadoraEsp.class.getResourceAsStream("dadosbrutos3.txt"));
         int i = 0;
-        while(keyb.hasNextLine()){
+        while (keyb.hasNextLine()) {
             list.add(i, Double.parseDouble(keyb.nextLine()));
-            i ++;
+            i++;
         }
         return list;
     }
 
-    public static Double media(ArrayList<Double> v){
-        Double media, somaTotal = 0.0;
-        for(int i = 0; i < v.size(); i++){
+    public static Double media(ArrayList<Double> v) {
+        double media, somaTotal = 0.0;
+        for (int i = 0; i < v.size(); i++) {
             somaTotal += v.get(i);
         }
         media = somaTotal / v.size();
         return media;
     }
 
-    public static Double mediana(ArrayList<Double> v){
+    public static Double mediana(ArrayList<Double> v) {
         Double mediana;
-        if(v.size() % 2 != 0){
-            mediana = v.get(v.size()/2);
+        if (v.size() % 2 != 0) {
+            mediana = v.get(v.size() / 2);
         } else {
-            mediana = v.get((v.size() - 1)/2) + ((v.get((v.size() - 1)/2) + 1)/2);
+            mediana = v.get((v.size() - 1) / 2) + ((v.get((v.size() - 1) / 2) + 1) / 2);
         }
         return mediana;
     }
 
-    public static ArrayList<Double> moda(ArrayList<Double> v){
+    public static ArrayList<Double> moda(ArrayList<Double> v) {
         list = new ArrayList<>();
         Double maiorScore = 0.0, score;
-        for(int i = 0; i < v.size()-1; i++){
-            if(v.get(i).equals(v.get(i+1))){
+        for (int i = 0; i < v.size() - 1; i++) {                                        //Loop por até o penúltimo elemnto
+            if (v.get(i).equals(v.get(i + 1))) {                                        //Checa se o elemento i é igual a i + 1
                 score = 1.0;
                 Double num = v.get(i);
-                while(v.get(i).equals(v.get(i + 1)) && (i + 1) < v.size() - 1){
+                while (v.get(i).equals(v.get(i + 1)) && (i + 1) < v.size() - 1) {       //Loop enquanto for igual e menor que o último
                     i += 1;
                     score += 1;
 
-                    if((i + 1) == (v.size() - 1) && v.get(i).equals(v.get(i + 1)) ){
+                    if ((i + 1) == (v.size() - 1) && v.get(i).equals(v.get(i + 1))) {   //Se for o último elemento e for igual ao penultimo
                         score += 1;
-                        break;
+                        break;                                                          //Quebra o Loop para não repetir
                     }
                 }
-                if(score >= maiorScore){ 
-                    if(!score.equals(maiorScore)){
-                        list.clear();
+                if (score >= maiorScore) {                                              //Checagem do Maior Score
+                    if (!score.equals(maiorScore)) {                                    //Se o score for diferente (então vai ser maior)
+                        list.clear();                                                   //Resetamos a lista (pra retirar o elemento)
                     }
-                    list.add(num);
-                    maiorScore = score;
+                    list.add(num);                                                      //Adiciona o novo elemento (ou o outro elemento que é igual maior)
+                    maiorScore = score;                                                 //Adiciona o maior Score
                 }
             }
         }
-        list.add(maiorScore);
-        System.out.println(list);
+        list.add(maiorScore);                                                           //O último elemento da lista é quantidade de vezes que repete a moda
         return list;
     }
 
-    public static Double variancia(ArrayList<Double> v){
-        double variancia = 0,fator ;
+    public static Double variancia(ArrayList<Double> v) {
+        double variancia = 0, fator;
         for (int i = 0; i < v.size(); i++) {
             fator = v.get(i) - media(v);
             variancia += Math.pow(fator, 2);
@@ -77,13 +74,11 @@ public class MetodosCalcEsp {
         return variancia;
     }
 
-    public static Double desvioPadrao(double variancia){
+    public static Double desvioPadrao(double variancia) {
         return Math.sqrt(variancia);
     }
 
-    public static Double coeficienteVariacao(double desvioPadrao, double media){
-        return (desvioPadrao/media) * 100;
+    public static Double coeficienteVariacao(double desvioPadrao, double media) {
+        return (desvioPadrao / media) * 100;
     }
-    //Vou criar outra classe pra não bagunçar, pra tabela, e os dados da tabela
-    // ok, deu erro de array outofbounds na moda agora
 }
