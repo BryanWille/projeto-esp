@@ -3,27 +3,50 @@ package projeto;
 import java.util.*;
 
 public class DadosBrutos {
+    private Double media;
+    private Double mediana;
+    private Double variancia;
+    private Double coeficienteVariacao;
+    private Double desvioPadrao;
+    ArrayList<Double> moda;
 
-    public static Double media(ArrayList<Double> v) {
-        double media, somaTotal = 0.0;
+    public DadosBrutos(ArrayList<Double> v){
+        this.setMedia(v);
+        this.setMediana(v);
+        this.setModa(v);
+        this.setVariancia(v);
+        this.setDesvioPadrao(this.getVariancia());
+        this.setCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
+    }
+
+    public Double getMedia(){
+        return this.media;
+    }
+    public void setMedia(ArrayList<Double> v) {
+        Double somaTotal = 0.0;
         for (int i = 0; i < v.size(); i++) {
             somaTotal += v.get(i);
         }
-        media = somaTotal / v.size();
-        return media;
+        this.media = somaTotal / v.size();
     }
 
-    public static Double mediana(ArrayList<Double> v) {
+
+    public Double getMediana(){return this.mediana;}
+    public void setMediana(ArrayList<Double> v) {
         Double mediana;
         if (v.size() % 2 != 0) {
             mediana = v.get(v.size() / 2);
         } else {
             mediana = v.get((v.size() - 1) / 2) + ((v.get((v.size() - 1) / 2) + 1) / 2);
         }
-        return mediana;
+        this.mediana = mediana;
     }
 
-    public static ArrayList<Double> moda(ArrayList<Double> v) {
+
+    public ArrayList<Double> getModa(){
+        return this.moda;
+    }
+    public void setModa(ArrayList<Double> v) {
         ArrayList<Double> list = new ArrayList<>();
         Double maiorScore = 0.0, score;
         for (int i = 0; i < v.size() - 1; i++) {                                        //Loop por até o penúltimo elemnto
@@ -49,24 +72,34 @@ public class DadosBrutos {
             }
         }
         list.add(maiorScore);                                                           //O último elemento da lista é quantidade de vezes que repete a moda
-        return list;
+        this.moda = list;
     }
 
-    public static Double variancia(ArrayList<Double> v) {
+    public Double getVariancia(){
+        return this.variancia;
+    }
+    public void setVariancia(ArrayList<Double> v) {
         double variancia = 0, fator;
         for (int i = 0; i < v.size(); i++) {
-            fator = v.get(i) - media(v);
+            fator = v.get(i) - media;
             variancia += Math.pow(fator, 2);
             variancia = variancia / v.size();
         }
-        return variancia;
+        this.variancia = variancia;
     }
 
-    public static Double desvioPadrao(double variancia) {
-        return Math.sqrt(variancia);
+
+    public Double getDesvioPadrao(){
+        return this.desvioPadrao;
+    }
+    public void setDesvioPadrao(double variancia) {
+        this.desvioPadrao = Math.sqrt(variancia);
     }
 
-    public static Double coeficienteVariacao(double desvioPadrao, double media) {
-        return (desvioPadrao / media) * 100;
+    public Double getCoeficienteVariaca(){
+        return this.coeficienteVariacao;
+    }
+    public void setCoeficienteVariacao(double desvioPadrao, double media) {
+        this.coeficienteVariacao = (desvioPadrao / media) * 100;
     }
 }
