@@ -1,106 +1,135 @@
 package projeto;
 
-import java.util.*;
+import java.util.ArrayList;
 
-public class DadosBrutos extends Leitura{
-    private Double media;
-    private Double mediana;
-    private Double variancia;
-    private Double coeficienteVariacao;
-    private Double desvioPadrao;
+public class DadosBrutos {
+    private double media;
+    private double mediana;
+    private double variancia;
+    private double coeficienteVariacao;
+    private double desvioPadrao;
     ArrayList<Double> moda;
 
-    public DadosBrutos(){
-        this.setLista();
-        this.setMedia(this.getLista());
-        this.setMediana(this.getLista());
-        this.setModa(this.getLista());
-        this.setVariancia(this.getLista());
-        this.setDesvioPadrao(this.getVariancia());
-        this.setCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
-    }
+    private void fazerMedia(ArrayList<Double> v){
+        double somaTotal = 0.0D;
 
-    public Double getMedia(){
-        return this.media;
-    }
-    public void setMedia(ArrayList<Double> v) {
-        Double somaTotal = 0.0;
-        for (int i = 0; i < v.size(); i++) {
-            somaTotal += v.get(i);
+        for(int i = 0; i < v.size(); ++i) {
+            somaTotal = somaTotal + v.get(i);
         }
-        this.media = somaTotal / v.size();
+        this.media = somaTotal / (double)v.size();
     }
 
-
-    public Double getMediana(){return this.mediana;}
-    public void setMediana(ArrayList<Double> v) {
+    private void fazerMediana(ArrayList<Double> v) {
         Double mediana;
         if (v.size() % 2 != 0) {
             mediana = v.get(v.size() / 2);
         } else {
-            mediana = v.get((v.size() - 1) / 2) + ((v.get((v.size() - 1) / 2) + 1) / 2);
+            mediana = v.get((v.size() - 1) / 2) + (v.get((v.size() - 1) / 2) + 1.0D) / 2.0D;
         }
+
         this.mediana = mediana;
     }
 
+    private void fazerModa(ArrayList<Double> v) {
+        ArrayList list = new ArrayList();
+        Double maiorScore = 0.0D;
 
-    public ArrayList<Double> getModa(){
-        return this.moda;
-    }
-    public void setModa(ArrayList<Double> v) {
-        ArrayList<Double> list = new ArrayList<>();
-        Double maiorScore = 0.0, score;
-        for (int i = 0; i < v.size() - 1; i++) {                                        //Loop por até o penúltimo elemnto
-            if (v.get(i).equals(v.get(i + 1))) {                                        //Checa se o elemento i é igual a i + 1
-                score = 1.0;
+        for(int i = 0; i < v.size() - 1; ++i) {
+            if (v.get(i).equals(v.get(i + 1))) {
+                Double score = 1.0D;
                 Double num = v.get(i);
-                while (v.get(i).equals(v.get(i + 1)) && (i + 1) < v.size() - 1) {       //Loop enquanto for igual e menor que o último
-                    i += 1;
-                    score += 1;
 
-                    if ((i + 1) == (v.size() - 1) && v.get(i).equals(v.get(i + 1))) {   //Se for o último elemento e for igual ao penultimo
-                        score += 1;
-                        break;                                                          //Quebra o Loop para não repetir
+                while(v.get(i).equals(v.get(i + 1)) && i + 1 < v.size() - 1) {
+                    ++i;
+                    score = score + 1.0D;
+                    if (i + 1 == v.size() - 1 && v.get(i).equals(v.get(i + 1))) {
+                        score = score + 1.0D;
+                        break;
                     }
                 }
-                if (score >= maiorScore) {                                              //Checagem do Maior Score
-                    if (!score.equals(maiorScore)) {                                    //Se o score for diferente (então vai ser maior)
-                        list.clear();                                                   //Resetamos a lista (pra retirar o elemento)
+
+                if (score >= maiorScore) {
+                    if (!score.equals(maiorScore)) {
+                        list.clear();
                     }
-                    list.add(num);                                                      //Adiciona o novo elemento (ou o outro elemento que é igual maior)
-                    maiorScore = score;                                                 //Adiciona o maior Score
+
+                    list.add(num);
+                    maiorScore = score;
                 }
             }
         }
-        list.add(maiorScore);                                                           //O último elemento da lista é quantidade de vezes que repete a moda
+
+        list.add(maiorScore);
         this.moda = list;
     }
 
-    public Double getVariancia(){
-        return this.variancia;
-    }
-    public void setVariancia(ArrayList<Double> v) {
-        double variancia = 0, fator;
-        for (int i = 0; i < v.size(); i++) {
-            fator = v.get(i) - media;
-            variancia += Math.pow(fator, 2);
-            variancia = variancia / v.size();
+    private void fazerVariancia(ArrayList<Double> v){
+        double variancia = 0.0D;
+
+        for(int i = 0; i < v.size(); ++i) {
+            double fator = v.get(i) - this.media;
+            variancia += Math.pow(fator, 2.0D);
+            variancia /= v.size();
         }
+
         this.variancia = variancia;
     }
 
-
-    public Double getDesvioPadrao(){
-        return this.desvioPadrao;
-    }
-    public void setDesvioPadrao(double variancia) {
+    private void fazerDesvioPadrao(double variancia){
         this.desvioPadrao = Math.sqrt(variancia);
     }
 
-    public Double getCoeficienteVariacao(){
+    private void fazerCoeficienteVariacao(double desvioPadrao, double media){
+        this.coeficienteVariacao = desvioPadrao / media * 100.0D;
+    }
+
+    /*
+    -------------------------------------------------------------------------------------------------
+     */
+
+    public double getMedia(){
+        return this.media;
+    }
+    public void setMedia(double newMedia){
+        this.media = newMedia;
+    }
+    public double getMediana() {
+        return this.mediana;
+    }
+    public void setMediana(double newMediana){
+        this.mediana = newMediana;
+    }
+    public ArrayList<Double> getModa() {
+        return this.moda;
+    }
+    public void setModa(ArrayList<Double> newModa){
+        this.moda = newModa;
+    }
+    public double getVariancia(){
+        return this.variancia;
+    }
+    public void setVariancia(double newVariancia){
+        this.variancia = newVariancia;
+    }
+    public double getDesvioPadrao(){
+        return this.desvioPadrao;
+    }
+    public void setDesvioPadrao(double newDesvioPadrao){
+        this.desvioPadrao = newDesvioPadrao;
+    }
+    public double getCoeficienteVariacao(){
         return this.coeficienteVariacao;
     }
-    public void setCoeficienteVariacao(double desvioPadrao, double media) {
-        this.coeficienteVariacao = (desvioPadrao / media) * 100;
+    public void setCoeficienteVariacao(double newCoeficienteVariacao){
+        this.coeficienteVariacao = newCoeficienteVariacao;
+    }
+
+    public DadosBrutos() {
+        this.getMedia();
+        this.getMediana();
+        this.getModa();
+        this.getVariancia();
+        this.getDesvioPadrao();
+        this.getCoeficienteVariacao();
     }
 }
