@@ -26,7 +26,7 @@ public class DadosBrutos extends Leitura{
         for(int i = 0; i < v.size(); ++i) {
             somaTotal = somaTotal + v.get(i);
         }
-        this.media = somaTotal / (double)v.size();
+        this.setMedia(somaTotal / (double)v.size());
     }
 
     private void fazerMediana(ArrayList<Double> v) {
@@ -37,7 +37,7 @@ public class DadosBrutos extends Leitura{
             mediana = v.get((v.size() - 1) / 2) + (v.get((v.size() - 1) / 2) + 1.0D) / 2.0D;
         }
 
-        this.mediana = mediana;
+        this.setMediana(mediana);
     }
 
     private void fazerModa(ArrayList<Double> v) {
@@ -70,7 +70,7 @@ public class DadosBrutos extends Leitura{
         }
 
         list.add(maiorScore);
-        this.moda = list;
+        this.setModa(list);
     }
 
     private void fazerVariancia(ArrayList<Double> v){
@@ -82,15 +82,15 @@ public class DadosBrutos extends Leitura{
             variancia /= v.size();
         }
 
-        this.variancia = variancia;
+        this.setVariancia(variancia);
     }
 
     private void fazerDesvioPadrao(double variancia){
-        this.desvioPadrao = Math.sqrt(variancia);
+        this.setVariancia(Math.sqrt(variancia));
     }
 
     private void fazerCoeficienteVariacao(double desvioPadrao, double media){
-        this.coeficienteVariacao = desvioPadrao / media * 100.0D;
+        this.setCoeficienteVariacao(desvioPadrao / media * 100.0D);
     }
 
     /*
