@@ -2,13 +2,23 @@ package projeto;
 
 import java.util.ArrayList;
 
-public class DadosBrutos {
+public class DadosBrutos extends Leitura{
     private double media;
     private double mediana;
     private double variancia;
     private double coeficienteVariacao;
     private double desvioPadrao;
     ArrayList<Double> moda;
+
+    public DadosBrutos() {
+        this.criarLista();
+        this.fazerMedia(getLista());
+        this.fazerMediana(getLista());
+        this.fazerModa(getLista());
+        this.fazerVariancia(getLista());
+        this.fazerDesvioPadrao(getVariancia());
+        this.fazerCoeficienteVariacao(getDesvioPadrao(), getMedia());
+    }
 
     private void fazerMedia(ArrayList<Double> v){
         double somaTotal = 0.0D;
@@ -124,12 +134,4 @@ public class DadosBrutos {
         this.coeficienteVariacao = newCoeficienteVariacao;
     }
 
-    public DadosBrutos() {
-        this.getMedia();
-        this.getMediana();
-        this.getModa();
-        this.getVariancia();
-        this.getDesvioPadrao();
-        this.getCoeficienteVariacao();
-    }
 }
