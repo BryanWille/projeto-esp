@@ -2,7 +2,7 @@ package projeto;
 
 import java.util.*;
 
-public class DadosBrutos {
+public class DadosBrutos extends Leitura{
     private Double media;
     private Double mediana;
     private Double variancia;
@@ -10,11 +10,12 @@ public class DadosBrutos {
     private Double desvioPadrao;
     ArrayList<Double> moda;
 
-    public DadosBrutos(ArrayList<Double> v){
-        this.setMedia(v);
-        this.setMediana(v);
-        this.setModa(v);
-        this.setVariancia(v);
+    public DadosBrutos(){
+        this.setLista();
+        this.setMedia(this.getLista());
+        this.setMediana(this.getLista());
+        this.setModa(this.getLista());
+        this.setVariancia(this.getLista());
         this.setDesvioPadrao(this.getVariancia());
         this.setCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
     }
@@ -96,7 +97,7 @@ public class DadosBrutos {
         this.desvioPadrao = Math.sqrt(variancia);
     }
 
-    public Double getCoeficienteVariaca(){
+    public Double getCoeficienteVariacao(){
         return this.coeficienteVariacao;
     }
     public void setCoeficienteVariacao(double desvioPadrao, double media) {
