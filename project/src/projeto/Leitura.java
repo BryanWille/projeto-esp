@@ -6,11 +6,8 @@ import java.util.Scanner;
 public class Leitura {
     private ArrayList<Double> lista;
 
-    public ArrayList<Double> getLista() {
-        return this.lista;
-    }
 
-    public void setLista() {
+    public void criarLista(){
         ArrayList<Double> v = new ArrayList<>();
         Scanner keyb = new Scanner(CalculadoraEsp.class.getResourceAsStream("dadosbrutos3.txt"));
         int i = 0;
@@ -28,7 +25,13 @@ public class Leitura {
                 }
             }
         }
-        this.lista = v;
+        this.setLista(v);
         keyb.close();
+    }
+    public ArrayList<Double> getLista() {
+        return this.lista;
+    }
+    public void setLista(ArrayList<Double> v) {
+        this.lista = v;
     }
 }
