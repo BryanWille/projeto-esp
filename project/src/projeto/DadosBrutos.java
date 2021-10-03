@@ -86,7 +86,7 @@ public class DadosBrutos extends Leitura{
     }
 
     private void fazerDesvioPadrao(double variancia){
-        this.setVariancia(Math.sqrt(variancia));
+        this.setDesvioPadrao(Math.sqrt(variancia));
     }
 
     private void fazerCoeficienteVariacao(double desvioPadrao, double media){
