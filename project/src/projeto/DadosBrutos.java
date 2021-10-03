@@ -16,7 +16,7 @@ public class DadosBrutos extends Leitura{
         this.fazerMediana(getLista());
         this.fazerModa(getLista());
         this.fazerVariancia(getLista());
-        this.fazerDesvioPadrao(getVariancia());
+        this.fazerDesvioPadrao(getDesvioPadrao());
         this.fazerCoeficienteVariacao(getDesvioPadrao(), getMedia());
     }
 
