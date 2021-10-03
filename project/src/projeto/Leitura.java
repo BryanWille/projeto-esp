@@ -6,7 +6,9 @@ import java.util.Scanner;
 public class Leitura {
     private ArrayList<Double> lista;
 
-
+    public Leitura(){
+        this.criarLista();
+    }
     public void criarLista(){
         ArrayList<Double> v = new ArrayList<>();
         Scanner keyb = new Scanner(CalculadoraEsp.class.getResourceAsStream("dadosbrutos3.txt"));

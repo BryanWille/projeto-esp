@@ -3,18 +3,24 @@ package projeto;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DadosAgrupados {
-    public static ArrayList<Double> lista;
+public class DadosAgrupados extends Leitura{
+    public Double amplitudeClasse;
 
-    public static Double distriContinua(ArrayList<Double> v) {
-        double amplitudeTotal, raizAmostra, aRound;
-        amplitudeTotal = v.get(v.size() - 1) - v.get(0);
-        raizAmostra = Math.sqrt(v.size());
-        aRound = Math.round((amplitudeTotal / raizAmostra) * 100.0) / 100.0;
-        return aRound;
+    public DadosAgrupados(){
+        this.criarLista();
+        this.fazerAmplitudeClasse(getLista());
+        this.tabela(getLista(), this.getAmplitudeClasse());
     }
 
-    public static void tabela(ArrayList<Double> v, Double distriContinua) {
+    public void fazerAmplitudeClasse(ArrayList<Double> v) {
+        double amplitudeTotal, raizAmostra, a;
+        amplitudeTotal = v.get(v.size() - 1) - v.get(0);
+        raizAmostra = Math.sqrt(v.size());
+        a = Math.round((amplitudeTotal / raizAmostra) * 100.0) / 100.0;
+        this.setAmplitudeClasse(a);
+    }
+
+    public void tabela(ArrayList<Double> v, Double distriContinua) {
         int i = 0, frequencia;
         double limiteSuperior = v.get(0), limiteInferior;
         System.out.println(v);
@@ -35,4 +41,11 @@ public class DadosAgrupados {
 
     }
 
+    public Double getAmplitudeClasse() {
+        return amplitudeClasse;
+    }
+
+    public void setAmplitudeClasse(Double amplitudeClasse) {
+        this.amplitudeClasse = amplitudeClasse;
+    }
 }
