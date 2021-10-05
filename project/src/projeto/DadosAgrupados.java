@@ -20,11 +20,13 @@ public class DadosAgrupados extends Leitura{
         this.setAmplitudeClasse(a);
     }
 
-    public void tabela(ArrayList<Double> v, Double distriContinua) {
-        int i = 0, frequencia;
+    public ArrayList<ArrayList<Double>> tabela(ArrayList<Double> v, Double distriContinua) {
+        ArrayList<ArrayList<Double>> tabela = new ArrayList<>();
+        int i = 0, frequencia, j = 0;
         double limiteSuperior = v.get(0), limiteInferior;
         System.out.println(v);
         while (limiteSuperior < v.get(v.size() - 1)) {
+            tabela.add(new ArrayList());
             limiteInferior = limiteSuperior;
             limiteSuperior += distriContinua;
             frequencia = 0;
@@ -36,9 +38,12 @@ public class DadosAgrupados extends Leitura{
                     break;
                 }
             }
-            System.out.println(limiteInferior + "|--" + limiteSuperior + "|" + frequencia);
+            tabela.get(j).add(limiteInferior);
+            tabela.get(j).add(limiteSuperior);
+            tabela.get(j).add((double) frequencia);
+            j++;
         }
-
+        return tabela;
     }
 
     public Double getAmplitudeClasse() {

@@ -23,6 +23,6 @@ public class CalculadoraEsp {
         System.out.println("Coeficiente de Variação: " + b.getCoeficienteVariacao());
         System.out.println("--------------------------");
         System.out.println("Amplitude de classe: " + a.getAmplitudeClasse());
-        a.tabela(a.getLista(), a.getAmplitudeClasse());
+        System.out.println("Tabela: \n" +a.tabela(a.getLista(), a.getAmplitudeClasse()));
     }
 }
