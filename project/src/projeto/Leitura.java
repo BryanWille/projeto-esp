@@ -11,7 +11,7 @@ public class Leitura {
     }
     public void criarLista(){
         ArrayList<Double> v = new ArrayList<>();
-        Scanner keyb = new Scanner(CalculadoraEsp.class.getResourceAsStream("dadosbrutos2.txt"));
+        Scanner keyb = new Scanner(CalculadoraEsp.class.getResourceAsStream("dadosbrutos5.txt"));
         int i = 0;
         while (keyb.hasNextLine()) {
             v.add(i, Double.parseDouble(keyb.nextLine()));

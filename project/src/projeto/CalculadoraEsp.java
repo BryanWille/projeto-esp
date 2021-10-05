@@ -22,7 +22,9 @@ public class CalculadoraEsp {
         System.out.println("Desvio Padrão: " + b.getDesvioPadrao());
         System.out.println("Coeficiente de Variação: " + b.getCoeficienteVariacao());
         System.out.println("--------------------------");
+        System.out.println("CLASSE AGRUPADA");
         System.out.println("Amplitude de classe: " + a.getAmplitudeClasse());
-        System.out.println("Tabela: \n" +a.tabela(a.getLista(), a.getAmplitudeClasse()));
+        System.out.println("Tabela: \n" +a.getTabela());
+        System.out.println("Media Agrupada: " +a.getMedia());
     }
 }
