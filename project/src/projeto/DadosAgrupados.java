@@ -48,7 +48,7 @@ public class DadosAgrupados extends Leitura{
         for (int i = 0; i < classeMediana; i ++){
             frequenciaClasseAnterior += v.get(i).get(2);
         }
-        mediana = v.get(classeMediana).get(0) + ((getLista().size() - frequenciaClasseAnterior)/v.get(classeMediana).get(2)) * this.getAmplitudeClasse();
+        mediana = v.get(classeMediana).get(0) + ((getLista().size()/2 - frequenciaClasseAnterior)/v.get(classeMediana).get(2)) * this.getAmplitudeClasse();
 
         this.setMediana(mediana);
     }
