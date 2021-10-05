@@ -24,7 +24,8 @@ public class CalculadoraEsp {
         System.out.println("--------------------------");
         System.out.println("CLASSE AGRUPADA");
         System.out.println("Amplitude de classe: " + a.getAmplitudeClasse());
-        System.out.println("Tabela: \n" +a.getTabela());
-        System.out.println("Media Agrupada: " +a.getMedia());
+        System.out.println("Tabela: \n" + a.getTabela());
+        System.out.println("Media Agrupada: " + a.getMedia());
+        System.out.println("Mediana Agrupada: " + a.getMediana());
     }
 }

@@ -7,6 +7,7 @@ public class DadosAgrupados extends Leitura{
     private Double amplitudeClasse;
     private Double pontoMedio;
     private Double media;
+    private Double mediana;
     private ArrayList<Double> pontoMedioClasse;
     private ArrayList<ArrayList<Double>> tabela;
 
@@ -17,6 +18,7 @@ public class DadosAgrupados extends Leitura{
         this.fazerTabela(getLista(), this.getAmplitudeClasse());
         this.fazerPontoMedioClasse(this.getTabela());
         this.fazerMedia(this.getTabela(), this.getPontoMedioClasse());
+        this.fazerMediana(this.getTabela());
         this.setPontoMedio(this.getAmplitudeClasse());
     }
 
@@ -37,6 +39,18 @@ public class DadosAgrupados extends Leitura{
         System.out.println("Soma frequência " +somaFrequencia);
         Double media = somatorio/somaFrequencia;
         this.setMedia(media);
+    }
+
+    private void fazerMediana(ArrayList<ArrayList<Double>> v) {
+        Double mediana = 0.0, frequenciaClasseAnterior = 0.0;
+        int classeMediana = (int) Math.floor(v.size() / 2) - 1;
+        System.out.println(classeMediana);
+        for (int i = 0; i < classeMediana; i ++){
+            frequenciaClasseAnterior += v.get(i).get(2);
+        }
+        mediana = v.get(classeMediana).get(0) + ((getLista().size() - frequenciaClasseAnterior)/v.get(classeMediana).get(2)) * this.getAmplitudeClasse();
+
+        this.setMediana(mediana);
     }
 
     public void fazerPontoMedioClasse(ArrayList<ArrayList<Double>> v){
@@ -109,5 +123,12 @@ public class DadosAgrupados extends Leitura{
     }
     public void setMedia(Double media) {
         this.media = media;
+    }
+
+    public double getMediana(){
+        return mediana;
+    }
+    public void setMediana(Double newMediana){
+        mediana = newMediana;
     }
 }
