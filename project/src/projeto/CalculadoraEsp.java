@@ -27,5 +27,10 @@ public class CalculadoraEsp {
         System.out.println("Tabela: \n" + a.getTabela());
         System.out.println("Media Agrupada: " + a.getMedia());
         System.out.println("Mediana Agrupada: " + a.getMediana());
+        //System.out.println("Moda Agrupada: " + a.getModa());
+        System.out.println("Variancia Agrupada: " + a.getVariancia());
+        System.out.println("Desvio Padrão Agrupado: " + a.getDesvioPadrao());
+        System.out.println("Coeficiente de Variação Agrupado: " + a.getCoeficienteVariacao());
+
     }
 }

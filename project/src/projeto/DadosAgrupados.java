@@ -23,7 +23,7 @@ public class DadosAgrupados extends Leitura{
         this.fazerPontoMedioClasse(this.getTabela());
         this.fazerMedia(this.getTabela(), this.getPontoMedioClasse());
         this.fazerMediana(this.getTabela());
-        this.fazerModa(this.getTabela());
+        //this.fazerModa(this.getTabela());
         this.fazerVariancia(this.getPontoMedioClasse(), this.getMedia());
         this.fazerDesvioPadrao(this.getVariancia());
         this.fazerCoeficienteVariacao(this.getDesvioPadrao(),this.getMedia());
@@ -58,7 +58,7 @@ public class DadosAgrupados extends Leitura{
         this.setMediana(mediana);
     }
 
-    private void fazerModa (ArrayList<ArrayList<Double>> v){
+    /* private void fazerModa (ArrayList<ArrayList<Double>> v){
         Double moda = 0.0, freqMaior = 0.0, limInfModa = 0.0, difFreq1 = 0.0, difFreq2 = 0.0;
 
         for(int i = 0; i < v.size(); i++){
@@ -72,7 +72,7 @@ public class DadosAgrupados extends Leitura{
 
         moda = limInfModa + (difFreq1 / (difFreq1 + difFreq2)) * this.getAmplitudeClasse();
         this.setModa(moda);
-    }
+    }*/
 
     private void fazerVariancia(ArrayList<Double> pontoMedioClasse, Double media){
         Double somatorio = 0.0;
