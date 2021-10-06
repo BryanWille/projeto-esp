@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class DadosAgrupados extends Leitura{
     private Double amplitudeClasse;
-    private Double pontoMedio;
     private Double media;
     private Double mediana;
     private Double moda;
@@ -15,19 +14,18 @@ public class DadosAgrupados extends Leitura{
     private ArrayList<Double> pontoMedioClasse;
     private ArrayList<ArrayList<Double>> tabela;
 
-
-    public DadosAgrupados(){
+    public DadosAgrupados(Double escolherAmplitude){
         this.criarLista();
-        this.fazerAmplitudeClasse(getLista());
+        this.setAmplitudeClasse(escolherAmplitude);
+        //this.fazerAmplitudeClasse(getLista());
         this.fazerTabela(getLista(), this.getAmplitudeClasse());
         this.fazerPontoMedioClasse(this.getTabela());
         this.fazerMedia(this.getTabela(), this.getPontoMedioClasse());
         this.fazerMediana(this.getTabela());
-        //this.fazerModa(this.getTabela());
+        this.fazerModa(this.getTabela());
         this.fazerVariancia(this.getPontoMedioClasse(), this.getMedia());
         this.fazerDesvioPadrao(this.getVariancia());
         this.fazerCoeficienteVariacao(this.getDesvioPadrao(),this.getMedia());
-        this.setPontoMedio(this.getAmplitudeClasse());
     }
 
     private void fazerAmplitudeClasse(ArrayList<Double> v) {
@@ -58,21 +56,27 @@ public class DadosAgrupados extends Leitura{
         this.setMediana(mediana);
     }
 
-    /* private void fazerModa (ArrayList<ArrayList<Double>> v){
+    private void fazerModa (ArrayList<ArrayList<Double>> v){
         Double moda = 0.0, freqMaior = 0.0, limInfModa = 0.0, difFreq1 = 0.0, difFreq2 = 0.0;
 
         for(int i = 0; i < v.size(); i++){
             if(v.get(i).get(2) > freqMaior) {
                 freqMaior = v.get(i).get(2);
                 limInfModa = v.get(i).get(0);
-                difFreq1 = freqMaior - v.get(i - 1).get(2);
-                difFreq2 = freqMaior - v.get(i + 1).get(2);
+                if (i+1 < v.size()-1 && i-1 > 0) {
+                    difFreq1 = v.get(i - 1).get(2);
+                    difFreq2 = v.get(i + 1).get(2);
+                } else if (i+1 > v.size()-1){
+                    difFreq2 = 0.0;
+                } else if (i - 1 < 0) {
+                    difFreq1 = 0.0;
+                }
             }
         }
 
         moda = limInfModa + (difFreq1 / (difFreq1 + difFreq2)) * this.getAmplitudeClasse();
         this.setModa(moda);
-    }*/
+    }
 
     private void fazerVariancia(ArrayList<Double> pontoMedioClasse, Double media){
         Double somatorio = 0.0;
@@ -142,13 +146,6 @@ public class DadosAgrupados extends Leitura{
         this.pontoMedioClasse = pontoMedioClasse;
     }
 
-    public Double getPontoMedio(){
-        return this.pontoMedio;
-    }
-    public void setPontoMedio(Double amplitudeClasse ){
-        this.pontoMedio = amplitudeClasse/2;
-    }
-
     public ArrayList<ArrayList<Double>> getTabela() {
         return tabela;
     }
@@ -197,6 +194,4 @@ public class DadosAgrupados extends Leitura{
     public void setCoeficienteVariacao(Double newCoeficienteVariacao){
         coeficienteVariacao = newCoeficienteVariacao;
     }
-
-
 }
