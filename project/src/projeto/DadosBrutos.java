@@ -16,7 +16,7 @@ public class DadosBrutos extends Leitura{
         this.fazerMediana(getLista());
         this.fazerModa(getLista());
         this.fazerVariancia(getLista());
-        this.fazerDesvioPadrao(getDesvioPadrao());
+        this.fazerDesvioPadrao(this.getVariancia());
         this.fazerCoeficienteVariacao(getDesvioPadrao(), getMedia());
     }
 
@@ -79,9 +79,8 @@ public class DadosBrutos extends Leitura{
         for(int i = 0; i < v.size(); ++i) {
             double fator = v.get(i) - this.media;
             variancia += Math.pow(fator, 2.0D);
-            variancia /= v.size();
         }
-
+        variancia /= v.size();
         this.setVariancia(variancia);
     }
 
