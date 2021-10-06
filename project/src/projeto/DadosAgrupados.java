@@ -57,7 +57,7 @@ public class DadosAgrupados extends Leitura{
     }
 
     private void fazerModa (ArrayList<ArrayList<Double>> v){
-        Double moda = 0.0, freqMaior = 0.0, limInfModa = 0.0, difFreq1 = 0.0, difFreq2 = 0.0;
+        Double moda, freqMaior = 0.0, limInfModa = 0.0, difFreq1 = 0.0, difFreq2 = 0.0;
 
         for(int i = 0; i < v.size(); i++){
             if(v.get(i).get(2) > freqMaior) {
@@ -66,10 +66,6 @@ public class DadosAgrupados extends Leitura{
                 if (i+1 < v.size()-1 && i-1 > 0) {
                     difFreq1 = v.get(i - 1).get(2);
                     difFreq2 = v.get(i + 1).get(2);
-                } else if (i+1 > v.size()-1){
-                    difFreq2 = 0.0;
-                } else if (i - 1 < 0) {
-                    difFreq1 = 0.0;
                 }
             }
         }
