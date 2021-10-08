@@ -10,6 +10,7 @@ package projeto;
 import java.util.*;
 
 public class CalculadoraEsp {
+    private DadosAgrupados ab;
 
     public static void main(String[] args) {
         DadosBrutos b = new DadosBrutos();

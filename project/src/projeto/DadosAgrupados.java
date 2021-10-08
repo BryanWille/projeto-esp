@@ -28,44 +28,44 @@ public class DadosAgrupados extends Leitura{
         this.fazerCoeficienteVariacao(this.getDesvioPadrao(),this.getMedia());
     }
 
-    private void fazerAmplitudeClasse(ArrayList<Double> v) {
+    private void fazerAmplitudeClasse(ArrayList<Double> lista) {
         double amplitudeTotal, raizAmostra, a;
-        amplitudeTotal = v.get(v.size() - 1) - v.get(0);
-        raizAmostra = Math.sqrt(v.size());
+        amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
+        raizAmostra = Math.sqrt(lista.size());
         a = Math.round((amplitudeTotal / raizAmostra) * 100.0) / 100.0;
         this.setAmplitudeClasse(a);
     }
 
-    private void fazerMedia(ArrayList<ArrayList<Double>> v, ArrayList<Double> a){
+    private void fazerMedia(ArrayList<ArrayList<Double>> tabela, ArrayList<Double> mediaClasse){
         Double somaFrequencia = 0.0, somatorio = 0.0;
-        for (int i = 0; i < v.size(); i++){
-            somaFrequencia += v.get(i).get(2);
-            somatorio +=  a.get(i) * v.get(i).get(2);
+        for (int i = 0; i < tabela.size(); i++){
+            somaFrequencia += tabela.get(i).get(2);
+            somatorio +=  mediaClasse.get(i) * tabela.get(i).get(2);
         }
         Double media = somatorio/somaFrequencia;
         this.setMedia(media);
     }
 
-    private void fazerMediana(ArrayList<ArrayList<Double>> v) {
+    private void fazerMediana(ArrayList<ArrayList<Double>> tabela) {
         Double mediana = 0.0, frequenciaClasseAnterior = 0.0;
-        int classeMediana = (int) Math.floor(v.size() / 2) - 1;
+        int classeMediana = (int) Math.floor(tabela.size() / 2) - 1;
         for (int i = 0; i < classeMediana; i ++){
-            frequenciaClasseAnterior += v.get(i).get(2);
+            frequenciaClasseAnterior += tabela.get(i).get(2);
         }
-        mediana = v.get(classeMediana).get(0) + ((getLista().size()/2 - frequenciaClasseAnterior)/v.get(classeMediana).get(2)) * this.getAmplitudeClasse();
+        mediana = tabela.get(classeMediana).get(0) + ((getLista().size()/2 - frequenciaClasseAnterior)/tabela.get(classeMediana).get(2)) * this.getAmplitudeClasse();
         this.setMediana(mediana);
     }
 
-    private void fazerModa (ArrayList<ArrayList<Double>> v){
+    private void fazerModa (ArrayList<ArrayList<Double>> tabela){
         Double moda, freqMaior = 0.0, limInfModa = 0.0, difFreq1 = 0.0, difFreq2 = 0.0;
 
-        for(int i = 0; i < v.size(); i++){
-            if(v.get(i).get(2) > freqMaior) {
-                freqMaior = v.get(i).get(2);
-                limInfModa = v.get(i).get(0);
-                if (i+1 < v.size()-1 && i-1 > 0) {
-                    difFreq1 = v.get(i - 1).get(2);
-                    difFreq2 = v.get(i + 1).get(2);
+        for(int i = 0; i < tabela.size(); i++){
+            if(tabela.get(i).get(2) > freqMaior) {
+                freqMaior = tabela.get(i).get(2);
+                limInfModa = tabela.get(i).get(0);
+                if (i+1 < tabela.size()-1 && i-1 > 0) {
+                    difFreq1 = tabela.get(i - 1).get(2);
+                    difFreq2 = tabela.get(i + 1).get(2);
                 }
             }
         }
@@ -91,30 +91,30 @@ public class DadosAgrupados extends Leitura{
         this.setCoeficienteVariacao((desvioPadrao / media) * 100);
     }
 
-    public void fazerPontoMedioClasse(ArrayList<ArrayList<Double>> v){
+    public void fazerPontoMedioClasse(ArrayList<ArrayList<Double>> tabela){
         ArrayList<Double> pontoMedioClasse = new ArrayList<>();
         Double media;
 
-        for(int i = 0; i < v.size(); i++){
-            media = (v.get(i).get(0) + v.get(i).get(1))/2;
+        for(int i = 0; i < tabela.size(); i++){
+            media = (tabela.get(i).get(0) + tabela.get(i).get(1))/2;
             pontoMedioClasse.add(media);
         }
         this.setPontoMedioClasse(pontoMedioClasse);
     }
 
-    public void fazerTabela(ArrayList<Double> v, Double distriContinua) {
+    public void fazerTabela(ArrayList<Double> lista, Double distriContinua) {
         ArrayList<ArrayList<Double>> tabela = new ArrayList<>();
         int i = 0, frequencia, j = 0;
-        double limiteSuperior = v.get(0), limiteInferior;
-        System.out.println(v);
-        while (limiteSuperior < v.get(v.size() - 1)) {
+        double limiteSuperior = lista.get(0), limiteInferior;
+        System.out.println(lista);
+        while (limiteSuperior < lista.get(lista.size() - 1)) {
             tabela.add(new ArrayList());
             limiteInferior = limiteSuperior;
             limiteSuperior += distriContinua;
             frequencia = 0;
-            while (v.get(i) < limiteSuperior) {
+            while (lista.get(i) < limiteSuperior) {
                 frequencia++;
-                if(i+1 < v.size()-1) {
+                if(i+1 < lista.size()-1) {
                     i++;
                 } else {
                     break;
