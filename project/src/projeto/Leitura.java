@@ -4,11 +4,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Leitura {
+
+
+    // ----------------------------- ATRIBUTOS ----------------------------- //
+
+
     private ArrayList<Double> lista;
+
+
+    // ----------------------------- CONSTRUTOR ----------------------------- //
+
 
     public Leitura(){
         this.criarLista();
     }
+
+
+    // ----------------------------- MÉTODOS DE LEITURA ----------------------------- //
+
+
     public void criarLista(){
         ArrayList<Double> v = new ArrayList<>();
         Scanner keyb = new Scanner(CalculadoraEsp.class.getResourceAsStream("dadosbrutos6.txt"));
@@ -27,13 +41,13 @@ public class Leitura {
                 }
             }
         }
-        this.setLista(v);
+        this.lista = (v);
         keyb.close();
     }
+
+    // ----------------------------- MÉTODOS GETTERS ----------------------------- //
+
     public ArrayList<Double> getLista() {
         return this.lista;
-    }
-    public void setLista(ArrayList<Double> v) {
-        this.lista = v;
     }
 }

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DadosAgrupados extends Leitura{
+
+
+    // ----------------------------- ATRIBUTOS ----------------------------- //
+
+
     private Double amplitudeClasse;
     private Double media;
     private Double mediana;
@@ -14,19 +19,27 @@ public class DadosAgrupados extends Leitura{
     private ArrayList<Double> pontoMedioClasse;
     private ArrayList<ArrayList<Double>> tabela;
 
+
+    // ----------------------------- CONSTRUTOR ----------------------------- //
+
+
     public DadosAgrupados(Double escolherAmplitude){
         this.criarLista();
         this.setAmplitudeClasse(escolherAmplitude);
         //this.fazerAmplitudeClasse(getLista());
         this.fazerTabela(getLista(), this.getAmplitudeClasse());
-        this.fazerPontoMedioClasse(this.getTabela());
-        this.fazerMedia(this.getTabela(), this.getPontoMedioClasse());
-        this.fazerMediana(this.getTabela());
-        this.fazerModa(this.getTabela());
-        this.fazerVariancia(this.getPontoMedioClasse(), this.getMedia());
-        this.fazerDesvioPadrao(this.getVariancia());
-        this.fazerCoeficienteVariacao(this.getDesvioPadrao(),this.getMedia());
+        this.calcularPontoMedioClasse(this.getTabela());
+        this.calcularMedia(this.getTabela(), this.getPontoMedioClasse());
+        this.calcularMediana(this.getTabela());
+        this.calcularModa(this.getTabela());
+        this.calcularVariancia(this.getPontoMedioClasse(), this.getMedia());
+        this.calcularDesvioPadrao(this.getVariancia());
+        this.calcularCoeficienteVariacao(this.getDesvioPadrao(),this.getMedia());
     }
+
+
+    // ----------------------------- MÉTODOS CALCULADORA ----------------------------- //
+
 
     private void fazerAmplitudeClasse(ArrayList<Double> lista) {
         double amplitudeTotal, raizAmostra, a;
@@ -36,27 +49,27 @@ public class DadosAgrupados extends Leitura{
         this.setAmplitudeClasse(a);
     }
 
-    private void fazerMedia(ArrayList<ArrayList<Double>> tabela, ArrayList<Double> mediaClasse){
+    private void calcularMedia(ArrayList<ArrayList<Double>> tabela, ArrayList<Double> mediaClasse){
         Double somaFrequencia = 0.0, somatorio = 0.0;
         for (int i = 0; i < tabela.size(); i++){
             somaFrequencia += tabela.get(i).get(2);
             somatorio +=  mediaClasse.get(i) * tabela.get(i).get(2);
         }
         Double media = somatorio/somaFrequencia;
-        this.setMedia(media);
+        this.media = (media);
     }
 
-    private void fazerMediana(ArrayList<ArrayList<Double>> tabela) {
+    private void calcularMediana(ArrayList<ArrayList<Double>> tabela) {
         Double mediana = 0.0, frequenciaClasseAnterior = 0.0;
         int classeMediana = (int) Math.floor(tabela.size() / 2) - 1;
         for (int i = 0; i < classeMediana; i ++){
             frequenciaClasseAnterior += tabela.get(i).get(2);
         }
         mediana = tabela.get(classeMediana).get(0) + ((getLista().size()/2 - frequenciaClasseAnterior)/tabela.get(classeMediana).get(2)) * this.getAmplitudeClasse();
-        this.setMediana(mediana);
+        this.mediana = (mediana);
     }
 
-    private void fazerModa (ArrayList<ArrayList<Double>> tabela){
+    private void calcularModa (ArrayList<ArrayList<Double>> tabela){
         Double moda, freqMaior = 0.0, limInfModa = 0.0, difFreq1 = 0.0, difFreq2 = 0.0;
 
         for(int i = 0; i < tabela.size(); i++){
@@ -71,27 +84,27 @@ public class DadosAgrupados extends Leitura{
         }
 
         moda = limInfModa + (difFreq1 / (difFreq1 + difFreq2)) * this.getAmplitudeClasse();
-        this.setModa(moda);
+        this.moda = (moda);
     }
 
-    private void fazerVariancia(ArrayList<Double> pontoMedioClasse, Double media){
+    private void calcularVariancia(ArrayList<Double> pontoMedioClasse, Double media){
         Double somatorio = 0.0;
         for(int i = 0; i < pontoMedioClasse.size(); i++){
             somatorio += Math.pow((pontoMedioClasse.get(i) - media), 2);
         }
         Double variancia = somatorio / pontoMedioClasse.size() - 1;
-        this.setVariancia(variancia);
+        this.variancia = (variancia);
     }
 
-    private void fazerDesvioPadrao(Double variancia){
-        this.setDesvioPadrao(Math.sqrt(variancia));
+    private void calcularDesvioPadrao(Double variancia){
+        this.desvioPadrao = (Math.sqrt(variancia));
     }
 
-    private void fazerCoeficienteVariacao (Double desvioPadrao, Double media){
-        this.setCoeficienteVariacao((desvioPadrao / media) * 100);
+    private void calcularCoeficienteVariacao (Double desvioPadrao, Double media){
+        this.coeficienteVariacao = ((desvioPadrao / media) * 100);
     }
 
-    public void fazerPontoMedioClasse(ArrayList<ArrayList<Double>> tabela){
+    public void calcularPontoMedioClasse(ArrayList<ArrayList<Double>> tabela){
         ArrayList<Double> pontoMedioClasse = new ArrayList<>();
         Double media;
 
@@ -99,7 +112,7 @@ public class DadosAgrupados extends Leitura{
             media = (tabela.get(i).get(0) + tabela.get(i).get(1))/2;
             pontoMedioClasse.add(media);
         }
-        this.setPontoMedioClasse(pontoMedioClasse);
+        this.pontoMedioClasse = (pontoMedioClasse);
     }
 
     public void fazerTabela(ArrayList<Double> lista, Double distriContinua) {
@@ -125,8 +138,12 @@ public class DadosAgrupados extends Leitura{
             tabela.get(j).add((double) frequencia);
             j++;
         }
-        this.setTabela(tabela);
+        this.tabela = tabela;
     }
+
+
+    // ----------------------------- MÉTODOS GETTERS ----------------------------- //
+
 
     public Double getAmplitudeClasse() {
         return amplitudeClasse;
@@ -138,56 +155,32 @@ public class DadosAgrupados extends Leitura{
     public ArrayList<Double> getPontoMedioClasse() {
         return pontoMedioClasse;
     }
-    public void setPontoMedioClasse(ArrayList<Double> pontoMedioClasse) {
-        this.pontoMedioClasse = pontoMedioClasse;
-    }
 
     public ArrayList<ArrayList<Double>> getTabela() {
         return tabela;
-    }
-    public void setTabela(ArrayList<ArrayList<Double>> tabela) {
-        this.tabela = tabela;
     }
 
     public Double getMedia() {
         return media;
     }
-    public void setMedia(Double media) {
-        this.media = media;
-    }
 
     public double getMediana(){
         return mediana;
-    }
-    public void setMediana(Double newMediana){
-        mediana = newMediana;
     }
 
     public double getModa(){
         return moda;
     }
-    public void setModa(Double newModa){
-        moda = newModa;
-    }
 
     public double getVariancia(){
         return variancia;
-    }
-    public void setVariancia(Double newVariancia) {
-        variancia = newVariancia;
     }
 
     public double getDesvioPadrao(){
         return desvioPadrao;
     }
-    public void setDesvioPadrao(Double newDesvioPadrao){
-        desvioPadrao = newDesvioPadrao;
-    }
 
     public double getCoeficienteVariacao(){
         return coeficienteVariacao;
-    }
-    public void setCoeficienteVariacao(Double newCoeficienteVariacao){
-        coeficienteVariacao = newCoeficienteVariacao;
     }
 }

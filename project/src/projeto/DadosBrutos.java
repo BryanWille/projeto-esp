@@ -3,6 +3,11 @@ package projeto;
 import java.util.ArrayList;
 
 public class DadosBrutos extends Leitura {
+
+
+    // ----------------------------- ATRIBUTOS ----------------------------- //
+
+
     private double media;
     private double mediana;
     private double variancia;
@@ -10,35 +15,34 @@ public class DadosBrutos extends Leitura {
     private double desvioPadrao;
     private ArrayList<Double> moda;
 
+
+    // ----------------------------- CONSTRUTOR ----------------------------- //
+
+
     public DadosBrutos() {
         this.criarLista();
-        this.fazerMedia(getLista());
-        this.fazerMediana(getLista());
-        this.fazerModa(getLista());
-        this.fazerVariancia(getLista());
-        this.fazerDesvioPadrao(this.getVariancia());
-        this.fazerCoeficienteVariacao(getDesvioPadrao(), getMedia());
+        this.calcularMedia(getLista());
+        this.calcularMediana(getLista());
+        this.calcularModa(getLista());
+        this.calcularVariancia(getLista());
+        this.calcularDesvioPadrao(this.getVariancia());
+        this.calcularCoeficienteVariacao(getDesvioPadrao(), getMedia());
     }
 
-    private void fazerMedia(ArrayList<Double> lista) {
+
+    // ----------------------------- MÉTODOS CALCULADORA ----------------------------- //
+
+
+    private void calcularMedia(ArrayList<Double> lista) {
         double somaTotal = 0.0D;
 
         for (int i = 0; i < lista.size(); ++i) {
             somaTotal = somaTotal + lista.get(i);
         }
-        this.setMedia(somaTotal / (double) lista.size());
+        this.media = (somaTotal / (double) lista.size());
     }
 
-
-    public double getMedia() {
-        return this.media;
-    }
-    public void setMedia(double newMedia) {
-        this.media = newMedia;
-    }
-
-
-    private void fazerMediana(ArrayList<Double> lista) {
+    private void calcularMediana(ArrayList<Double> lista) {
         Double mediana;
         if (lista.size() % 2 != 0) {
             mediana = lista.get(lista.size() / 2);
@@ -46,10 +50,10 @@ public class DadosBrutos extends Leitura {
             mediana = lista.get((lista.size() - 1) / 2) + (lista.get((lista.size() - 1) / 2) + 1.0D) / 2.0D;
         }
 
-        this.setMediana(mediana);
+        this.mediana = mediana;
     }
 
-    private void fazerModa(ArrayList<Double> lista) {
+    private void calcularModa(ArrayList<Double> lista) {
         ArrayList moda = new ArrayList();
         Double maiorScore = 0.0D;
 
@@ -79,10 +83,10 @@ public class DadosBrutos extends Leitura {
         }
 
         moda.add(maiorScore);
-        this.setModa(moda);
+        this.moda = (moda);
     }
 
-    private void fazerVariancia(ArrayList<Double> lista) {
+    private void calcularVariancia(ArrayList<Double> lista) {
         double variancia = 0.0D;
 
         for (int i = 0; i < lista.size(); ++i) {
@@ -90,59 +94,44 @@ public class DadosBrutos extends Leitura {
             variancia += Math.pow(fator, 2.0D);
         }
         variancia /= lista.size();
-        this.setVariancia(variancia);
+        this.variancia = variancia;
     }
 
-    private void fazerDesvioPadrao(double variancia) {
-        this.setDesvioPadrao(Math.sqrt(variancia));
+    private void calcularDesvioPadrao(double variancia) {
+        this.desvioPadrao = (Math.sqrt(variancia));
     }
 
-    private void fazerCoeficienteVariacao(double desvioPadrao, double media) {
-        this.setCoeficienteVariacao(desvioPadrao / media * 100.0D);
+    private void calcularCoeficienteVariacao(double desvioPadrao, double media) {
+        this.coeficienteVariacao = (desvioPadrao / media * 100.0D);
     }
 
-    /*
-    -------------------------------------------------------------------------------------------------
-     */
+
+    // ----------------------------- MÉTODOS GETTERS ----------------------------- //
+
+
+    public double getMedia() {
+        return this.media;
+    }
 
     public double getMediana() {
         return this.mediana;
-    }
-
-    public void setMediana(double newMediana) {
-        this.mediana = newMediana;
     }
 
     public ArrayList<Double> getModa() {
         return this.moda;
     }
 
-    public void setModa(ArrayList<Double> newModa) {
-        this.moda = newModa;
-    }
-
     public double getVariancia() {
         return this.variancia;
-    }
-
-    public void setVariancia(double newVariancia) {
-        this.variancia = newVariancia;
     }
 
     public double getDesvioPadrao() {
         return this.desvioPadrao;
     }
 
-    public void setDesvioPadrao(double newDesvioPadrao) {
-        this.desvioPadrao = newDesvioPadrao;
-    }
-
     public double getCoeficienteVariacao() {
         return this.coeficienteVariacao;
     }
 
-    public void setCoeficienteVariacao(double newCoeficienteVariacao) {
-        this.coeficienteVariacao = newCoeficienteVariacao;
-    }
 
 }
