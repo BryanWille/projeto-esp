@@ -9,12 +9,14 @@ package projeto;
 
 import java.util.*;
 
+//Dados brutos 7: https://docs.google.com/spreadsheets/d/1V1dZQeqVkHgVYMnJPkQeJC6_9kjSwSF8fNRz9giMglg/edit?usp=sharing
+
 public class CalculadoraEsp {
     private DadosAgrupados ab;
 
     public static void main(String[] args) {
         DadosBrutos b = new DadosBrutos();
-        DadosAgrupados a = new DadosAgrupados(2.00);
+        DadosAgrupados a = new DadosAgrupados(3.6);
 
         System.out.println("// ----------------------------- CLASSE BRUTA ----------------------------- //");
 
@@ -29,6 +31,7 @@ public class CalculadoraEsp {
 
         System.out.println("Amplitude de classe: " + a.getAmplitudeClasse());
         System.out.println("Tabela: \n" + a.getTabela());
+        System.out.println("\nFrequência Agrupada: \n" +a.getFrequenciaAgrupada());
         System.out.println("Media Agrupada: " + a.getMedia());
         System.out.println("Mediana Agrupada: " + a.getMediana());
         System.out.println("Moda Agrupada: " + a.getModa());
