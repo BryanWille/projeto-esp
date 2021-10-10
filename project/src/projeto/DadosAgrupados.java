@@ -176,13 +176,20 @@ public class DadosAgrupados extends Leitura {
         double quartis = 0, amplitude, limiteInferior = 0, frequenciaAnterior = 0, frequenciaAtual = 0;
         amplitude = tabela.get(0).get(1) - tabela.get(0).get(0);
         for (int i = 0; i < frequenciaAgrupada.size(); i++) {
-            if(i - 1 == -1 || i + 1 >= frequenciaAgrupada.size()){
-                limiteInferior = tabela.get(i).get(0);
+            if (i == 0){
+                if (acharClasse > frequenciaAgrupada.get(i) && acharClasse <= frequenciaAgrupada.get(i+1)) {
+                    limiteInferior = tabela.get(i).get(0);
+                    frequenciaAnterior = 0;
+                    frequenciaAtual = tabela.get(i).get(2);
+                }
+            }
+            else {
+                if (acharClasse > frequenciaAgrupada.get(i - 1) && acharClasse <= frequenciaAgrupada.get(i)) {
+                    limiteInferior = tabela.get(i).get(0);
+                    frequenciaAnterior = frequenciaAgrupada.get(i - 1);
+                    frequenciaAtual = tabela.get(i).get(2);
+                }
 
-            } else if (acharClasse > frequenciaAgrupada.get(i - 1) && acharClasse <= frequenciaAgrupada.get(i)) {
-                limiteInferior = tabela.get(i).get(0);
-                frequenciaAnterior = frequenciaAgrupada.get(i - 1);
-                frequenciaAtual = tabela.get(i).get(2);
             }
         }
         quartis = limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude;
