@@ -173,13 +173,19 @@ public class DadosAgrupados extends Leitura {
     private void calcularQuartis(ArrayList<ArrayList<Double>> tabela, ArrayList<Double> frequenciaAgrupada,
                                  Double frequenciaTotal, int indexQuartis) {
         Double acharClasse = (indexQuartis * frequenciaTotal) / 4;
-        double quartis = 0, amplitude;
+        double quartis = 0, amplitude, limiteInferior = 0, frequenciaAnterior = 0, frequenciaAtual = 0;
         amplitude = tabela.get(0).get(1) - tabela.get(0).get(0);
         for (int i = 0; i < frequenciaAgrupada.size(); i++) {
-            if (acharClasse > frequenciaAgrupada.get(i - 1) && acharClasse <= frequenciaAgrupada.get(i)) {
-                quartis = tabela.get(i).get(0) + (acharClasse - frequenciaAgrupada.get(i - 1)) / tabela.get(i).get(2) * amplitude;
+            if(i - 1 == -1 || i + 1 >= frequenciaAgrupada.size()){
+                limiteInferior = tabela.get(i).get(0);
+
+            } else if (acharClasse > frequenciaAgrupada.get(i - 1) && acharClasse <= frequenciaAgrupada.get(i)) {
+                limiteInferior = tabela.get(i).get(0);
+                frequenciaAnterior = frequenciaAgrupada.get(i - 1);
+                frequenciaAtual = tabela.get(i).get(2);
             }
         }
+        quartis = limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude;
         this.quartis = (double) Math.round(quartis * 100) / 100;
     }
 
