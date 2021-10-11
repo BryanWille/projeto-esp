@@ -16,7 +16,7 @@ public class DadosAgrupados extends Leitura {
     private Double variancia;
     private Double desvioPadrao;
     private Double coeficienteVariacao;
-    private Double quartis;
+    private Double separatriz;
     private Double frequenciaTotal;
     private ArrayList<Double> pontoMedioClasse;
     private ArrayList<Double> frequenciaAgrupada;
@@ -26,7 +26,7 @@ public class DadosAgrupados extends Leitura {
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
 
-    public DadosAgrupados(Double escolherAmplitude) {
+    public DadosAgrupados(double escolherAmplitude) {
         this.criarLista();
         this.setAmplitudeClasse(escolherAmplitude);
         //this.fazerAmplitudeClasse(getLista());
@@ -45,7 +45,7 @@ public class DadosAgrupados extends Leitura {
         this.calcularDesvioPadrao(this.getVariancia());
         this.calcularCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
 
-        this.calcularQuartis(this.getTabela(), this.getFrequenciaAgrupada(), this.getFrequenciaTotal(), 3);
+        this.calcularSeparatriz(this.getTabela(), this.getFrequenciaAgrupada(), this.getFrequenciaTotal(), 100, 1);
     }
 
 
@@ -74,7 +74,6 @@ public class DadosAgrupados extends Leitura {
                 frequencia++;
                 if (i + 1 < lista.size() - 1) {
                     i++;
-                    System.out.println("tabela coluna: " +i);
                 } else {
                     frequencia ++;
                     break;
@@ -170,31 +169,46 @@ public class DadosAgrupados extends Leitura {
         this.pontoMedioClasse = (pontoMedioClasse);
     }
 
-    private void calcularQuartis(ArrayList<ArrayList<Double>> tabela, ArrayList<Double> frequenciaAgrupada,
-                                 Double frequenciaTotal, int indexQuartis) {
-        Double acharClasse = (indexQuartis * frequenciaTotal) / 4;
-        double quartis = 0, amplitude, limiteInferior = 0, frequenciaAnterior = 0, frequenciaAtual = 0;
-        amplitude = tabela.get(0).get(1) - tabela.get(0).get(0);
-        for (int i = 0; i < frequenciaAgrupada.size(); i++) {
-            if (i == 0){
-                if (acharClasse > frequenciaAgrupada.get(i) && acharClasse <= frequenciaAgrupada.get(i+1)) {
+    private void calcularSeparatriz(ArrayList<ArrayList<Double>> tabela, ArrayList<Double> frequenciaAgrupada,
+                                 Double frequenciaTotal, int indexSeparatriz, int index ) {
+        int separatriz = 0;
+        switch (indexSeparatriz){
+            case 100: // Percentil;
+                separatriz = 100;
+                break;
+            case 10: // Decis
+                separatriz = 10;
+                break;
+            case 4: // Quartis
+                separatriz = 4;
+                break;
+            default:
+                System.out.println("Opção inválida!");
+                break;
+        }
+        if(separatriz != 0) {
+            double sep, amplitude, limiteInferior = 0, frequenciaAnterior = 0, frequenciaAtual = 0;
+            Double acharClasse = (index * frequenciaTotal) / separatriz;
+            amplitude = tabela.get(0).get(1) - tabela.get(0).get(0);
+            for (int i = 0; i < frequenciaAgrupada.size(); i++) {
+                if (i == 0) {
                     limiteInferior = tabela.get(i).get(0);
                     frequenciaAnterior = 0;
                     frequenciaAtual = tabela.get(i).get(2);
+                } else {
+                    if (acharClasse >= frequenciaAgrupada.get(i - 1) && acharClasse <= frequenciaAgrupada.get(i)) {
+                        limiteInferior = tabela.get(i).get(0);
+                        frequenciaAnterior = frequenciaAgrupada.get(i - 1);
+                        frequenciaAtual = tabela.get(i).get(2);
+                    }
                 }
             }
-            else {
-                if (acharClasse > frequenciaAgrupada.get(i - 1) && acharClasse <= frequenciaAgrupada.get(i)) {
-                    limiteInferior = tabela.get(i).get(0);
-                    frequenciaAnterior = frequenciaAgrupada.get(i - 1);
-                    frequenciaAtual = tabela.get(i).get(2);
-                }
-
-            }
+            System.out.println("Dividendo = " +(acharClasse - frequenciaAnterior) +" / " +frequenciaAtual +" * " +amplitude);
+            sep = limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude;
+            this.separatriz = (double) Math.round(sep * 100) / 100;
         }
-        quartis = limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude;
-        this.quartis = (double) Math.round(quartis * 100) / 100;
     }
+
 
     private void calcularFrequenciaTotal(ArrayList<Double> frequenciaAgrupada) {
         this.frequenciaTotal = frequenciaAgrupada.get(frequenciaAgrupada.size() - 1);
@@ -243,8 +257,8 @@ public class DadosAgrupados extends Leitura {
         return coeficienteVariacao;
     }
 
-    public double getQuartis() {
-        return this.quartis;
+    public double getSeparatriz() {
+        return this.separatriz;
     }
 
     public ArrayList<Double> getFrequenciaAgrupada() {

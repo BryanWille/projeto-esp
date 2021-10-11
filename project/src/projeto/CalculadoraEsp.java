@@ -38,7 +38,7 @@ public class CalculadoraEsp {
         System.out.println("Variancia Agrupada: " + a.getVariancia());
         System.out.println("Desvio Padrão Agrupado: " + a.getDesvioPadrao());
         System.out.println("Coeficiente de Variação Agrupado: " + a.getCoeficienteVariacao());
-        System.out.println("Quartis 2: " +a.getQuartis());
+        System.out.println("Separatriz: " +a.getSeparatriz());
 
     }
 }
