@@ -170,23 +170,8 @@ public class DadosAgrupados extends Leitura {
     }
 
     private void calcularSeparatriz(ArrayList<ArrayList<Double>> tabela, ArrayList<Double> frequenciaAgrupada,
-                                 Double frequenciaTotal, int indexSeparatriz, int index ) {
-        int separatriz = 0;
-        switch (indexSeparatriz){
-            case 100: // Percentil;
-                separatriz = 100;
-                break;
-            case 10: // Decis
-                separatriz = 10;
-                break;
-            case 4: // Quartis
-                separatriz = 4;
-                break;
-            default:
-                System.out.println("Opção inválida!");
-                break;
-        }
-        if(separatriz != 0) {
+                                 Double frequenciaTotal, int separatriz, int index ) {
+        if(separatriz == 10 || separatriz == 100 || separatriz == 4 ) {
             double sep, amplitude, limiteInferior = 0, frequenciaAnterior = 0, frequenciaAtual = 0;
             Double acharClasse = (index * frequenciaTotal) / separatriz;
             amplitude = tabela.get(0).get(1) - tabela.get(0).get(0);
@@ -206,6 +191,8 @@ public class DadosAgrupados extends Leitura {
             System.out.println("Dividendo = " +(acharClasse - frequenciaAnterior) +" / " +frequenciaAtual +" * " +amplitude);
             sep = limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude;
             this.separatriz = (double) Math.round(sep * 100) / 100;
+        } else {
+            System.out.println("Erro: Separatriz Selecionada é Inválida!");
         }
     }
 
