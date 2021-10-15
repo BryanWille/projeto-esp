@@ -93,7 +93,7 @@ public class DadosBrutos extends Leitura {
             double fator = lista.get(i) - this.media;
             variancia += Math.pow(fator, 2.0D);
         }
-        variancia /= lista.size();
+        variancia /= lista.size() - 1;
         this.variancia = variancia;
     }
 
