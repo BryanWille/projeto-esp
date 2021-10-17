@@ -16,7 +16,7 @@ public class CalculadoraEsp {
 
     public static void main(String[] args) {
         DadosBrutos b = new DadosBrutos();
-        DadosAgrupados a = new DadosAgrupados(3.6);
+        DadosAgrupados a = new DadosAgrupados();
 
         System.out.println("// ----------------------------- CLASSE BRUTA ----------------------------- //");
 

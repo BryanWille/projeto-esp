@@ -26,10 +26,10 @@ public class DadosAgrupados extends Leitura {
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
 
-    public DadosAgrupados(double escolherAmplitude) {
+    public DadosAgrupados(/*double escolherAmplitude*/) {
         this.criarLista();
-        this.setAmplitudeClasse(escolherAmplitude);
-        //this.fazerAmplitudeClasse(getLista());
+        //this.setAmplitudeClasse(escolherAmplitude);
+        this.fazerAmplitudeClasse(getLista());
         this.fazerTabela(getLista(), this.getAmplitudeClasse());
 
 
@@ -45,7 +45,7 @@ public class DadosAgrupados extends Leitura {
         this.calcularDesvioPadrao(this.getVariancia());
         this.calcularCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
 
-        this.calcularSeparatriz(this.getTabela(), this.getFrequenciaAgrupada(), this.getFrequenciaTotal(), 100, 1);
+        this.calcularSeparatriz(this.getTabela(), this.getFrequenciaAgrupada(), this.getFrequenciaTotal(), 10, 6);
     }
 
 
