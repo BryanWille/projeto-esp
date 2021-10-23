@@ -72,15 +72,14 @@ public class DadosAgrupados extends Leitura {
             frequencia = 0;
             while (lista.get(i) < limiteSuperior) {
                 frequencia++;
-                if (i + 1 < lista.size() - 1) {
+                if (i + 1 < lista.size()) {
                     i++;
                 } else {
-                    frequencia ++;
                     break;
                 }
             }
-            limiteInferior = (double) Math.round((limiteInferior * 1000.00)) / 1000;
-            limiteSuperior = (double) Math.round((limiteSuperior * 1000.00)) / 1000;
+            limiteInferior = (double) Math.round(limiteInferior);
+            limiteSuperior = (double) Math.round(limiteSuperior);
             tabela.get(j).add(limiteInferior);
             tabela.get(j).add(limiteSuperior);
             tabela.get(j).add((double) frequencia);
@@ -142,9 +141,9 @@ public class DadosAgrupados extends Leitura {
     private void calcularVariancia(ArrayList<Double> pontoMedioClasse, Double media) {
         Double somatorio = 0.0;
         for (int i = 0; i < pontoMedioClasse.size(); i++) {
-            somatorio += Math.pow((pontoMedioClasse.get(i) - media), 2);
+            somatorio += Math.pow((pontoMedioClasse.get(i) - media), 2) * getTabela().get(i).get(2);
         }
-        Double variancia = somatorio / pontoMedioClasse.size() - 1;
+        Double variancia = somatorio / getLista().size();
         this.variancia = (double) Math.round((variancia) * 100) / 100;
     }
 
