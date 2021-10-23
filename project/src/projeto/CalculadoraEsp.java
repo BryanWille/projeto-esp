@@ -13,11 +13,13 @@ import java.util.*;
 
 public class CalculadoraEsp {
     private DadosAgrupados ab;
+    private static ParteGrafica pg;
 
     public static void main(String[] args) {
         DadosBrutos b = new DadosBrutos();
         DadosAgrupados a = new DadosAgrupados();
-
+        pg = new ParteGrafica();
+        pg.criaJanela();
         System.out.println("// ----------------------------- CLASSE BRUTA ----------------------------- //");
 
         System.out.println("Media: " + b.getMedia());

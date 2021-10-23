@@ -51,6 +51,17 @@ public class DadosAgrupados extends Leitura {
 
     // ----------------------------- MÉTODOS CALCULADORA ----------------------------- //
 
+    public Object[][] converterLista(ArrayList<ArrayList<Double>> lista, ArrayList<Double> pontoMedio){
+        Object[][] matriz = new Object[lista.size()][3];
+        for(int i = 0; i < lista.size(); i++){
+            for(int j = 0; j < 1; j++){
+                matriz[i][j] = lista.get(i).get(j) +" |-- " + lista.get(i).get(j+1);
+                matriz[i][1] = lista.get(i).get(2);
+            }
+            matriz[i][2] = pontoMedio.get(i);
+        }
+        return matriz;
+    }
 
     private void fazerAmplitudeClasse(ArrayList<Double> lista) {
         double amplitudeTotal, raizAmostra, a;
