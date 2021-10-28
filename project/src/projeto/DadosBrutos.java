@@ -2,12 +2,11 @@ package projeto;
 
 import java.util.ArrayList;
 
-public class DadosBrutos {
+public class DadosBrutos extends Configuracoes{
 
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
-    private Configuracoes conf = new Configuracoes();
     private Leitura leitor = new Leitura();
     private double media;
     private double mediana;
@@ -21,6 +20,8 @@ public class DadosBrutos {
 
 
     public DadosBrutos() {
+        super();
+
         leitor.criarLista();
         this.calcularMedia(leitor.getLista());
         this.calcularMediana(leitor.getLista());
@@ -41,7 +42,7 @@ public class DadosBrutos {
             somaTotal = somaTotal + lista.get(i);
         }
         double media = (somaTotal / (double) lista.size());
-        this.media = conf.arredondar(media);
+        this.media = this.arredondar(media);
     }
 
     private void calcularMediana(ArrayList<Double> lista) {
@@ -52,7 +53,7 @@ public class DadosBrutos {
             mediana = lista.get((lista.size() - 1) / 2) + (lista.get((lista.size() - 1) / 2) + 1.0D) / 2.0D;
         }
 
-        this.mediana = conf.arredondar(mediana);
+        this.mediana = this.arredondar(mediana);
     }
 
     private void calcularModa(ArrayList<Double> lista) {
@@ -96,15 +97,15 @@ public class DadosBrutos {
             variancia += Math.pow(fator, 2.0D);
         }
         variancia /= lista.size() - 1;
-        this.variancia = conf.arredondar(variancia);
+        this.variancia = this.arredondar(variancia);
     }
 
     private void calcularDesvioPadrao(double variancia) {
-        this.desvioPadrao = conf.arredondar(Math.sqrt(variancia));
+        this.desvioPadrao = this.arredondar(Math.sqrt(variancia));
     }
 
     private void calcularCoeficienteVariacao(double desvioPadrao, double media) {
-        this.coeficienteVariacao = conf.arredondar(desvioPadrao / media * 100.0D);
+        this.coeficienteVariacao = this.arredondar(desvioPadrao / media * 100.0D);
     }
 
 

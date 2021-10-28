@@ -3,12 +3,11 @@ package projeto;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DadosAgrupados {
+public class DadosAgrupados extends Configuracoes {
 
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
-    private Configuracoes conf = new Configuracoes();
     private Leitura leitor = new Leitura();
     private Double amplitudeClasse;
     private Double media;
@@ -29,6 +28,7 @@ public class DadosAgrupados {
 
 
     public DadosAgrupados() {
+        super();
 
         leitor.criarLista();
         this.fazerAmplitudeClasse(leitor.getLista());
@@ -70,7 +70,7 @@ public class DadosAgrupados {
         double amplitudeTotal, raizAmostra, a;
         amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
         raizAmostra = Math.sqrt(lista.size());
-        a = conf.arredondar(amplitudeTotal / raizAmostra);
+        a = this.arredondar(amplitudeTotal / raizAmostra);
         this.setAmplitudeClasse(a);
     }
 
@@ -92,8 +92,8 @@ public class DadosAgrupados {
                     break;
                 }
             }
-            limiteInferior = conf.arredondar(limiteInferior);
-            limiteSuperior = conf.arredondar(limiteSuperior);
+            limiteInferior = this.arredondar(limiteInferior);
+            limiteSuperior = this.arredondar(limiteSuperior);
             tabela.get(j).add(limiteInferior);
             tabela.get(j).add(limiteSuperior);
             tabela.get(j).add((double) frequencia);
@@ -121,7 +121,7 @@ public class DadosAgrupados {
             somatorio += mediaClasse.get(i) * tabela.get(i).get(2);
         }
         Double media = somatorio / somaFrequencia;
-        this.media = conf.arredondar(media);
+        this.media = this.arredondar(media);
     }
 
     private void calcularMediana(ArrayList<ArrayList<Double>> tabela) {
@@ -131,7 +131,7 @@ public class DadosAgrupados {
             frequenciaClasseAnterior += tabela.get(i).get(2);
         }
         mediana = tabela.get(classeMediana).get(0) + ((leitor.getLista().size() / 2 - frequenciaClasseAnterior) / tabela.get(classeMediana).get(2)) * this.getAmplitudeClasse();
-        this.mediana = conf.arredondar(mediana);
+        this.mediana = this.arredondar(mediana);
     }
 
     private void calcularModa(ArrayList<ArrayList<Double>> tabela) {
@@ -149,7 +149,7 @@ public class DadosAgrupados {
         }
 
         moda = limInfModa + (difFreq1 / (difFreq1 + difFreq2)) * this.getAmplitudeClasse();
-        this.moda = conf.arredondar(moda);
+        this.moda = this.arredondar(moda);
     }
 
     private void calcularVariancia(ArrayList<Double> pontoMedioClasse, Double media) {
@@ -158,17 +158,17 @@ public class DadosAgrupados {
             somatorio += Math.pow((pontoMedioClasse.get(i) - media), 2) * getTabela().get(i).get(2);
         }
         Double variancia = somatorio / leitor.getLista().size();
-        this.variancia = conf.arredondar(variancia);
+        this.variancia = this.arredondar(variancia);
     }
 
     private void calcularDesvioPadrao(Double variancia) {
-        this.desvioPadrao = conf.arredondar(Math.sqrt(variancia));
+        this.desvioPadrao = this.arredondar(Math.sqrt(variancia));
     }
 
     private void calcularCoeficienteVariacao(Double desvioPadrao, Double media) {
         double coefVar = 0.0;
         coefVar = (desvioPadrao / media) * 100;
-        this.coeficienteVariacao = conf.arredondar(coefVar);
+        this.coeficienteVariacao = this.arredondar(coefVar);
     }
 
     private void calcularPontoMedioClasse(ArrayList<ArrayList<Double>> tabela) {
@@ -203,7 +203,7 @@ public class DadosAgrupados {
             }
             System.out.println("Dividendo = " +(acharClasse - frequenciaAnterior) +" / " +frequenciaAtual +" * " +amplitude);
             sep = limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude;
-            this.separatriz = conf.arredondar(sep);
+            this.separatriz = this.arredondar(sep);
         } else {
             System.out.println("Erro: Separatriz Selecionada é Inválida!");
         }
