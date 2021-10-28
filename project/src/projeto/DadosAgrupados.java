@@ -3,12 +3,13 @@ package projeto;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DadosAgrupados extends Leitura {
+public class DadosAgrupados {
 
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
-
+    private Configuracoes conf = new Configuracoes();
+    private Leitura leitor = new Leitura();
     private Double amplitudeClasse;
     private Double media;
     private Double mediana;
@@ -26,11 +27,12 @@ public class DadosAgrupados extends Leitura {
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
 
-    public DadosAgrupados(/*double escolherAmplitude*/) {
-        this.criarLista();
-        //this.setAmplitudeClasse(escolherAmplitude);
-        this.fazerAmplitudeClasse(getLista());
-        this.fazerTabela(getLista(), this.getAmplitudeClasse());
+
+    public DadosAgrupados() {
+
+        leitor.criarLista();
+        this.fazerAmplitudeClasse(leitor.getLista());
+        this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
 
 
         this.fazerFrequenciaAgrupada(this.getTabela());
@@ -47,6 +49,7 @@ public class DadosAgrupados extends Leitura {
 
         this.calcularSeparatriz(this.getTabela(), this.getFrequenciaAgrupada(), this.getFrequenciaTotal(), 100, 90);
     }
+
 
 
     // ----------------------------- MÉTODOS CALCULADORA ----------------------------- //
@@ -67,7 +70,7 @@ public class DadosAgrupados extends Leitura {
         double amplitudeTotal, raizAmostra, a;
         amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
         raizAmostra = Math.sqrt(lista.size());
-        a = Math.round((amplitudeTotal / raizAmostra) * 100.0) / 100.0;
+        a = conf.arredondar(amplitudeTotal / raizAmostra);
         this.setAmplitudeClasse(a);
     }
 
@@ -89,8 +92,8 @@ public class DadosAgrupados extends Leitura {
                     break;
                 }
             }
-            limiteInferior = (double) Math.round(limiteInferior);
-            limiteSuperior = (double) Math.round(limiteSuperior);
+            limiteInferior = conf.arredondar(limiteInferior);
+            limiteSuperior = conf.arredondar(limiteSuperior);
             tabela.get(j).add(limiteInferior);
             tabela.get(j).add(limiteSuperior);
             tabela.get(j).add((double) frequencia);
@@ -118,7 +121,7 @@ public class DadosAgrupados extends Leitura {
             somatorio += mediaClasse.get(i) * tabela.get(i).get(2);
         }
         Double media = somatorio / somaFrequencia;
-        this.media = (double) Math.round((media) * 100) / 100;
+        this.media = conf.arredondar(media);
     }
 
     private void calcularMediana(ArrayList<ArrayList<Double>> tabela) {
@@ -127,8 +130,8 @@ public class DadosAgrupados extends Leitura {
         for (int i = 0; i < classeMediana; i++) {
             frequenciaClasseAnterior += tabela.get(i).get(2);
         }
-        mediana = tabela.get(classeMediana).get(0) + ((getLista().size() / 2 - frequenciaClasseAnterior) / tabela.get(classeMediana).get(2)) * this.getAmplitudeClasse();
-        this.mediana = (double) Math.round((mediana) * 100) / 100;
+        mediana = tabela.get(classeMediana).get(0) + ((leitor.getLista().size() / 2 - frequenciaClasseAnterior) / tabela.get(classeMediana).get(2)) * this.getAmplitudeClasse();
+        this.mediana = conf.arredondar(mediana);
     }
 
     private void calcularModa(ArrayList<ArrayList<Double>> tabela) {
@@ -146,7 +149,7 @@ public class DadosAgrupados extends Leitura {
         }
 
         moda = limInfModa + (difFreq1 / (difFreq1 + difFreq2)) * this.getAmplitudeClasse();
-        this.moda = (double) Math.round(moda * 100) / 100;
+        this.moda = conf.arredondar(moda);
     }
 
     private void calcularVariancia(ArrayList<Double> pontoMedioClasse, Double media) {
@@ -154,18 +157,18 @@ public class DadosAgrupados extends Leitura {
         for (int i = 0; i < pontoMedioClasse.size(); i++) {
             somatorio += Math.pow((pontoMedioClasse.get(i) - media), 2) * getTabela().get(i).get(2);
         }
-        Double variancia = somatorio / getLista().size();
-        this.variancia = (double) Math.round((variancia) * 100) / 100;
+        Double variancia = somatorio / leitor.getLista().size();
+        this.variancia = conf.arredondar(variancia);
     }
 
     private void calcularDesvioPadrao(Double variancia) {
-        this.desvioPadrao = (double) Math.round((Math.sqrt(variancia) * 100)) / 100;
+        this.desvioPadrao = conf.arredondar(Math.sqrt(variancia));
     }
 
     private void calcularCoeficienteVariacao(Double desvioPadrao, Double media) {
         double coefVar = 0.0;
         coefVar = (desvioPadrao / media) * 100;
-        this.coeficienteVariacao = (double) Math.round(coefVar * 100) / 100;
+        this.coeficienteVariacao = conf.arredondar(coefVar);
     }
 
     private void calcularPontoMedioClasse(ArrayList<ArrayList<Double>> tabela) {
@@ -200,7 +203,7 @@ public class DadosAgrupados extends Leitura {
             }
             System.out.println("Dividendo = " +(acharClasse - frequenciaAnterior) +" / " +frequenciaAtual +" * " +amplitude);
             sep = limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude;
-            this.separatriz = (double) Math.round(sep * 100) / 100;
+            this.separatriz = conf.arredondar(sep);
         } else {
             System.out.println("Erro: Separatriz Selecionada é Inválida!");
         }
@@ -211,13 +214,12 @@ public class DadosAgrupados extends Leitura {
         this.frequenciaTotal = frequenciaAgrupada.get(frequenciaAgrupada.size() - 1);
     }
 
-    // ----------------------------- MÉTODOS GETTERS ----------------------------- //
 
+    // ----------------------------- MÉTODOS GETTERS ----------------------------- //
 
     public Double getAmplitudeClasse() {
         return amplitudeClasse;
     }
-
     public void setAmplitudeClasse(Double amplitudeClasse) {
         this.amplitudeClasse = amplitudeClasse;
     }

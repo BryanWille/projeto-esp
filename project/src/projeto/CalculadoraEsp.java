@@ -9,15 +9,14 @@ package projeto;
 
 import java.util.*;
 
-//Dados brutos 7: https://docs.google.com/spreadsheets/d/1V1dZQeqVkHgVYMnJPkQeJC6_9kjSwSF8fNRz9giMglg/edit?usp=sharing
-
 public class CalculadoraEsp {
-    private DadosAgrupados ab;
     private static ParteGrafica pg;
 
     public static void main(String[] args) {
         DadosBrutos b = new DadosBrutos();
         DadosAgrupados a = new DadosAgrupados();
+
+
         pg = new ParteGrafica();
         pg.criaJanela();
         System.out.println("// ----------------------------- CLASSE BRUTA ----------------------------- //");
