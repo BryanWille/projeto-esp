@@ -32,7 +32,7 @@ public class CalculadoraEsp {
 
         System.out.println("Amplitude de classe: " + a.getAmplitudeClasse());
         System.out.println("Tabela: \n" + a.getTabela());
-        System.out.println("\nFrequência Agrupada: \n" +a.getFrequenciaAgrupada());
+        System.out.println("\nFrequência Agrupada: \n" +a.getTabela().get(3));
         System.out.println("Media Agrupada: " + a.getMedia());
         System.out.println("Mediana Agrupada: " + a.getMediana());
         System.out.println("Moda Agrupada: " + a.getModa());

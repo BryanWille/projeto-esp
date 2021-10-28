@@ -13,9 +13,9 @@ public class ParteGrafica{
         JTable tabela;
         JScrollPane barraRolagem;
 
-        Object[][] dados = db.converterLista(db.getTabela(), db.getPontoMedioClasse());
+        Object[][] dados = db.converterLista(db.getTabela());
 
-        String[] colunas = {"Distribuição de Frequência", "Frequência", "Ponto Médio"};
+        String[] colunas = {"Distribuição de Frequência", "Frequência", "Frequência Agrupada", "Ponto Médio"};
 
         public void criaJanela(){
             janela = new JFrame();                                  //Cria a Janela

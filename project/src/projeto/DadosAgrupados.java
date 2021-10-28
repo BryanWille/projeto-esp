@@ -18,8 +18,6 @@ public class DadosAgrupados extends Configuracoes {
     private Double coeficienteVariacao;
     private Double separatriz;
     private Double frequenciaTotal;
-    private ArrayList<Double> pontoMedioClasse;
-    private ArrayList<Double> frequenciaAgrupada;
     private ArrayList<ArrayList<Double>> tabela;
 
 
@@ -35,90 +33,28 @@ public class DadosAgrupados extends Configuracoes {
         this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
 
 
-        this.fazerFrequenciaAgrupada(this.getTabela());
-        this.calcularPontoMedioClasse(this.getTabela());
-        this.calcularFrequenciaTotal(this.getFrequenciaAgrupada());
+        this.calcularFrequenciaTotal(this.getTabela());
 
-        this.calcularMedia(this.getTabela(), this.getPontoMedioClasse());
+        this.calcularMedia(this.getTabela());
         this.calcularMediana(this.getTabela());
         this.calcularModa(this.getTabela());
 
-        this.calcularVariancia(this.getPontoMedioClasse(), this.getMedia());
+        this.calcularVariancia(this.getTabela(), this.getMedia());
         this.calcularDesvioPadrao(this.getVariancia());
         this.calcularCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
 
-        this.calcularSeparatriz(this.getTabela(), this.getFrequenciaAgrupada(), this.getFrequenciaTotal(), 100, 90);
+        this.calcularSeparatriz(this.getTabela(), this.getFrequenciaTotal(), 100, 90);
     }
 
 
 
-    // ----------------------------- MÉTODOS CALCULADORA ----------------------------- //
+    // ----------------------------- MÉTODOS CÁLCULOS ----------------------------- //
 
-    public Object[][] converterLista(ArrayList<ArrayList<Double>> lista, ArrayList<Double> pontoMedio){
-        Object[][] matriz = new Object[lista.size()][3];
-        for(int i = 0; i < lista.size(); i++){
-            for(int j = 0; j < 1; j++){
-                matriz[i][j] = lista.get(i).get(j) +" |-- " + lista.get(i).get(j+1);
-                matriz[i][1] = lista.get(i).get(2);
-            }
-            matriz[i][2] = pontoMedio.get(i);
-        }
-        return matriz;
-    }
-
-    private void fazerAmplitudeClasse(ArrayList<Double> lista) {
-        double amplitudeTotal, raizAmostra, a;
-        amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
-        raizAmostra = Math.sqrt(lista.size());
-        a = this.arredondar(amplitudeTotal / raizAmostra);
-        this.setAmplitudeClasse(a);
-    }
-
-    private void fazerTabela(ArrayList<Double> lista, Double distriContinua) {
-        ArrayList<ArrayList<Double>> tabela = new ArrayList<>();
-        int i = 0, frequencia, j = 0;
-        double limiteSuperior = lista.get(0), limiteInferior;
-        System.out.println(lista);
-        while (limiteSuperior < lista.get(lista.size() - 1)) {
-            tabela.add(new ArrayList());
-            limiteInferior = limiteSuperior;
-            limiteSuperior += distriContinua;
-            frequencia = 0;
-            while (lista.get(i) < limiteSuperior) {
-                frequencia++;
-                if (i + 1 < lista.size()) {
-                    i++;
-                } else {
-                    break;
-                }
-            }
-            limiteInferior = this.arredondar(limiteInferior);
-            limiteSuperior = this.arredondar(limiteSuperior);
-            tabela.get(j).add(limiteInferior);
-            tabela.get(j).add(limiteSuperior);
-            tabela.get(j).add((double) frequencia);
-            j++;
-        }
-
-        this.tabela = tabela;
-    }
-
-    private void fazerFrequenciaAgrupada(ArrayList<ArrayList<Double>> tabela) {
-        ArrayList<Double> frequenciaAgrupada = new ArrayList<>();
-        double somatorioFrequencia = tabela.get(0).get(2);
-        frequenciaAgrupada.add(tabela.get(0).get(2));
-        for (int i = 1; i < tabela.size(); i++) {
-            somatorioFrequencia += tabela.get(i).get(2);
-            frequenciaAgrupada.add(somatorioFrequencia);
-        }
-        this.frequenciaAgrupada = frequenciaAgrupada;
-    }
-
-    private void calcularMedia(ArrayList<ArrayList<Double>> tabela, ArrayList<Double> mediaClasse) {
+    private void calcularMedia(ArrayList<ArrayList<Double>> tabela) {
         Double somaFrequencia = 0.0, somatorio = 0.0;
         for (int i = 0; i < tabela.size(); i++) {
             somaFrequencia += tabela.get(i).get(2);
-            somatorio += mediaClasse.get(i) * tabela.get(i).get(2);
+            somatorio += tabela.get(i).get(4) * tabela.get(i).get(2);
         }
         Double media = somatorio / somaFrequencia;
         this.media = this.arredondar(media);
@@ -152,10 +88,10 @@ public class DadosAgrupados extends Configuracoes {
         this.moda = this.arredondar(moda);
     }
 
-    private void calcularVariancia(ArrayList<Double> pontoMedioClasse, Double media) {
+    private void calcularVariancia(ArrayList<ArrayList<Double>> tabela, Double media) {
         Double somatorio = 0.0;
-        for (int i = 0; i < pontoMedioClasse.size(); i++) {
-            somatorio += Math.pow((pontoMedioClasse.get(i) - media), 2) * getTabela().get(i).get(2);
+        for (int i = 0; i < tabela.size(); i++) {
+            somatorio += Math.pow((tabela.get(i).get(4) - media), 2) * getTabela().get(i).get(2);
         }
         Double variancia = somatorio / leitor.getLista().size();
         this.variancia = this.arredondar(variancia);
@@ -171,32 +107,20 @@ public class DadosAgrupados extends Configuracoes {
         this.coeficienteVariacao = this.arredondar(coefVar);
     }
 
-    private void calcularPontoMedioClasse(ArrayList<ArrayList<Double>> tabela) {
-        ArrayList<Double> pontoMedioClasse = new ArrayList<>();
-        Double media;
-
-        for (int i = 0; i < tabela.size(); i++) {
-            media = (tabela.get(i).get(0) + tabela.get(i).get(1)) / 2;
-            pontoMedioClasse.add(media);
-        }
-        this.pontoMedioClasse = (pontoMedioClasse);
-    }
-
-    private void calcularSeparatriz(ArrayList<ArrayList<Double>> tabela, ArrayList<Double> frequenciaAgrupada,
-                                 Double frequenciaTotal, int separatriz, int index ) {
+    private void calcularSeparatriz(ArrayList<ArrayList<Double>> tabela, Double frequenciaTotal, int separatriz, int index ) {
         if(separatriz == 10 || separatriz == 100 || separatriz == 4 ) {
             double sep, amplitude, limiteInferior = 0, frequenciaAnterior = 0, frequenciaAtual = 0;
             Double acharClasse = (index * frequenciaTotal) / separatriz;
             amplitude = tabela.get(0).get(1) - tabela.get(0).get(0);
-            for (int i = 0; i < frequenciaAgrupada.size(); i++) {
+            for (int i = 0; i < tabela.size(); i++) {
                 if (i == 0) {
                     limiteInferior = tabela.get(i).get(0);
                     frequenciaAnterior = 0;
                     frequenciaAtual = tabela.get(i).get(2);
                 } else {
-                    if (acharClasse >= frequenciaAgrupada.get(i - 1) && acharClasse <= frequenciaAgrupada.get(i)) {
+                    if (acharClasse >= tabela.get(i - 1).get(3) && acharClasse <= tabela.get(i).get(3)) {
                         limiteInferior = tabela.get(i).get(0);
-                        frequenciaAnterior = frequenciaAgrupada.get(i - 1);
+                        frequenciaAnterior = tabela.get(i - 1).get(3);
                         frequenciaAtual = tabela.get(i).get(2);
                     }
                 }
@@ -209,10 +133,68 @@ public class DadosAgrupados extends Configuracoes {
         }
     }
 
-
-    private void calcularFrequenciaTotal(ArrayList<Double> frequenciaAgrupada) {
-        this.frequenciaTotal = frequenciaAgrupada.get(frequenciaAgrupada.size() - 1);
+    private void calcularFrequenciaTotal(ArrayList<ArrayList<Double>> tabela) {
+        this.frequenciaTotal = tabela.get(tabela.size()-1).get(3);
     }
+
+
+
+    // ----------------------------- MÉTODOS TABELA ----------------------------- //
+
+    public Object[][] converterLista(ArrayList<ArrayList<Double>> tabela){
+        Object[][] matriz = new Object[tabela.size()][4];
+        for(int i = 0; i < tabela.size(); i++){
+            for(int j = 0; j < 1; j++){
+                matriz[i][j] = tabela.get(i).get(j) +" |-- " + tabela.get(i).get(j+1);
+                matriz[i][1] = tabela.get(i).get(2);
+            }
+            matriz[i][2] = tabela.get(i).get(3);
+            matriz[i][3] = tabela.get(i).get(4);
+        }
+        return matriz;
+    }
+
+    private void fazerAmplitudeClasse(ArrayList<Double> lista) {
+        double amplitudeTotal, raizAmostra, a;
+        amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
+        raizAmostra = Math.sqrt(lista.size());
+        a = this.arredondar(amplitudeTotal / raizAmostra);
+        this.setAmplitudeClasse(a);
+    }
+
+    private void fazerTabela(ArrayList<Double> lista, Double distriContinua) {
+        ArrayList<ArrayList<Double>> tabela = new ArrayList<>();
+        int i = 0, frequencia, j = 0;
+        double limiteSuperior = lista.get(0), limiteInferior, frequenciaAgrupada = 0;;
+        System.out.println(lista);
+        while (limiteSuperior < lista.get(lista.size() - 1)) {
+            tabela.add(new ArrayList());
+            limiteInferior = limiteSuperior;
+            limiteSuperior += distriContinua;
+            frequencia = 0;
+            while (lista.get(i) < limiteSuperior) {
+                frequencia++;
+                if (i + 1 < lista.size()) {
+                    i++;
+                } else {
+                    break;
+                }
+            }
+            limiteInferior = this.arredondar(limiteInferior);
+            limiteSuperior = this.arredondar(limiteSuperior);
+            double pontoMedio = this.arredondar((limiteInferior + limiteSuperior)/2);
+            tabela.get(j).add(limiteInferior);              // Index: 0 Limite Inferior
+            tabela.get(j).add(limiteSuperior);              // Index: 1 Limite Superior
+            tabela.get(j).add((double) frequencia);         // Index: 2 Frequência
+            frequenciaAgrupada += tabela.get(j).get(2);
+            tabela.get(j).add(frequenciaAgrupada);          // Index: 3 Frequência Agrupada
+            tabela.get(j).add(pontoMedio);                  // Index: 4 Ponto Médio
+            j++;
+        }
+
+        this.tabela = tabela;
+    }
+
 
 
     // ----------------------------- MÉTODOS GETTERS ----------------------------- //
@@ -222,10 +204,6 @@ public class DadosAgrupados extends Configuracoes {
     }
     public void setAmplitudeClasse(Double amplitudeClasse) {
         this.amplitudeClasse = amplitudeClasse;
-    }
-
-    public ArrayList<Double> getPontoMedioClasse() {
-        return pontoMedioClasse;
     }
 
     public ArrayList<ArrayList<Double>> getTabela() {
@@ -258,10 +236,6 @@ public class DadosAgrupados extends Configuracoes {
 
     public double getSeparatriz() {
         return this.separatriz;
-    }
-
-    public ArrayList<Double> getFrequenciaAgrupada() {
-        return this.frequenciaAgrupada;
     }
 
     public double getFrequenciaTotal() {
