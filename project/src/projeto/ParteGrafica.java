@@ -1,33 +1,33 @@
 package projeto;
 
 import java.awt.GridLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 
 public class ParteGrafica{
-        DadosAgrupados db = new DadosAgrupados();
-        JFrame janela;
-        JPanel painelFundo;
-        JTable tabela;
-        JScrollPane barraRolagem;
+        private DadosAgrupados da = new DadosAgrupados();
+        private DadosBrutos db = new DadosBrutos();
+        private JFrame janela;
+        private JPanel painelTabela;
+        private JTable tabela;
+        private JScrollPane barraRolagem;
+        private Object[][] dados = da.converterLista(da.getTabela());
+        private String[] colunas = {"Distribuição de Frequência", "Frequência", "Frequência Agrupada", "Ponto Médio"};
 
-        Object[][] dados = db.converterLista(db.getTabela());
+        public ParteGrafica(){
+            janela = new JFrame();
+            this.janela.setDefaultCloseOperation(janela.EXIT_ON_CLOSE);
+            this.janela.setSize(500, 120);
+            this.janela.setVisible(true);
+            this.criarJanela();
+        }
 
-        String[] colunas = {"Distribuição de Frequência", "Frequência", "Frequência Agrupada", "Ponto Médio"};
-
-        public void criaJanela(){
-            janela = new JFrame();                                  //Cria a Janela
-            painelFundo = new JPanel();                             //Cria o Painel (Espécie de Grid da Página)
-            painelFundo.setLayout(new GridLayout(1, 1));   //Setando Layout
-            tabela = new JTable(dados, colunas);                    //Cria Tabla
-            barraRolagem = new JScrollPane(tabela);                 //Barra de Rolagem na Tabla
-            painelFundo.add(barraRolagem);                          //Adiciona a barra de rolagem no Painel
-            janela.getContentPane().add(painelFundo);               //Adiciona o Painel de Fundo a Janela
-            janela.setDefaultCloseOperation(janela.EXIT_ON_CLOSE);  //Quando Clica no X fecha
-            janela.setSize(500, 120);                   //Define o Tamanho
-            janela.setVisible(true);                                //Seta visibilidade
+        public void criarJanela(){
+            painelTabela = new JPanel();                             //Cria o Painel (Espécie de Grid da Página)
+            painelTabela.setLayout(new GridLayout(1, 1)); //Setando Layout
+            tabela = new JTable(dados, colunas);                     //Cria Tabla
+            barraRolagem = new JScrollPane(tabela);                  //Barra de Rolagem na Tabla
+            painelTabela.add(barraRolagem);                          //Adiciona a barra de rolagem no Painel
+            janela.getContentPane().add(painelTabela);               //Adiciona o Painel de Fundo a Janela
         }
 
 }
