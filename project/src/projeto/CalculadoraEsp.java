@@ -18,7 +18,7 @@ public class CalculadoraEsp {
 
 
         pg = new ParteGrafica();
-        pg.criarJanela();
+        pg.criarTabela();
         System.out.println("// ----------------------------- CLASSE BRUTA ----------------------------- //");
 
         System.out.println("Media: " + b.getMedia());

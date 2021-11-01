@@ -1,11 +1,12 @@
 package projeto;
 
-import java.awt.GridLayout;
+import java.awt.*;
 import javax.swing.*;
 
 public class ParteGrafica{
         private DadosAgrupados da = new DadosAgrupados();
         private DadosBrutos db = new DadosBrutos();
+        private JLabel texto;
         private JFrame janela;
         private JPanel painelTabela;
         private JTable tabela;
@@ -14,21 +15,34 @@ public class ParteGrafica{
         private String[] colunas = {"Distribuição de Frequência", "Frequência", "Frequência Agrupada", "Ponto Médio"};
 
         public ParteGrafica(){
-            janela = new JFrame();
+            janela = new JFrame("PresP");
+            ImageIcon img = new ImageIcon(getClass().getResource("img/logo2.png"));
+            janela.setIconImage(img.getImage());
+            painelTabela = new JPanel();
+            painelTabela.setLayout(new BorderLayout());
+            this.janela.setSize(1280, 720);
             this.janela.setDefaultCloseOperation(janela.EXIT_ON_CLOSE);
-            this.janela.setSize(500, 120);
-            this.janela.setVisible(true);
-            this.criarJanela();
+            this.criarTabela();
+            this.criarTitulo();
+            this.janela.setVisible(true); //Deixar por último
         }
 
-        public void criarJanela(){
-            painelTabela = new JPanel();                             //Cria o Painel (Espécie de Grid da Página)
-            painelTabela.setLayout(new GridLayout(1, 1)); //Setando Layout
-            tabela = new JTable(dados, colunas);                     //Cria Tabla
-            barraRolagem = new JScrollPane(tabela);                  //Barra de Rolagem na Tabla
-            painelTabela.add(barraRolagem);                          //Adiciona a barra de rolagem no Painel
-            janela.getContentPane().add(painelTabela);               //Adiciona o Painel de Fundo a Janela
+        public void criarTabela(){
+            tabela = new JTable(dados, colunas);
+            barraRolagem = new JScrollPane(tabela);
+            painelTabela.add(barraRolagem);
+            janela.getContentPane().add(painelTabela, BorderLayout.CENTER);
         }
+
+        public void criarTitulo(){
+            texto = new JLabel();
+            texto.setFont(new Font("Serif", Font.PLAIN, 25));
+            texto.setText("Programa de Estatística");
+            texto.setHorizontalAlignment(SwingConstants.CENTER);
+            janela.getContentPane().add(texto, BorderLayout.PAGE_START);
+
+        }
+
 
 }
 
