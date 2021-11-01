@@ -27,6 +27,7 @@ public class ParteGrafica{
 
             this.criarTabela();
             this.criarTitulo();
+            this.criarSeparatriz();
 
             this.janela.setVisible(true); //Deixar por último
         }
@@ -47,6 +48,16 @@ public class ParteGrafica{
 
         }
 
+        public void criarSeparatriz(){
+            Object[] separatrizes = {"Quartis", "Percentis", "Decis"};
+            JList lista = new JList(separatrizes);
+            lista.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+            lista.setLayoutOrientation(JList.VERTICAL_WRAP);
+            lista.setVisibleRowCount(-1);
+            JScrollPane listScroller = new JScrollPane(lista);
+            listScroller.setPreferredSize(new Dimension(250, 100));
+            janela.getContentPane().add(lista, BorderLayout.SOUTH);
+        }
 
 }
 
