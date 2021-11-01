@@ -145,9 +145,9 @@ public class DadosAgrupados extends Configuracoes {
         Object[][] matriz = new Object[tabela.size()][4];
         for(int i = 0; i < tabela.size(); i++){
             for(int j = 0; j < 1; j++){
-                Object distribuição = arredondamentoClasse(tabela.get(i).get(j)) +" |-- "
+                Object distribuicao = arredondamentoClasse(tabela.get(i).get(j)) +" |-- "
                         + arredondamentoClasse(tabela.get(i).get(j+1));
-                matriz[i][j] = distribuição;                                     //Distribuição De Frequência
+                matriz[i][j] = distribuicao;                                     //Distribuição De Frequência
                 matriz[i][1] = tabela.get(i).get(2);                             //Frequência
             }
             matriz[i][2] = tabela.get(i).get(3);                                 //Frequência Agrupada
