@@ -49,7 +49,7 @@ public class DadosAgrupados extends Configuracoes {
 
 
 
-    // ----------------------------- MÃ‰TODOS CÃ�LCULOS ----------------------------- //
+    // ----------------------------- MÉTODOS CÁLCULOS ----------------------------- //
 
     private void calcularMedia(ArrayList<ArrayList<Double>> tabela) {
         Double somaFrequencia = 0.0, somatorio = 0.0;
@@ -129,7 +129,7 @@ public class DadosAgrupados extends Configuracoes {
             sep = limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude;
             this.separatriz = this.arredondar(sep);
         } else {
-            System.out.println("Erro: Separatriz Selecionada Ã© InvÃ¡lida!");
+            System.out.println("Erro: Separatriz Selecionada é Inválida!");
         }
     }
 
@@ -139,19 +139,19 @@ public class DadosAgrupados extends Configuracoes {
 
 
 
-    // ----------------------------- MÃ‰TODOS TABELA ----------------------------- //
+    // ----------------------------- MÉTODOS TABELA ----------------------------- //
 
     public Object[][] converterLista(ArrayList<ArrayList<Double>> tabela){
         Object[][] matriz = new Object[tabela.size()][4];
         for(int i = 0; i < tabela.size(); i++){
             for(int j = 0; j < 1; j++){
-                Object distribuiÃ§Ã£o = arredondamentoClasse(tabela.get(i).get(j)) +" |-- "
+                Object distribuição = arredondamentoClasse(tabela.get(i).get(j)) +" |-- "
                         + arredondamentoClasse(tabela.get(i).get(j+1));
-                matriz[i][j] = distribuiÃ§Ã£o;                                     //DistribuiÃ§Ã£o De FrequÃªncia
-                matriz[i][1] = tabela.get(i).get(2);                             //FrequÃªncia
+                matriz[i][j] = distribuição;                                     //Distribuição De Frequência
+                matriz[i][1] = tabela.get(i).get(2);                             //Frequência
             }
-            matriz[i][2] = tabela.get(i).get(3);                                 //FrequÃªncia Agrupada
-            matriz[i][3] = tabela.get(i).get(4);                                 //Ponto MÃ©dio
+            matriz[i][2] = tabela.get(i).get(3);                                 //Frequência Agrupada
+            matriz[i][3] = tabela.get(i).get(4);                                 //Ponto Médio
         }
         return matriz;
     }
@@ -198,10 +198,10 @@ public class DadosAgrupados extends Configuracoes {
             double pontoMedio = this.arredondar((limiteInferior + limiteSuperior)/2);
             tabela.get(j).add(limiteInferior);              // Index: 0 Limite Inferior
             tabela.get(j).add(limiteSuperior);              // Index: 1 Limite Superior
-            tabela.get(j).add((double) frequencia);         // Index: 2 FrequÃªncia
+            tabela.get(j).add((double) frequencia);         // Index: 2 Frequência
             frequenciaAgrupada += tabela.get(j).get(2);
-            tabela.get(j).add(frequenciaAgrupada);          // Index: 3 FrequÃªncia Agrupada
-            tabela.get(j).add(pontoMedio);                  // Index: 4 Ponto MÃ©dio
+            tabela.get(j).add(frequenciaAgrupada);          // Index: 3 Frequência Agrupada
+            tabela.get(j).add(pontoMedio);                  // Index: 4 Ponto Médio
             j++;
         }
 
@@ -210,7 +210,7 @@ public class DadosAgrupados extends Configuracoes {
 
 
 
-    // ----------------------------- MÃ‰TODOS GETTERS ----------------------------- //
+    // ----------------------------- MÉTODOS GETTERS ----------------------------- //
 
     public Double getAmplitudeClasse() {
         return amplitudeClasse;
