@@ -17,8 +17,8 @@ public class ParteGrafica{
         public ParteGrafica(){
             janela = new JFrame("PresP");
 
-            ImageIcon img = new ImageIcon(getClass().getResource("img/logo2.png"));
-            janela.setIconImage(img.getImage());
+            //ImageIcon img = new ImageIcon(getClass().getResource("img/logo.png"));
+            //janela.setIconImage(img.getImage());
 
             painelTabela = new JPanel();
             painelTabela.setLayout(new BorderLayout());
