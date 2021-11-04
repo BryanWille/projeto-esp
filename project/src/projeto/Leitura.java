@@ -20,7 +20,7 @@ public class Leitura {
     }
 
 
-    // ----------------------------- MÉTODOS DE LEITURA ----------------------------- //
+    // ----------------------------- METODOS DE LEITURA ----------------------------- //
 
 
     public void criarLista(){
@@ -45,7 +45,7 @@ public class Leitura {
         keyb.close();
     }
 
-    // ----------------------------- MÉTODOS GETTERS ----------------------------- //
+    // ----------------------------- METODOS GETTERS ----------------------------- //
 
     public ArrayList<Double> getLista() {
         return this.lista;

@@ -32,7 +32,7 @@ public class DadosBrutos extends Configuracoes{
     }
 
 
-    // ----------------------------- MÉTODOS CALCULADORA ----------------------------- //
+    // ----------------------------- METODOS CALCULADORA ----------------------------- //
 
 
     private void calcularMedia(ArrayList<Double> lista) {
@@ -110,7 +110,7 @@ public class DadosBrutos extends Configuracoes{
 
 
 
-    // ----------------------------- MÉTODOS GETTERS ----------------------------- //
+    // ----------------------------- METODOS GETTERS ----------------------------- //
 
 
     public double getMedia() {

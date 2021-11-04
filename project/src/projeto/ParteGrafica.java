@@ -1,6 +1,7 @@
 package projeto;
 
 import java.awt.*;
+import java.util.Objects;
 import javax.swing.*;
 
 public class ParteGrafica{
@@ -12,12 +13,12 @@ public class ParteGrafica{
         private JTable tabela;
         private JScrollPane barraRolagem;
         private Object[][] dados = da.converterLista(da.getTabela());
-        private String[] colunas = {"Distribuição de Frequência", "Frequência", "Frequência Agrupada", "Ponto Médio"};
+        private String[] colunas = {"Distribuicao de Frequencia", "Frequencia", "Frequencia Agrupada", "Ponto Medio"};
 
         public ParteGrafica(){
             janela = new JFrame("PresP");
 
-            //ImageIcon img = new ImageIcon(getClass().getResource("img/logo.png"));
+            //ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/img/logo.png")));
             //janela.setIconImage(img.getImage());
 
             painelTabela = new JPanel();
@@ -29,7 +30,7 @@ public class ParteGrafica{
             this.criarTitulo();
             this.criarSeparatriz();
 
-            this.janela.setVisible(true); //Deixar por último
+            this.janela.setVisible(true); //Deixar por ultimo
         }
 
         public void criarTabela(){
@@ -42,7 +43,7 @@ public class ParteGrafica{
         public void criarTitulo(){
             texto = new JLabel();
             texto.setFont(new Font("Serif", Font.PLAIN, 25));
-            texto.setText("Programa de Estatística");
+            texto.setText("Programa de Estatistica");
             texto.setHorizontalAlignment(SwingConstants.CENTER);
             janela.getContentPane().add(texto, BorderLayout.PAGE_START);
 
