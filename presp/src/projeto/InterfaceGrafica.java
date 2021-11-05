@@ -41,6 +41,7 @@ import com.jgoodies.forms.layout.FormSpecs;
 import java.awt.List;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
+import javax.swing.JPasswordField;
 
 public class InterfaceGrafica {
 	private DadosAgrupados da = new DadosAgrupados();
@@ -78,7 +79,7 @@ public class InterfaceGrafica {
 	 */
 	private void initialize() {
 		frame = new JFrame("PresP");
-		frame.setBounds(100, 100, 1010, 438);
+		frame.setBounds(100, 100, 925, 430);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -92,96 +93,58 @@ public class InterfaceGrafica {
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{43, 0, -18, 38, 0, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 32, 0, 41, 42, 35, 35, 35, 39, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
+		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.gridheight = 7;
-		gbc_scrollPane.gridwidth = 27;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 3;
-		gbc_scrollPane.gridy = 0;
-		panel.add(scrollPane, gbc_scrollPane);
+		scrollPane.setBounds(145, 39, 620, 134);
+		panel.add(scrollPane);
 		
 		table = new JTable(dados, colunas);
 		scrollPane.setViewportView(table);
 		
-		JLabel lblNewLabel_1 = new JLabel("Decis");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.gridwidth = 2;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 7;
-		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel lblNewLabel_1_1 = new JLabel("Quartis");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1_1.setBounds(36, 288, 46, 14);
+		panel.add(lblNewLabel_1_1);
 		
-		JTextPane textPane = new JTextPane();
-		GridBagConstraints gbc_textPane = new GridBagConstraints();
-		gbc_textPane.gridwidth = 2;
-		gbc_textPane.insets = new Insets(0, 0, 5, 5);
-		gbc_textPane.fill = GridBagConstraints.BOTH;
-		gbc_textPane.gridx = 2;
-		gbc_textPane.gridy = 7;
-		panel.add(textPane, gbc_textPane);
+		JLabel lblNewLabel_1_2 = new JLabel("Decis");
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1_2.setBounds(36, 313, 46, 14);
+		panel.add(lblNewLabel_1_2);
 		
-		JButton btnNewButton = new JButton("New button");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 4;
-		gbc_btnNewButton.gridy = 7;
-		panel.add(btnNewButton, gbc_btnNewButton);
+		JLabel lblNewLabel_1_2_1 = new JLabel("Percentis");
+		lblNewLabel_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_1_2_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1_2_1.setBounds(20, 338, 62, 14);
+		panel.add(lblNewLabel_1_2_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Quartis");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.gridwidth = 2;
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 8;
-		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(92, 288, 31, 14);
+		panel.add(textArea);
 		
-		JTextPane textPane_1 = new JTextPane();
-		GridBagConstraints gbc_textPane_1 = new GridBagConstraints();
-		gbc_textPane_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textPane_1.fill = GridBagConstraints.BOTH;
-		gbc_textPane_1.gridx = 3;
-		gbc_textPane_1.gridy = 8;
-		panel.add(textPane_1, gbc_textPane_1);
+		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setBounds(92, 313, 31, 14);
+		panel.add(textArea_1);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1.gridx = 4;
-		gbc_btnNewButton_1.gridy = 8;
-		panel.add(btnNewButton_1, gbc_btnNewButton_1);
+		JTextArea textArea_1_1 = new JTextArea();
+		textArea_1_1.setBounds(92, 338, 31, 14);
+		panel.add(textArea_1_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("Centis");
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.gridwidth = 2;
-		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_3.gridx = 0;
-		gbc_lblNewLabel_3.gridy = 9;
-		panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		JButton btnNewButton = new JButton("Enviar");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnNewButton.setBounds(133, 286, 74, 19);
+		panel.add(btnNewButton);
 		
-		JTextPane textPane_1_1 = new JTextPane();
-		GridBagConstraints gbc_textPane_1_1 = new GridBagConstraints();
-		gbc_textPane_1_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textPane_1_1.fill = GridBagConstraints.BOTH;
-		gbc_textPane_1_1.gridx = 3;
-		gbc_textPane_1_1.gridy = 9;
-		panel.add(textPane_1_1, gbc_textPane_1_1);
+		JButton btnEnviar = new JButton("Enviar");
+		btnEnviar.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnEnviar.setBounds(133, 311, 74, 19);
+		panel.add(btnEnviar);
 		
-		JButton btnNewButton_1_1 = new JButton("New button");
-		GridBagConstraints gbc_btnNewButton_1_1 = new GridBagConstraints();
-		gbc_btnNewButton_1_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1_1.gridx = 4;
-		gbc_btnNewButton_1_1.gridy = 9;
-		panel.add(btnNewButton_1_1, gbc_btnNewButton_1_1);
+		JButton btnNewButton_1_1 = new JButton("Enviar");
+		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnNewButton_1_1.setBounds(133, 336, 74, 19);
+		panel.add(btnNewButton_1_1);
 	}
 }
