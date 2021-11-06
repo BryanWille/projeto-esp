@@ -151,8 +151,28 @@ public class InterfaceGrafica {
 			public void actionPerformed(ActionEvent e) {
 				Object source = e.getSource();
 				if (e.getSource() == separatriz) {
-					String texto = "Teste";
-					//texto = "Decil: " +textoDecis.getText() == "" ? " invalido " : (String) da.calcularSeparatriz(10, Integer.parseInt(textoDecis.getText()));
+					String texto = "";
+					String quartil = textoQuartis.getText();
+					String decil = textoDecis.getText();
+					String percentil = textoPercentis.getText();
+					
+					String quartilTexto, decilTexto, percentilTexto;
+					quartilTexto = "Quartil: nao selecionado";
+					decilTexto = "Decil: nao selecionado";
+					percentilTexto = "Percentil: nao selecionado";
+					
+					if (quartil.length() != 0 ) {
+						quartilTexto = "Quartil: " + (String) da.calcularSeparatriz(4, Integer.parseInt(quartil));
+					}
+					if (decil.length() != 0) {
+						decilTexto = "Decil: " + (String) da.calcularSeparatriz(10, Integer.parseInt(decil));
+					}
+					if (percentil.length() != 0) {
+						percentilTexto = "Percentil: " + (String) da.calcularSeparatriz(100, Integer.parseInt(quartil));
+					}
+					
+					texto = quartilTexto +"\n" + decilTexto + "\n" + percentilTexto;
+					
 					textoSeparatriz.setText(texto);
 					textoSeparatriz.setVisible(true);
 				}
