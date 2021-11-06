@@ -77,7 +77,7 @@ public class InterfaceGrafica {
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(null);
-		scrollPane.setBounds(178, 8, 745, 177);
+		scrollPane.setBounds(178, 8, 745, 58);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.add(scrollPane);
 
@@ -158,7 +158,7 @@ public class InterfaceGrafica {
 		JLabel lblDadosBrutos = new JLabel("Dados Brutos");
 		lblDadosBrutos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDadosBrutos.setFont(new Font("Verdana", Font.BOLD, 16));
-		lblDadosBrutos.setBounds(791, 188, 162, 41);
+		lblDadosBrutos.setBounds(791, 176, 162, 41);
 		panel.add(lblDadosBrutos);
 		
 		JLabel lblAmplitude = new JLabel("A");
