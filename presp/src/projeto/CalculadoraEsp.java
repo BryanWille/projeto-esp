@@ -14,8 +14,6 @@ public class CalculadoraEsp {
 		DadosBrutos b = new DadosBrutos();
 		DadosAgrupados a = new DadosAgrupados();
 
-		pg = new ParteGrafica();
-		pg.criarTabela();
 		System.out.println("// ----------------------------- CLASSE BRUTA ----------------------------- //");
 
 		System.out.println("Media: " + b.getMedia());
