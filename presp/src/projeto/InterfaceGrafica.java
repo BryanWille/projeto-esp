@@ -105,7 +105,7 @@ public class InterfaceGrafica {
 
 		JPanel dadosAgrupados = new JPanel();
 		dadosAgrupados.setBorder(new EmptyBorder(0, 0, 0, 0));
-		dadosAgrupados.setBounds(33, 172, 431, 191);
+		dadosAgrupados.setBounds(32, 164, 431, 191);
 		panel.add(dadosAgrupados);
 		dadosAgrupados.setLayout(null);
 
@@ -304,7 +304,7 @@ public class InterfaceGrafica {
 
 		JPanel dadosBrutos = new JPanel();
 		dadosBrutos.setBorder(new EmptyBorder(0, 0, 0, 0));
-		dadosBrutos.setBounds(640, 186, 431, 232);
+		dadosBrutos.setBounds(598, 218, 431, 238);
 		panel.add(dadosBrutos);
 		dadosBrutos.setLayout(null);
 
@@ -339,7 +339,7 @@ public class InterfaceGrafica {
 		textoMedianaBR.setEditable(false);
 
 		JTextPane textoModaBR = new JTextPane();
-		textoModaBR.setBounds(59, 146, 117, 74);
+		textoModaBR.setBounds(59, 146, 117, 82);
 		dadosBrutos.add(textoModaBR);
 		String resultadoModa = "Número(s) moda:";
 		for (int i = 0; i < db.getModa().size()-1; i++) {
