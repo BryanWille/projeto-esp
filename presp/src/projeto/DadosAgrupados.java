@@ -7,6 +7,8 @@ public class DadosAgrupados extends Configuracoes {
 	// ----------------------------- ATRIBUTOS ----------------------------- //
 
 	private Leitura leitor = new Leitura();
+	private Double K;
+	private Double amplitude;
 	private Double amplitudeClasse;
 	private Double media;
 	private Double mediana;
@@ -42,6 +44,41 @@ public class DadosAgrupados extends Configuracoes {
 
 	// ----------------------------- METODOS CALCULOS -----------------------------
 	// //
+	public Object calcularSeparatriz(int separatriz, int index) {
+		Object sep;
+		if (separatriz == 10 || separatriz == 100 || separatriz == 4) {
+			if (separatriz == 4 && (index < 1 || index > 4)) {
+				sep = "Quartil invalido!";
+			} else if (separatriz == 100 && (index < 1 || index > 100)) {
+				sep = "Percentil invalido!";
+			} else if (separatriz == 10 && (index < 1 || index > 10)) {
+				sep = "Decil invalido!";
+			} else {
+				double amplitude, limiteInferior = 0, frequenciaAnterior = 0, frequenciaAtual = 0;
+				Double acharClasse = (index * frequenciaTotal) / separatriz;
+				amplitude = tabela.get(0).get(1) - tabela.get(0).get(0);
+				for (int i = 0; i < tabela.size(); i++) {
+					if (i == 0) {
+						limiteInferior = tabela.get(i).get(0);
+						frequenciaAnterior = 0;
+						frequenciaAtual = tabela.get(i).get(2);
+					} else {
+						if (acharClasse >= tabela.get(i - 1).get(3) && acharClasse <= tabela.get(i).get(3)) {
+							limiteInferior = tabela.get(i).get(0);
+							frequenciaAnterior = tabela.get(i - 1).get(3);
+							frequenciaAtual = tabela.get(i).get(2);
+						}
+					}
+				}
+				double resultado = this.arredondar((limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude));
+				this.separatriz = resultado;
+				sep = String.valueOf(resultado);
+			}
+		} else {
+			sep = "Erro: Separatriz Selecionada e Invalida!";
+		}
+		return sep;
+	}
 
 	private void calcularMedia(ArrayList<ArrayList<Double>> tabela) {
 		Double somaFrequencia = 0.0, somatorio = 0.0;
@@ -102,41 +139,7 @@ public class DadosAgrupados extends Configuracoes {
 		this.coeficienteVariacao = this.arredondar(coefVar);
 	}
 
-	public Object calcularSeparatriz(int separatriz, int index) {
-		Object sep;
-		if (separatriz == 10 || separatriz == 100 || separatriz == 4) {
-			if (separatriz == 4 && (index < 1 || index > 4)) {
-				sep = "Quartil invalido!";
-			} else if (separatriz == 100 && (index < 1 || index > 100)) {
-				sep = "Percentil invalido!";
-			} else if (separatriz == 10 && (index < 1 || index > 10)) {
-				sep = "Decil invalido!";
-			} else {
-				double amplitude, limiteInferior = 0, frequenciaAnterior = 0, frequenciaAtual = 0;
-				Double acharClasse = (index * frequenciaTotal) / separatriz;
-				amplitude = tabela.get(0).get(1) - tabela.get(0).get(0);
-				for (int i = 0; i < tabela.size(); i++) {
-					if (i == 0) {
-						limiteInferior = tabela.get(i).get(0);
-						frequenciaAnterior = 0;
-						frequenciaAtual = tabela.get(i).get(2);
-					} else {
-						if (acharClasse >= tabela.get(i - 1).get(3) && acharClasse <= tabela.get(i).get(3)) {
-							limiteInferior = tabela.get(i).get(0);
-							frequenciaAnterior = tabela.get(i - 1).get(3);
-							frequenciaAtual = tabela.get(i).get(2);
-						}
-					}
-				}
-				sep = limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude;
-				this.separatriz = this.arredondar(Double.parseDouble(String.valueOf(sep)));
-			}
-		} else {
-			sep = "Erro: Separatriz Selecionada e Invalida!";
-		}
-		return sep;
-	}
-
+	
 	private void calcularFrequenciaTotal(ArrayList<ArrayList<Double>> tabela) {
 		this.frequenciaTotal = tabela.get(tabela.size() - 1).get(3);
 	}
@@ -144,16 +147,17 @@ public class DadosAgrupados extends Configuracoes {
 	// ----------------------------- METODOS TABELA ----------------------------- //
 
 	public Object[][] converterLista(ArrayList<ArrayList<Double>> tabela) {
-		Object[][] matriz = new Object[tabela.size()][4];
+		Object[][] matriz = new Object[tabela.size()][5];
 		for (int i = 0; i < tabela.size(); i++) {
+			matriz[i][0] = i+1;
 			for (int j = 0; j < 1; j++) {
 				Object distribuicao = arredondamentoClasse(tabela.get(i).get(j)) + " |-- "
 						+ arredondamentoClasse(tabela.get(i).get(j + 1));
-				matriz[i][j] = distribuicao; // Distribuicao De Frequencia
-				matriz[i][1] = tabela.get(i).get(2); // Frequencia
+				matriz[i][1] = distribuicao; // Distribuicao De Frequencia
+				matriz[i][2] = tabela.get(i).get(2); // Frequencia
 			}
-			matriz[i][2] = tabela.get(i).get(3); // Frequencia Agrupada
-			matriz[i][3] = tabela.get(i).get(4); // Ponto Medio
+			matriz[i][3] = tabela.get(i).get(3); // Frequencia Agrupada
+			matriz[i][4] = tabela.get(i).get(4); // Ponto Medio
 		}
 		return matriz;
 	}
@@ -174,6 +178,8 @@ public class DadosAgrupados extends Configuracoes {
 		double amplitudeTotal, raizAmostra, a;
 		amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
 		raizAmostra = Math.sqrt(lista.size());
+		this.setK(raizAmostra);
+		this.setAmplitude(amplitudeTotal);
 		a = this.arredondamentoClasse(amplitudeTotal / raizAmostra);
 		this.setAmplitudeClasse(a);
 	}
@@ -223,6 +229,23 @@ public class DadosAgrupados extends Configuracoes {
 
 	public ArrayList<ArrayList<Double>> getTabela() {
 		return tabela;
+	}
+	
+
+	public Double getK() {
+		return K;
+	}
+
+	public void setK(Double k) {
+		K = this.arredondar(k);
+	}
+
+	public Double getAmplitude() {
+		return amplitude;
+	}
+
+	public void setAmplitude(Double amplitude) {
+		this.amplitude = this.arredondar(amplitude);
 	}
 
 	public Double getMedia() {
