@@ -106,40 +106,40 @@ public class InterfaceGrafica {
 		JLabel labelQuartil = new JLabel("Quartis");
 		labelQuartil.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		labelQuartil.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelQuartil.setBounds(65, 419, 46, 14);
+		labelQuartil.setBounds(47, 418, 46, 14);
 		panel.add(labelQuartil);
 
 		JLabel labelDecil = new JLabel("Decis");
 		labelDecil.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		labelDecil.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelDecil.setBounds(64, 448, 46, 14);
+		labelDecil.setBounds(46, 447, 46, 14);
 		panel.add(labelDecil);
 
 		JLabel labelPercentil = new JLabel("Percentis");
 		labelPercentil.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		labelPercentil.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelPercentil.setBounds(49, 480, 62, 14);
+		labelPercentil.setBounds(31, 479, 62, 14);
 		panel.add(labelPercentil);
 
 		JTextPane textoQuartis = new JTextPane();
-		textoQuartis.setBounds(120, 416, 35, 20);
+		textoQuartis.setBounds(102, 415, 35, 20);
 		panel.add(textoQuartis);
 
 		JTextPane textoDecis = new JTextPane();
-		textoDecis.setBounds(120, 447, 35, 20);
+		textoDecis.setBounds(102, 446, 35, 20);
 		panel.add(textoDecis);
 
 		JTextPane textoPercentis = new JTextPane();
-		textoPercentis.setBounds(120, 478, 35, 20);
+		textoPercentis.setBounds(102, 477, 35, 20);
 		panel.add(textoPercentis);
 
 		JButton separatriz = new JButton("Calcular"); // Quartis
 		separatriz.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		separatriz.setBounds(167, 440, 90, 31);
+		separatriz.setBounds(149, 439, 90, 31);
 		panel.add(separatriz);
 		
 		JTextPane textoSeparatriz = new JTextPane();
-		textoSeparatriz.setBounds(268, 427, 165, 58);
+		textoSeparatriz.setBounds(250, 426, 165, 58);
 		textoSeparatriz.setEditable(false);
 		textoSeparatriz.setVisible(false);
 		panel.add(textoSeparatriz);
@@ -152,7 +152,7 @@ public class InterfaceGrafica {
 		
 		JLabel lblIndex = new JLabel("index");
 		lblIndex.setForeground(Color.GRAY);
-		lblIndex.setBounds(120, 396, 46, 14);
+		lblIndex.setBounds(102, 395, 46, 14);
 		panel.add(lblIndex);
 		
 		JLabel lblDadosBrutos = new JLabel("Dados Brutos");
@@ -164,7 +164,7 @@ public class InterfaceGrafica {
 		JLabel lblAmplitude = new JLabel("A");
 		lblAmplitude.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblAmplitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblAmplitude.setBounds(27, 307, 17, 14);
+		lblAmplitude.setBounds(25, 293, 17, 14);
 		panel.add(lblAmplitude);
 		
 		JTextPane textoAmplitude = new JTextPane();
@@ -182,13 +182,13 @@ public class InterfaceGrafica {
 		JLabel lblK = new JLabel("K");
 		lblK.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblK.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblK.setBounds(26, 277, 17, 14);
+		lblK.setBounds(24, 263, 17, 14);
 		panel.add(lblK);
 		
 		JLabel lbla = new JLabel("a");
 		lbla.setHorizontalAlignment(SwingConstants.RIGHT);
 		lbla.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lbla.setBounds(26, 339, 17, 14);
+		lbla.setBounds(24, 325, 17, 14);
 		panel.add(lbla);
 		
 		JTextPane textoa = new JTextPane();
@@ -230,43 +230,43 @@ public class InterfaceGrafica {
 		JLabel lblVariancia = new JLabel("Variancia");
 		lblVariancia.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblVariancia.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblVariancia.setBounds(306, 263, 62, 14);
+		lblVariancia.setBounds(299, 261, 62, 14);
 		panel.add(lblVariancia);
 		
 		JTextPane textoVarianciaAG = new JTextPane();
 		textoVarianciaAG.setEditable(false);
-		textoVarianciaAG.setBounds(379, 258, 62, 25);
+		textoVarianciaAG.setBounds(365, 257, 62, 25);
 		textoVarianciaAG.setText(String.valueOf(da.getVariancia()));
 		panel.add(textoVarianciaAG);
 		
 		JTextPane textoDesvioAG = new JTextPane();
 		textoDesvioAG.setEditable(false);
-		textoDesvioAG.setBounds(378, 290, 63, 25);
+		textoDesvioAG.setBounds(364, 289, 63, 25);
 		textoDesvioAG.setText(String.valueOf(da.getDesvioPadrao()));
 		panel.add(textoDesvioAG);
 		
 		JLabel lblDesvioPadrao = new JLabel("Desvio Padrao");
 		lblDesvioPadrao.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblDesvioPadrao.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDesvioPadrao.setBounds(278, 295, 90, 14);
+		lblDesvioPadrao.setBounds(271, 293, 90, 14);
 		panel.add(lblDesvioPadrao);
 		
 		JLabel lblCoefVariacao = new JLabel("Coef Variacao");
 		lblCoefVariacao.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCoefVariacao.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCoefVariacao.setBounds(278, 327, 90, 14);
+		lblCoefVariacao.setBounds(271, 325, 90, 14);
 		panel.add(lblCoefVariacao);
 		
 		JTextPane textoCoefVarAG = new JTextPane();
 		textoCoefVarAG.setEditable(false);
-		textoCoefVarAG.setBounds(379, 322, 62, 25);
+		textoCoefVarAG.setBounds(365, 321, 62, 25);
 		textoCoefVarAG.setText(String.valueOf(da.getCoeficienteVariacao()));
 		panel.add(textoCoefVarAG);
 		
 		JLabel lblMediana = new JLabel("Mediana");
 		lblMediana.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblMediana.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblMediana.setBounds(138, 298, 49, 14);
+		lblMediana.setBounds(140, 296, 49, 14);
 		panel.add(lblMediana);
 		
 		JLabel lblDistribuicao = new JLabel("Distribuicao");
@@ -287,13 +287,13 @@ public class InterfaceGrafica {
 		lblDispersao.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDispersao.setForeground(Color.GRAY);
 		lblDispersao.setFont(new Font("Verdana", Font.BOLD, 13));
-		lblDispersao.setBounds(358, 214, 108, 32);
+		lblDispersao.setBounds(338, 213, 108, 32);
 		panel.add(lblDispersao);
 		
 		JLabel lblAnaliseDeDados = new JLabel("Analise de Dados");
 		lblAnaliseDeDados.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAnaliseDeDados.setForeground(Color.GRAY);
-		lblAnaliseDeDados.setFont(new Font("Verdana", Font.BOLD, 13));
+		lblAnaliseDeDados.setForeground(Color.DARK_GRAY);
+		lblAnaliseDeDados.setFont(new Font("Verdana", Font.BOLD, 16));
 		lblAnaliseDeDados.setBounds(149, 362, 149, 32);
 		panel.add(lblAnaliseDeDados);
 		
