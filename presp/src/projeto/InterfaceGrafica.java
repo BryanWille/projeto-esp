@@ -67,7 +67,7 @@ public class InterfaceGrafica {
 		ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("logo.png")));
 		frame.setIconImage(img.getImage());
 
-		JLabel lblNewLabel = new JLabel("Trabalho de Estat\u00EDstica");
+		JLabel lblNewLabel = new JLabel("Distribui\u00E7\u00E3o de Frequ\u00EAncia");
 		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblNewLabel, BorderLayout.NORTH);
@@ -78,7 +78,7 @@ public class InterfaceGrafica {
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(null);
-		scrollPane.setBounds(178, 8, 745, 156);
+		scrollPane.setBounds(178, 8, 745, 147);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		panel.add(scrollPane);
 
@@ -105,7 +105,7 @@ public class InterfaceGrafica {
 
 		JPanel dadosAgrupados = new JPanel();
 		dadosAgrupados.setBorder(new EmptyBorder(0, 0, 0, 0));
-		dadosAgrupados.setBounds(32, 164, 431, 191);
+		dadosAgrupados.setBounds(83, 173, 431, 191);
 		panel.add(dadosAgrupados);
 		dadosAgrupados.setLayout(null);
 
@@ -246,7 +246,7 @@ public class InterfaceGrafica {
 
 		JPanel analiseDados = new JPanel();
 		analiseDados.setBorder(new EmptyBorder(0, 0, 0, 0));
-		analiseDados.setBounds(54, 366, 407, 136);
+		analiseDados.setBounds(105, 375, 407, 136);
 		panel.add(analiseDados);
 		analiseDados.setLayout(null);
 
@@ -304,7 +304,7 @@ public class InterfaceGrafica {
 
 		JPanel dadosBrutos = new JPanel();
 		dadosBrutos.setBorder(new EmptyBorder(0, 0, 0, 0));
-		dadosBrutos.setBounds(598, 218, 431, 238);
+		dadosBrutos.setBounds(669, 227, 431, 238);
 		panel.add(dadosBrutos);
 		dadosBrutos.setLayout(null);
 
