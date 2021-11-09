@@ -91,11 +91,9 @@ public class DadosAgrupados extends Configuracoes {
 	}
 
 	private void calcularMediana(ArrayList<ArrayList<Double>> tabela) {
-		Double mediana = 0.0, frequenciaClasseAnterior = 0.0;
-		int classeMediana = (int) Math.floor(tabela.size() / 2) - 1;
-		for (int i = 0; i < classeMediana; i++) {
-			frequenciaClasseAnterior += tabela.get(i).get(2);
-		}
+		Double mediana = 0.0;
+		int classeMediana = (int) Math.floor(tabela.size() / 2);
+		Double frequenciaClasseAnterior = tabela.get(classeMediana-1).get(3);
 		mediana = tabela.get(classeMediana).get(0)
 				+ ((leitor.getLista().size() / 2 - frequenciaClasseAnterior) / tabela.get(classeMediana).get(2))
 						* this.getAmplitudeClasse();
