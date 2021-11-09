@@ -20,7 +20,7 @@ public class Leitura {
 
 	public void criarLista() {
 		ArrayList<Double> v = new ArrayList<>();
-		Scanner keyb = new Scanner(Leitura.class.getResourceAsStream("data/provateste.txt"));
+		Scanner keyb = new Scanner(Leitura.class.getResourceAsStream("data/dadosBrutosCaua.txt"));
 		int i = 0;
 		while (keyb.hasNextLine()) {
 			v.add(i, Double.parseDouble(keyb.nextLine()));

@@ -67,7 +67,7 @@ public class InterfaceGrafica {
 		ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("logo.png")));
 		frame.setIconImage(img.getImage());
 
-		JLabel lblNewLabel = new JLabel("Distribui\u00E7\u00E3o de Frequ\u00EAncia");
+		JLabel lblNewLabel = new JLabel("Distribuicao de Frequencia");
 		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblNewLabel, BorderLayout.NORTH);

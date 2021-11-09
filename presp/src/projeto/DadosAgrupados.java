@@ -70,9 +70,9 @@ public class DadosAgrupados extends Configuracoes {
 						}
 					}
 				}
-				double resultado = this.arredondar((limiteInferior + (acharClasse - frequenciaAnterior) / frequenciaAtual * amplitude));
+				double resultado = this.arredondar((limiteInferior + ((acharClasse - frequenciaAnterior) / frequenciaAtual) * amplitude));
 				this.separatriz = resultado;
-				sep = String.valueOf(resultado);
+				sep = resultado;
 			}
 		} else {
 			sep = "Erro: Separatriz Selecionada e Invalida!";
