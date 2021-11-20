@@ -57,7 +57,7 @@ public class DadosBrutos extends Configuracoes{
     }
 
     private void calcularModa(ArrayList<Double> lista) {
-        ArrayList moda = new ArrayList();
+        ArrayList<Double> moda = new ArrayList<Double>();
         Double maiorScore = 0.0D;
 
         for (int i = 0; i < lista.size() - 1; ++i) {
@@ -93,7 +93,7 @@ public class DadosBrutos extends Configuracoes{
         double variancia = 0.0D;
 
         for (int i = 0; i < lista.size(); ++i) {
-            double fator = lista.get(i) - this.media;
+            double fator = lista.get(i) - this.getMedia();
             variancia += Math.pow(fator, 2.0D);
         }
         variancia /= lista.size() - 1;
