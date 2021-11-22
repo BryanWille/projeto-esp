@@ -18,16 +18,27 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JProgressBar;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.ListSelectionModel;
+import javax.swing.JScrollBar;
 
 public class InterfaceGrafica {
     private DadosBrutos db = new DadosBrutos();
     private DadosAgrupados da = new DadosAgrupados();
     private Object[][] dados = da.converterLista(da.getTabela());
     private String[] colunas = { "Classe", "Intervalo de Classe", "Frequencia", "Frequencia Agrupada", "Ponto Medio" };
+
+    private int indexQuartil;
+    private int indexDecil;
+    private int indexPercentil;
 
     JFrame frame;
     private JTable table;
@@ -235,7 +246,7 @@ public class InterfaceGrafica {
 
         JPanel analiseDados = new JPanel();
         analiseDados.setBorder(new EmptyBorder(0, 0, 0, 0));
-        analiseDados.setBounds(105, 375, 407, 136);
+        analiseDados.setBounds(107, 365, 407, 136);
         panel.add(analiseDados);
         analiseDados.setLayout(null);
 
@@ -246,36 +257,24 @@ public class InterfaceGrafica {
         labelQuartil.setHorizontalAlignment(SwingConstants.RIGHT);
 
         JLabel labelDecil = new JLabel("Decis");
-        labelDecil.setBounds(25, 83, 46, 14);
+        labelDecil.setBounds(25, 81, 46, 14);
         analiseDados.add(labelDecil);
         labelDecil.setFont(new Font("Tahoma", Font.PLAIN, 13));
         labelDecil.setHorizontalAlignment(SwingConstants.RIGHT);
 
         JLabel labelPercentil = new JLabel("Percentis");
-        labelPercentil.setBounds(10, 115, 62, 14);
+        labelPercentil.setBounds(12, 110, 62, 14);
         analiseDados.add(labelPercentil);
         labelPercentil.setFont(new Font("Tahoma", Font.PLAIN, 13));
         labelPercentil.setHorizontalAlignment(SwingConstants.RIGHT);
 
-        JTextPane textoQuartis = new JTextPane();
-        textoQuartis.setBounds(81, 51, 35, 20);
-        analiseDados.add(textoQuartis);
-
-        JTextPane textoDecis = new JTextPane();
-        textoDecis.setBounds(81, 82, 35, 20);
-        analiseDados.add(textoDecis);
-
-        JTextPane textoPercentis = new JTextPane();
-        textoPercentis.setBounds(81, 113, 35, 20);
-        analiseDados.add(textoPercentis);
-
         JButton separatriz = new JButton("Calcular"); // Quartis
-        separatriz.setBounds(128, 75, 90, 31);
+        separatriz.setBounds(129, 71, 90, 31);
         analiseDados.add(separatriz);
         separatriz.setFont(new Font("Tahoma", Font.PLAIN, 10));
 
         JTextPane textoSeparatriz = new JTextPane();
-        textoSeparatriz.setBounds(229, 62, 165, 58);
+        textoSeparatriz.setBounds(230, 58, 165, 58);
         analiseDados.add(textoSeparatriz);
         textoSeparatriz.setEditable(false);
 
@@ -290,6 +289,38 @@ public class InterfaceGrafica {
         lblAnaliseDeDados.setHorizontalAlignment(SwingConstants.CENTER);
         lblAnaliseDeDados.setForeground(Color.DARK_GRAY);
         lblAnaliseDeDados.setFont(new Font("Verdana", Font.BOLD, 16));
+
+        JScrollPane quartisScroll = new JScrollPane();
+        quartisScroll.setBounds(82, 53, 34, 20);
+        analiseDados.add(quartisScroll);
+
+        Object[] valorQuartil = { "0", "1", "2", "3", "4" };
+        JList listaQuartis = new JList(valorQuartil);
+        listaQuartis.setValueIsAdjusting(true);
+        quartisScroll.setViewportView(listaQuartis);
+
+        JScrollPane decilScroll = new JScrollPane();
+        decilScroll.setBounds(82, 80, 34, 20);
+        analiseDados.add(decilScroll);
+
+        Object[] valorDecil = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+        JList listaDecil = new JList(valorDecil);
+        decilScroll.setViewportView(listaDecil);
+
+        JScrollPane percentilScroll = new JScrollPane();
+        percentilScroll.setBounds(81, 107, 46, 20);
+        analiseDados.add(percentilScroll);
+
+        Object[] valorPercentil = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
+                "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31",
+                "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
+                "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65",
+                "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82",
+                "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99",
+                "100" };
+
+        JList listaPercentil = new JList(valorPercentil);
+        percentilScroll.setViewportView(listaPercentil);
 
         JPanel dadosBrutos = new JPanel();
         dadosBrutos.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -331,10 +362,10 @@ public class InterfaceGrafica {
         textoModaBR.setBounds(59, 146, 117, 82);
         dadosBrutos.add(textoModaBR);
         String resultadoModa = "Número(s) moda:";
-        for (int i = 0; i < db.getModa().size()-1; i++) {
-            resultadoModa += " " +db.getModa().get(i);
+        for (int i = 0; i < db.getModa().size() - 1; i++) {
+            resultadoModa += " " + db.getModa().get(i);
         }
-        resultadoModa += " \nrepeticoes: " +db.getModa().get(db.getModa().size()-1);
+        resultadoModa += " \nrepeticoes: " + db.getModa().get(db.getModa().size() - 1);
         textoModaBR.setText(resultadoModa);
         textoModaBR.setEditable(false);
 
@@ -393,23 +424,52 @@ public class InterfaceGrafica {
         lblPosicaoBR.setHorizontalAlignment(SwingConstants.CENTER);
         lblPosicaoBR.setForeground(Color.GRAY);
         lblPosicaoBR.setFont(new Font("Verdana", Font.BOLD, 13));
+
+        JLabel infIndex = new JLabel("Clique no index ate ficar azul");
+        infIndex.setForeground(Color.GRAY);
+        infIndex.setBounds(117, 500, 173, 14);
+        panel.add(infIndex);
         textoSeparatriz.setVisible(false);
+
+        ListSelectionListener quartisListener = new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                setIndexQuartil(listaQuartis.getSelectedIndex());
+            }
+        };
+        listaQuartis.addListSelectionListener(quartisListener);
+
+        ListSelectionListener decilListener = new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                setIndexDecil(listaDecil.getSelectedIndex());
+            }
+        };
+        listaDecil.addListSelectionListener(decilListener);
+
+        ListSelectionListener percentilListener = new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                setIndexPercentil(listaPercentil.getSelectedIndex());
+                System.out.println(listaPercentil.getSelectedIndex());
+            }
+        };
+        listaPercentil.addListSelectionListener(percentilListener);
 
         separatriz.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == separatriz) {
                     String texto = "";
-                    String quartil = textoQuartis.getText();
-                    String decil = textoDecis.getText();
-                    String percentil = textoPercentis.getText();
+                    int quartil = getIndexQuartil();
+                    int decil = getIndexDecil();
+                    int percentil = getIndexPercentil();
 
-                    texto = "Quartil: " + (quartil.length() == 0 ? "nao informado"
-                            : String.valueOf(da.calcularSeparatriz(4, Integer.parseInt(quartil))));
-                    texto += "\nDecil: " + (decil.length() == 0 ? "nao informado"
-                            : String.valueOf(da.calcularSeparatriz(10, Integer.parseInt(decil))));
-                    texto += "\nPercentil: " + (percentil.length() == 0 ? "nao informado"
-                            : String.valueOf(da.calcularSeparatriz(100, Integer.parseInt(percentil))));
+                    System.out.println(quartil + " " + decil + " " + percentil);
+
+                    texto = "Quartil: "
+                            + (quartil == 0 ? "nao informado" : String.valueOf(da.calcularSeparatriz(4, quartil)));
+                    texto += "\nDecil: "
+                            + (decil == 0 ? "nao informado" : String.valueOf(da.calcularSeparatriz(10, decil)));
+                    texto += "\nPercentil: " + (percentil == 0 ? "nao informado"
+                            : String.valueOf(da.calcularSeparatriz(100, percentil)));
                     ;
 
                     textoSeparatriz.setText(texto);
@@ -419,5 +479,29 @@ public class InterfaceGrafica {
             }
         });
 
+    }
+
+    public int getIndexQuartil() {
+        return indexQuartil;
+    }
+
+    public void setIndexQuartil(int indexQuartil) {
+        this.indexQuartil = indexQuartil;
+    }
+
+    public int getIndexDecil() {
+        return indexDecil;
+    }
+
+    public void setIndexDecil(int indexDecil) {
+        this.indexDecil = indexDecil;
+    }
+
+    public int getIndexPercentil() {
+        return indexPercentil;
+    }
+
+    public void setIndexPercentil(int indexPercentil) {
+        this.indexPercentil = indexPercentil;
     }
 }
