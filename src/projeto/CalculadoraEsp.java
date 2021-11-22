@@ -16,8 +16,7 @@ public class CalculadoraEsp {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    InterfaceGrafica window = new InterfaceGrafica();
-                    window.frame.setVisible(true);
+                    new EntradaDadosGUI();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

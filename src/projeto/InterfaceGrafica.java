@@ -479,6 +479,8 @@ public class InterfaceGrafica {
             }
         });
 
+        frame.setVisible(true);
+
     }
 
     public int getIndexQuartil() {

@@ -8,6 +8,7 @@ public class Leitura {
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
     private ArrayList<Double> lista;
+    public static Scanner keyb;
 
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
@@ -20,7 +21,6 @@ public class Leitura {
 
     public void criarLista() {
         ArrayList<Double> v = new ArrayList<>();
-        Scanner keyb = new Scanner(Leitura.class.getResourceAsStream("data/dadosBrutosCaua.txt"));
         int i = 0;
         while (keyb.hasNextLine()) {
             v.add(i, Double.parseDouble(keyb.nextLine()));
@@ -37,7 +37,6 @@ public class Leitura {
             }
         }
         this.lista = (v);
-        keyb.close();
     }
 
     // ----------------------------- METODOS GETTERS -----------------------------
@@ -45,5 +44,9 @@ public class Leitura {
 
     public ArrayList<Double> getLista() {
         return this.lista;
+    }
+
+    public static Scanner setKeyb(Scanner newKeyb) {
+        return keyb = newKeyb;
     }
 }

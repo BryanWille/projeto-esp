@@ -1,8 +1,8 @@
 package projeto;
 
 public class Configuracoes {
-    private int arredondamento;
-    private int arredondamentoClasse;
+    private static int arredondamento;
+    private static int arredondamentoClasse;
 
     public Configuracoes(){
         this(2);
@@ -27,12 +27,12 @@ public class Configuracoes {
     public int getArredondamentoClasse() {
         return arredondamentoClasse;
     }
-    public void setArredondamentoClasse(int arredondamentoClasse) {
-        this.arredondamentoClasse = arredondamentoClasse;
+    public static void setArredondamentoClasse(int newArredondamentoClasse) {
+        arredondamentoClasse = newArredondamentoClasse;
     }
 
     public int getArredondamento(){return this.arredondamento;}
-    public void setArredondamento(int arredondamento){
-        this.arredondamento = arredondamento;
+    public static void setArredondamento(int newArredondamento){
+        arredondamento = newArredondamento;
     }
 }
