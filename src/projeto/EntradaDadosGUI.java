@@ -1,7 +1,5 @@
 package projeto;
 
-import projeto.EntradaDados;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -9,72 +7,105 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 
 public class EntradaDadosGUI {
-    private JFrame janela;
-    private JTextField jTxtDados;
-    private JTextField jTxtDados1;
-    private JLabel lblNewLabel_1;
-    private JLabel lblNewLabel_2;
-    private JLabel lblNewLabel_3;
-    private JButton importarButton;
-    private JButton enviarButton;
-    private Scanner keyb;
+    private static JTextField textField;
+    private static JTextField textField_1;
 
     public EntradaDadosGUI(){
         criarGUI();
     }
 
     public void criarGUI(){
-        janela = new JFrame("Entrada de dados");
+        JFrame janela = new JFrame("PresP: Entrada de dados");
+        janela.setResizable(false);
         janela.setSize(1280,720);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        GridBagLayout gridBagLayout = new GridBagLayout();
-        gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-        gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-        janela.getContentPane().setLayout(gridBagLayout);
-        criarLabelImportar();
-        criarLabelManualmente();
-        criarjTxtDados();
-        criarjTxtDados1();
-        criarEnviarButton();
-        criarImportarButton();
-        criarConfiguracoesLabel();
-        criarLabelArredondarClasse();
-        criarLabelArredondarDados();
-        criarTextpane1();
-        criarTextpane2();
-        janela.setVisible(true);
-    }
+        janela.getContentPane().setLayout(null);
 
-    private void criarLabelImportar(){
-        lblNewLabel_1 = new JLabel("Importar:");
-        lblNewLabel_1.setFont(new Font("Serif", Font.PLAIN, 20));
-        GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-        gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-        gbc_lblNewLabel_1.gridx = 1;
-        gbc_lblNewLabel_1.gridy = 2;
-        janela.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
-    }
+        ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("logo.png")));
+        janela.setIconImage(img.getImage());
 
-    private void criarjTxtDados() {
-        jTxtDados = new JTextField();
-        GridBagConstraints gbc_jTxtDados = new GridBagConstraints();
-        gbc_jTxtDados.insets = new Insets(0, 0, 5, 5);
-        gbc_jTxtDados.fill = GridBagConstraints.HORIZONTAL;
-        gbc_jTxtDados.gridx = 4;
-        gbc_jTxtDados.gridy = 2;
-        janela.getContentPane().add(jTxtDados, gbc_jTxtDados);
-        jTxtDados.setColumns(10);
-    }
+        JPanel panel = new JPanel();
+        panel.setBackground(SystemColor.activeCaption);
+        panel.setBounds(0, 0, 1264, 55);
+        janela.getContentPane().add(panel);
+        panel.setLayout(new BorderLayout(0, 0));
 
-    private void criarImportarButton(){
-        importarButton = new JButton("Importar");
-        importarButton.addActionListener(new ActionListener() {
+        JLabel lblNewLabel = new JLabel("Calculadora de dados estat\u00EDsticos");
+        lblNewLabel.setFont(new Font("Serif", Font.BOLD, 25));
+        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(lblNewLabel);
+
+        JPanel panel_1 = new JPanel();
+        panel_1.setBackground(SystemColor.scrollbar);
+        panel_1.setBounds(0, 56, 648, 313);
+        janela.getContentPane().add(panel_1);
+        panel_1.setLayout(null);
+
+        JLabel lblNewLabel_1 = new JLabel("Inserir dados manualmente:");
+        lblNewLabel_1.setBounds(169, 48, 184, 19);
+        lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        panel_1.add(lblNewLabel_1);
+
+        textField = new JTextField();
+        textField.setBounds(90, 104, 343, 20);
+        panel_1.add(textField);
+        textField.setColumns(10);
+
+        JButton btnNewButton = new JButton("Enviar");
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Double> lista = new ArrayList<Double>();
+                String dados = textField.getText();
+                String[] dadosSplit = dados.split(" ");
+                for(int i = 0; i < dadosSplit.length; i++){
+                    lista.add(Double.parseDouble(dadosSplit[i]));
+                }
+                new Leitura(lista);
+                new InterfaceGrafica();
+            }
+        });
+        btnNewButton.setForeground(SystemColor.text);
+        btnNewButton.setBounds(216, 162, 95, 25);
+        btnNewButton.setBackground(SystemColor.windowText);
+        btnNewButton.setFont(new Font("Verdana", Font.BOLD, 12));
+        panel_1.add(btnNewButton);
+
+        JLabel lblNewLabel_2 = new JLabel("Instru\u00E7\u00F5es: Digite os n\u00FAmeros um por um separados por um espa\u00E7o vazio entre eles.");
+        lblNewLabel_2.setBounds(92, 222, 519, 18);
+        lblNewLabel_2.setFont(new Font("Cambria Math", Font.ITALIC, 15));
+        lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+        panel_1.add(lblNewLabel_2);
+
+        JLabel lblNewLabel_3 = new JLabel("O programa ir\u00E1 coloc\u00E1-los em ordem e realizar os c\u00E1lculos.");
+        lblNewLabel_3.setBounds(90, 242, 362, 18);
+        lblNewLabel_3.setFont(new Font("Cambria Math", Font.ITALIC, 15));
+        lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+        panel_1.add(lblNewLabel_3);
+
+        JPanel panel_2 = new JPanel();
+        panel_2.setBackground(SystemColor.scrollbar);
+        panel_2.setBounds(648, 56, 616, 314);
+        janela.getContentPane().add(panel_2);
+        panel_2.setLayout(null);
+
+        JLabel lblNewLabel_4 = new JLabel("Importar dados:");
+        lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lblNewLabel_4.setBounds(277, 49, 116, 14);
+        panel_2.add(lblNewLabel_4);
+
+        textField_1 = new JTextField();
+        textField_1.setBounds(171, 101, 314, 20);
+        panel_2.add(textField_1);
+        textField_1.setColumns(10);
+
+        JButton btnNewButton_1 = new JButton("Importar");
+        btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
@@ -85,9 +116,9 @@ public class EntradaDadosGUI {
 
                 int returnValue = jfc.showSaveDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    jTxtDados.setText(jfc.getSelectedFile().getAbsolutePath());
+                    textField_1.setText(jfc.getSelectedFile().getAbsolutePath());
                     try {
-                        Leitura.setKeyb(keyb = new Scanner(jfc.getSelectedFile()));
+                        Leitura.keyb = new Scanner(jfc.getSelectedFile());
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();
                     }
@@ -95,123 +126,57 @@ public class EntradaDadosGUI {
                 }
             }
         });
+        btnNewButton_1.setBackground(SystemColor.windowText);
+        btnNewButton_1.setForeground(SystemColor.text);
+        btnNewButton_1.setFont(new Font("Verdana", Font.BOLD, 12));
+        btnNewButton_1.setBounds(277, 162, 107, 23);
+        panel_2.add(btnNewButton_1);
 
-        GridBagConstraints gbc_importarButton = new GridBagConstraints();
-        gbc_importarButton.fill = GridBagConstraints.HORIZONTAL;
-        gbc_importarButton.insets = new Insets(0, 0, 5, 5);
-        gbc_importarButton.gridx = 6;
-        gbc_importarButton.gridy = 2;
-        janela.getContentPane().add(importarButton, gbc_importarButton);
-    }
+        JLabel lblNewLabel_5 = new JLabel("Instru\u00E7\u00F5es: Selecione um arquivo .txt presente em seu computador.");
+        lblNewLabel_5.setFont(new Font("Cambria Math", Font.ITALIC, 15));
+        lblNewLabel_5.setBounds(171, 226, 421, 14);
+        panel_2.add(lblNewLabel_5);
 
-    private void criarLabelManualmente(){
-        lblNewLabel_2 = new JLabel("Manualmente (Separar n\u00FAmeros com espa\u00E7o):");
-        lblNewLabel_2.setFont(new Font("Serif", Font.PLAIN, 20));
-        GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-        gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-        gbc_lblNewLabel_2.gridx = 1;
-        gbc_lblNewLabel_2.gridy = 9;
-        janela.getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
-    }
+        JPanel panel_3 = new JPanel();
+        panel_3.setBackground(SystemColor.controlShadow);
+        panel_3.setBounds(0, 369, 1264, 312);
+        janela.getContentPane().add(panel_3);
+        panel_3.setLayout(null);
 
-    private void criarjTxtDados1() {
-        jTxtDados1 = new JTextField();
-        GridBagConstraints gbc_jTxtDados1 = new GridBagConstraints();
-        gbc_jTxtDados1.insets = new Insets(0, 0, 5, 5);
-        gbc_jTxtDados1.fill = GridBagConstraints.HORIZONTAL;
-        gbc_jTxtDados1.gridx = 4;
-        gbc_jTxtDados1.gridy = 9;
-        janela.getContentPane().add(jTxtDados1, gbc_jTxtDados1);
-        jTxtDados1.setColumns(10);
-    }
+        JLabel lblNewLabel_6 = new JLabel("Configura\u00E7\u00F5es de arredondamento:");
+        lblNewLabel_6.setFont(new Font("Serif", Font.BOLD, 20));
+        lblNewLabel_6.setBounds(472, 11, 309, 27);
+        panel_3.add(lblNewLabel_6);
 
-    private void criarEnviarButton() {
-        enviarButton = new JButton("Enviar");
-        enviarButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                EntradaDados entradaDados = new EntradaDados();
+        JLabel lblNewLabel_7 = new JLabel("Arredondar dados:");
+        lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        lblNewLabel_7.setBounds(490, 64, 109, 20);
+        panel_3.add(lblNewLabel_7);
 
-                entradaDados.setDados(jTxtDados.getText());
-
-                try {
-                    JOptionPane.showMessageDialog(null, entradaDados.criarDadosTxtManual());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-                jTxtDados.setText("");
-                new InterfaceGrafica();
-            }
-        });
-        GridBagConstraints gbc_enviarButton = new GridBagConstraints();
-        gbc_enviarButton.fill = GridBagConstraints.HORIZONTAL;
-        gbc_enviarButton.insets = new Insets(0, 0, 5, 5);
-        gbc_enviarButton.gridx = 6;
-        gbc_enviarButton.gridy = 9;
-        janela.getContentPane().add(enviarButton, gbc_enviarButton);
-    }
-
-    private void criarConfiguracoesLabel() {
-        lblNewLabel_3 = new JLabel("Configura\u00E7\u00F5es de arredondamento:");
-        lblNewLabel_3.setFont(new Font("Serif", Font.BOLD, 15));
-        lblNewLabel_3.setForeground(Color.BLACK);
-        lblNewLabel_3.setBackground(Color.WHITE);
-        GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-        gbc_lblNewLabel_3.fill = GridBagConstraints.HORIZONTAL;
-        gbc_lblNewLabel_3.gridwidth = 8;
-        gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-        gbc_lblNewLabel_3.gridx = 13;
-        gbc_lblNewLabel_3.gridy = 12;
-        janela.getContentPane().add(lblNewLabel_3, gbc_lblNewLabel_3);
-    }
-
-    private void criarLabelArredondarClasse(){
-        JLabel lblNewLabel_4 = new JLabel("Arredondar classe:");
-        GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-        gbc_lblNewLabel_4.gridwidth = 3;
-        gbc_lblNewLabel_4.fill = GridBagConstraints.HORIZONTAL;
-        gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-        gbc_lblNewLabel_4.gridx = 13;
-        gbc_lblNewLabel_4.gridy = 13;
-        janela.getContentPane().add(lblNewLabel_4, gbc_lblNewLabel_4);
-    }
-
-    private void criarTextpane1(){
         JTextPane textPane = new JTextPane();
         textPane.setText("10");
-        int arredondamentoClasse = Integer.parseInt(textPane.getText());
-        Configuracoes.setArredondamentoClasse(arredondamentoClasse);
-        GridBagConstraints gbc_textPane = new GridBagConstraints();
-        gbc_textPane.gridwidth = 2;
-        gbc_textPane.insets = new Insets(0, 0, 5, 5);
-        gbc_textPane.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textPane.gridx = 16;
-        gbc_textPane.gridy = 13;
-        janela.getContentPane().add(textPane, gbc_textPane);
-    }
+        textPane.setBounds(636, 64, 39, 20);
+        panel_3.add(textPane);
 
-    private void criarLabelArredondarDados(){
-        JLabel lblNewLabel_5 = new JLabel("Arredondar dados:");
-        GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-        gbc_lblNewLabel_5.gridwidth = 3;
-        gbc_lblNewLabel_5.fill = GridBagConstraints.HORIZONTAL;
-        gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-        gbc_lblNewLabel_5.gridx = 13;
-        gbc_lblNewLabel_5.gridy = 14;
-        janela.getContentPane().add(lblNewLabel_5, gbc_lblNewLabel_5);
-    }
+        JLabel lblNewLabel_8 = new JLabel("Arredondar dados de classe:");
+        lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        lblNewLabel_8.setBounds(472, 120, 154, 20);
+        panel_3.add(lblNewLabel_8);
 
-    private void criarTextpane2(){
         JTextPane textPane_1 = new JTextPane();
         textPane_1.setText("10");
-        int arredondamento = Integer.parseInt(textPane_1.getText());
-        Configuracoes.setArredondamento(arredondamento);
-        GridBagConstraints gbc_textPane_1 = new GridBagConstraints();
-        gbc_textPane_1.gridwidth = 2;
-        gbc_textPane_1.insets = new Insets(0, 0, 5, 5);
-        gbc_textPane_1.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textPane_1.gridx = 16;
-        gbc_textPane_1.gridy = 14;
-        janela.getContentPane().add(textPane_1, gbc_textPane_1);
+        textPane_1.setBounds(636, 120, 39, 20);
+        panel_3.add(textPane_1);
+
+        JLabel lblNewLabel_9 = new JLabel("Instru\u00E7\u00F5es: O padr\u00E3o do programa \u00E9 arredondar para uma casa decimal, portanto o n\u00FAmero 10.");
+        lblNewLabel_9.setFont(new Font("Cambria", Font.ITALIC, 15));
+        lblNewLabel_9.setBounds(359, 185, 609, 27);
+        panel_3.add(lblNewLabel_9);
+
+        JLabel lblNewLabel_10 = new JLabel("Caso queria modificar para mais casas decimais, mude para 100(duas casas decimais) ou 1000(tr\u00EAs casas decimais).");
+        lblNewLabel_10.setFont(new Font("Cambria Math", Font.ITALIC, 15));
+        lblNewLabel_10.setBounds(321, 223, 724, 14);
+        panel_3.add(lblNewLabel_10);
+        janela.setVisible(true);
     }
 }

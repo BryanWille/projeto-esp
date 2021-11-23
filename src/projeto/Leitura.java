@@ -7,7 +7,7 @@ public class Leitura {
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
-    private ArrayList<Double> lista;
+    private static ArrayList<Double> lista;
     public static Scanner keyb;
 
     // ----------------------------- CONSTRUTOR ----------------------------- //
@@ -16,15 +16,25 @@ public class Leitura {
         this.criarLista();
     }
 
+    public Leitura(ArrayList<Double> lista){
+        this.lista = lista;
+        this.criarLista();
+    }
+
     // ----------------------------- METODOS DE LEITURA
     // ----------------------------- //
 
     public void criarLista() {
         ArrayList<Double> v = new ArrayList<>();
+        if(!lista.isEmpty()){
+            v = this.lista;
+        }
         int i = 0;
-        while (keyb.hasNextLine()) {
-            v.add(i, Double.parseDouble(keyb.nextLine()));
-            i++;
+        if(keyb != null){
+            while (keyb.hasNextLine()) {
+                v.add(i, Double.parseDouble(keyb.nextLine()));
+                i++;
+            }
         }
         double aux;
         for (i = 0; i < v.size() - 1; i++) {
@@ -42,11 +52,7 @@ public class Leitura {
     // ----------------------------- METODOS GETTERS -----------------------------
     // //
 
-    public ArrayList<Double> getLista() {
-        return this.lista;
-    }
-
-    public static Scanner setKeyb(Scanner newKeyb) {
-        return keyb = newKeyb;
+    public static ArrayList<Double> getLista() {
+        return lista;
     }
 }

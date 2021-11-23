@@ -7,7 +7,6 @@ public class DadosBrutos extends Configuracoes{
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
-    private Leitura leitor = new Leitura();
     private double media;
     private double mediana;
     private double variancia;
@@ -22,14 +21,14 @@ public class DadosBrutos extends Configuracoes{
     public DadosBrutos() {
         super();
 
-        leitor.criarLista();
-        this.calcularMedia(leitor.getLista());
-        this.calcularMediana(leitor.getLista());
-        this.calcularModa(leitor.getLista());
-        this.calcularVariancia(leitor.getLista());
+        this.calcularMedia(Leitura.getLista());
+        this.calcularMediana(Leitura.getLista());
+        this.calcularModa(Leitura.getLista());
+        this.calcularVariancia(Leitura.getLista());
         this.calcularDesvioPadrao(this.getVariancia());
         this.calcularCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
     }
+
 
 
     // ----------------------------- METODOS CALCULADORA ----------------------------- //
