@@ -118,11 +118,21 @@ public class EntradaDadosGUI {
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     textField_1.setText(jfc.getSelectedFile().getAbsolutePath());
                     try {
-                        Leitura.keyb = new Scanner(jfc.getSelectedFile());
-                    } catch (FileNotFoundException ex) {
+                        BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
+                        ArrayList<Double> listaDouble = new ArrayList<>();
+                        double linhaDouble;
+                        String linha = bufReader.readLine();
+                        while (linha != null) {
+                            linhaDouble = Double.parseDouble(linha);
+                            listaDouble.add(linhaDouble);
+                            linha = bufReader.readLine();
+                        }
+                        new Leitura(listaDouble);
+                        new InterfaceGrafica();
+                        bufReader.close();
+                    } catch (IOException ex){
                         ex.printStackTrace();
                     }
-                    new InterfaceGrafica();
                 }
             }
         });

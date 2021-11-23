@@ -8,7 +8,6 @@ public class Leitura {
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
     private static ArrayList<Double> lista;
-    public static Scanner keyb;
 
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
@@ -24,18 +23,12 @@ public class Leitura {
     // ----------------------------- METODOS DE LEITURA
     // ----------------------------- //
 
-    public void criarLista() {
+    public static void criarLista() {
         ArrayList<Double> v = new ArrayList<>();
         if(!lista.isEmpty()){
-            v = this.lista;
+            v = lista;
         }
         int i = 0;
-        if(keyb != null){
-            while (keyb.hasNextLine()) {
-                v.add(i, Double.parseDouble(keyb.nextLine()));
-                i++;
-            }
-        }
         double aux;
         for (i = 0; i < v.size() - 1; i++) {
             for (int j = 0; j < v.size() - 1 - i; j++) {
@@ -46,7 +39,7 @@ public class Leitura {
                 }
             }
         }
-        this.lista = (v);
+        lista = (v);
     }
 
     // ----------------------------- METODOS GETTERS -----------------------------
