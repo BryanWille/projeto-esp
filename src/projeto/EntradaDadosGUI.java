@@ -154,9 +154,11 @@ public class EntradaDadosGUI {
         panel_3.add(lblNewLabel_7);
 
         JTextPane textPane = new JTextPane();
-        textPane.setText("10");
+        textPane.setText("1");
         textPane.setBounds(636, 64, 39, 20);
         panel_3.add(textPane);
+        int arredondar = Integer.parseInt(textPane.getText());
+        Configuracoes.setArredondamento(arredondar);
 
         JLabel lblNewLabel_8 = new JLabel("Arredondar dados de classe:");
         lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -164,16 +166,18 @@ public class EntradaDadosGUI {
         panel_3.add(lblNewLabel_8);
 
         JTextPane textPane_1 = new JTextPane();
-        textPane_1.setText("10");
+        textPane_1.setText("1");
         textPane_1.setBounds(636, 120, 39, 20);
         panel_3.add(textPane_1);
+        int arredondarClasse = Integer.parseInt(textPane_1.getText());
+        Configuracoes.setArredondamentoClasse(arredondarClasse);
 
-        JLabel lblNewLabel_9 = new JLabel("Instru\u00E7\u00F5es: O padr\u00E3o do programa \u00E9 arredondar para uma casa decimal, portanto o n\u00FAmero 10.");
+        JLabel lblNewLabel_9 = new JLabel("Instru\u00E7\u00F5es: O padr\u00E3o do programa \u00E9 arredondar para uma casa decimal, portanto o n\u00FAmero 1.");
         lblNewLabel_9.setFont(new Font("Cambria", Font.ITALIC, 15));
         lblNewLabel_9.setBounds(359, 185, 609, 27);
         panel_3.add(lblNewLabel_9);
 
-        JLabel lblNewLabel_10 = new JLabel("Caso queria modificar para mais casas decimais, mude para 100(duas casas decimais) ou 1000(tr\u00EAs casas decimais).");
+        JLabel lblNewLabel_10 = new JLabel("Caso queria modificar para mais casas decimais, modifique o valor para 2 ou mais.");
         lblNewLabel_10.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_10.setBounds(321, 223, 724, 14);
         panel_3.add(lblNewLabel_10);
