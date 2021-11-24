@@ -90,7 +90,7 @@ public class EntradaDadosGUI {
 
         JPanel panel_2 = new JPanel();
         panel_2.setBackground(SystemColor.scrollbar);
-        panel_2.setBounds(648, 56, 616, 314);
+        panel_2.setBounds(648, 56, 616, 313);
         janela.getContentPane().add(panel_2);
         panel_2.setLayout(null);
 
@@ -103,6 +103,10 @@ public class EntradaDadosGUI {
         textField_1.setBounds(171, 101, 314, 20);
         panel_2.add(textField_1);
         textField_1.setColumns(10);
+
+        JCheckBox checkBox = new JCheckBox("Dados separados por espa\u00E7o");
+        checkBox.setBounds(237, 201, 196, 23);
+        panel_2.add(checkBox);
 
         JButton btnNewButton_1 = new JButton("Importar");
         btnNewButton_1.addActionListener(new ActionListener() {
@@ -117,6 +121,22 @@ public class EntradaDadosGUI {
                 int returnValue = jfc.showSaveDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
                     textField_1.setText(jfc.getSelectedFile().getAbsolutePath());
+                    if(checkBox.isSelected()){
+                        try {
+                            BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
+                            ArrayList<Double> listaDouble = new ArrayList<>();
+                            String linha = bufReader.readLine();
+                            String[] linhaSplit = linha.split("");
+                            for(int i = 0; i < linhaSplit.length; i++){
+                                listaDouble.add(Double.parseDouble(linhaSplit[i]));
+                            }
+                            new Leitura(listaDouble);
+                            new InterfaceGrafica();
+                            bufReader.close();
+                        } catch (IOException ex){
+                        ex.printStackTrace();
+                    }
+                    }else{
                     try {
                         BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
                         ArrayList<Double> listaDouble = new ArrayList<>();
@@ -134,6 +154,7 @@ public class EntradaDadosGUI {
                         ex.printStackTrace();
                     }
                 }
+                }
             }
         });
         btnNewButton_1.setBackground(SystemColor.windowText);
@@ -144,8 +165,18 @@ public class EntradaDadosGUI {
 
         JLabel lblNewLabel_5 = new JLabel("Instru\u00E7\u00F5es: Selecione um arquivo .txt presente em seu computador.");
         lblNewLabel_5.setFont(new Font("Cambria Math", Font.ITALIC, 15));
-        lblNewLabel_5.setBounds(171, 226, 421, 14);
+        lblNewLabel_5.setBounds(150, 231, 421, 14);
         panel_2.add(lblNewLabel_5);
+
+        JLabel lblNewLabel_11 = new JLabel("Por padr\u00E3o, o programa l\u00EA os arquivos .txt linha por linha, caso os dados do arquivo estejam");
+        lblNewLabel_11.setFont(new Font("Cambria Math", Font.ITALIC, 15));
+        lblNewLabel_11.setBounds(31, 247, 606, 14);
+        panel_2.add(lblNewLabel_11);
+
+        JLabel lblNewLabel_12 = new JLabel("na mesma linha ser\u00E1 necess\u00E1rio marcar a op\u00E7\u00E3o \"Dados separados por espa\u00E7o\".");
+        lblNewLabel_12.setFont(new Font("Cambria Math", Font.ITALIC, 15));
+        lblNewLabel_12.setBounds(87, 264, 496, 14);
+        panel_2.add(lblNewLabel_12);
 
         JPanel panel_3 = new JPanel();
         panel_3.setBackground(SystemColor.controlShadow);

@@ -29,16 +29,14 @@ import javax.swing.AbstractListModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollBar;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class InterfaceGrafica {
     private DadosBrutos db = new DadosBrutos();
     private DadosAgrupados da = new DadosAgrupados();
     private Object[][] dados = da.converterLista(da.getTabela());
     private String[] colunas = { "Classe", "Intervalo de Classe", "Frequencia", "Frequencia Agrupada", "Ponto Medio" };
-
-    private int indexQuartil;
-    private int indexDecil;
-    private int indexPercentil;
 
     JFrame frame;
     private JTable table;
@@ -269,12 +267,12 @@ public class InterfaceGrafica {
         labelPercentil.setHorizontalAlignment(SwingConstants.RIGHT);
 
         JButton separatriz = new JButton("Calcular"); // Quartis
-        separatriz.setBounds(129, 71, 90, 31);
+        separatriz.setBounds(133, 70, 90, 31);
         analiseDados.add(separatriz);
         separatriz.setFont(new Font("Tahoma", Font.PLAIN, 10));
 
         JTextPane textoSeparatriz = new JTextPane();
-        textoSeparatriz.setBounds(230, 58, 165, 58);
+        textoSeparatriz.setBounds(234, 57, 165, 58);
         analiseDados.add(textoSeparatriz);
         textoSeparatriz.setEditable(false);
 
@@ -290,37 +288,21 @@ public class InterfaceGrafica {
         lblAnaliseDeDados.setForeground(Color.DARK_GRAY);
         lblAnaliseDeDados.setFont(new Font("Verdana", Font.BOLD, 16));
 
-        JScrollPane quartisScroll = new JScrollPane();
-        quartisScroll.setBounds(82, 53, 34, 20);
-        analiseDados.add(quartisScroll);
 
-        Object[] valorQuartil = { "0", "1", "2", "3", "4" };
-        JList listaQuartis = new JList(valorQuartil);
-        listaQuartis.setValueIsAdjusting(true);
-        quartisScroll.setViewportView(listaQuartis);
+        JComboBox comboBoxQuartil = new JComboBox();
+        comboBoxQuartil.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4"}));
+        comboBoxQuartil.setBounds(81, 52, 46, 19);
+        analiseDados.add(comboBoxQuartil);
 
-        JScrollPane decilScroll = new JScrollPane();
-        decilScroll.setBounds(82, 80, 34, 20);
-        analiseDados.add(decilScroll);
+        JComboBox comboBoxDecil = new JComboBox();
+        comboBoxDecil.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
+        comboBoxDecil.setBounds(81, 79, 46, 19);
+        analiseDados.add(comboBoxDecil);
 
-        Object[] valorDecil = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
-        JList listaDecil = new JList(valorDecil);
-        decilScroll.setViewportView(listaDecil);
-
-        JScrollPane percentilScroll = new JScrollPane();
-        percentilScroll.setBounds(81, 107, 46, 20);
-        analiseDados.add(percentilScroll);
-
-        Object[] valorPercentil = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
-                "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31",
-                "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
-                "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65",
-                "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82",
-                "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99",
-                "100" };
-
-        JList listaPercentil = new JList(valorPercentil);
-        percentilScroll.setViewportView(listaPercentil);
+        JComboBox comboBoxPercentil = new JComboBox();
+        comboBoxPercentil.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"}));
+        comboBoxPercentil.setBounds(81, 108, 46, 19);
+        analiseDados.add(comboBoxPercentil);
 
         JPanel dadosBrutos = new JPanel();
         dadosBrutos.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -424,45 +406,17 @@ public class InterfaceGrafica {
         lblPosicaoBR.setHorizontalAlignment(SwingConstants.CENTER);
         lblPosicaoBR.setForeground(Color.GRAY);
         lblPosicaoBR.setFont(new Font("Verdana", Font.BOLD, 13));
-
-        JLabel infIndex = new JLabel("Clique no index ate ficar azul");
-        infIndex.setForeground(Color.GRAY);
-        infIndex.setBounds(117, 500, 173, 14);
-        panel.add(infIndex);
         textoSeparatriz.setVisible(false);
-
-        ListSelectionListener quartisListener = new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                setIndexQuartil(listaQuartis.getSelectedIndex());
-            }
-        };
-        listaQuartis.addListSelectionListener(quartisListener);
-
-        ListSelectionListener decilListener = new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                setIndexDecil(listaDecil.getSelectedIndex());
-            }
-        };
-        listaDecil.addListSelectionListener(decilListener);
-
-        ListSelectionListener percentilListener = new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                setIndexPercentil(listaPercentil.getSelectedIndex());
-                System.out.println(listaPercentil.getSelectedIndex());
-            }
-        };
-        listaPercentil.addListSelectionListener(percentilListener);
 
         separatriz.addActionListener((ActionListener) new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == separatriz) {
                     String texto = "";
-                    int quartil = getIndexQuartil();
-                    int decil = getIndexDecil();
-                    int percentil = getIndexPercentil();
+                    int quartil = comboBoxQuartil.getSelectedIndex()+1;
+                    int decil = comboBoxDecil.getSelectedIndex()+1;
+                    int percentil = comboBoxPercentil.getSelectedIndex()+1;
 
-                    System.out.println(quartil + " " + decil + " " + percentil);
 
                     texto = "Quartil: "
                             + (quartil == 0 ? "nao informado" : String.valueOf(da.calcularSeparatriz(4, quartil)));
@@ -478,32 +432,9 @@ public class InterfaceGrafica {
 
             }
         });
-
         frame.setVisible(true);
-
-    }
-
-    public int getIndexQuartil() {
-        return indexQuartil;
-    }
-
-    public void setIndexQuartil(int indexQuartil) {
-        this.indexQuartil = indexQuartil;
-    }
-
-    public int getIndexDecil() {
-        return indexDecil;
-    }
-
-    public void setIndexDecil(int indexDecil) {
-        this.indexDecil = indexDecil;
-    }
-
-    public int getIndexPercentil() {
-        return indexPercentil;
-    }
-
-    public void setIndexPercentil(int indexPercentil) {
-        this.indexPercentil = indexPercentil;
     }
 }
+
+
+
