@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="presp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/presp_jar</output-path>
+    <root id="archive" name="presp.jar">
+      <element id="module-output" name="presp" />
+    </root>
+  </artifact>
+</component>
