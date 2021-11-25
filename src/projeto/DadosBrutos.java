@@ -7,11 +7,13 @@ public class DadosBrutos extends Configuracoes{
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
+    private Leitura leitor = new Leitura();
     private double media;
     private double mediana;
     private double variancia;
     private double coeficienteVariacao;
     private double desvioPadrao;
+    private Double somaTotal;
     private ArrayList<Double> moda;
 
 
@@ -21,14 +23,14 @@ public class DadosBrutos extends Configuracoes{
     public DadosBrutos() {
         super();
 
-        this.calcularMedia(Leitura.getLista());
-        this.calcularMediana(Leitura.getLista());
-        this.calcularModa(Leitura.getLista());
-        this.calcularVariancia(Leitura.getLista());
+        leitor.criarLista();
+        this.calcularMedia(leitor.getLista());
+        this.calcularMediana(leitor.getLista());
+        this.calcularModa(leitor.getLista());
+        this.calcularVariancia(leitor.getLista());
         this.calcularDesvioPadrao(this.getVariancia());
         this.calcularCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
     }
-
 
 
     // ----------------------------- METODOS CALCULADORA ----------------------------- //
@@ -40,6 +42,7 @@ public class DadosBrutos extends Configuracoes{
         for (int i = 0; i < lista.size(); ++i) {
             somaTotal = somaTotal + lista.get(i);
         }
+        this.somaTotal = somaTotal;
         double media = (somaTotal / (double) lista.size());
         this.media = this.arredondar(media);
     }
@@ -49,7 +52,7 @@ public class DadosBrutos extends Configuracoes{
         if (lista.size() % 2 != 0) {
             mediana = lista.get(lista.size() / 2);
         } else {
-            mediana = (lista.get((lista.size() - 1) / 2) + (lista.get((lista.size()) / 2))) / 2.0D;
+            mediana = lista.get((lista.size() - 1) / 2) + (lista.get((lista.size() - 1) / 2) + 1.0D) / 2.0D;
         }
 
         this.mediana = this.arredondar(mediana);
@@ -104,13 +107,17 @@ public class DadosBrutos extends Configuracoes{
     }
 
     private void calcularCoeficienteVariacao(double desvioPadrao, double media) {
-        this.coeficienteVariacao = this.arredondar(desvioPadrao / media );
+        this.coeficienteVariacao = this.arredondar(desvioPadrao / media * 100.0D);
     }
 
 
 
     // ----------------------------- METODOS GETTERS ----------------------------- //
 
+
+    public double getSomaTotal() {
+        return this.somaTotal;
+    }
 
     public double getMedia() {
         return this.media;

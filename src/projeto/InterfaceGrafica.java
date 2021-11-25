@@ -76,7 +76,7 @@ public class InterfaceGrafica {
 
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportBorder(null);
-        scrollPane.setBounds(178, 8, 745, 147);
+        scrollPane.setBounds(123, 9, 745, 147);
         scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         panel.add(scrollPane);
 
@@ -406,6 +406,32 @@ public class InterfaceGrafica {
         lblPosicaoBR.setHorizontalAlignment(SwingConstants.CENTER);
         lblPosicaoBR.setForeground(Color.GRAY);
         lblPosicaoBR.setFont(new Font("Verdana", Font.BOLD, 13));
+
+        JTextPane textoSomaTotal = new JTextPane();
+        textoSomaTotal.setText("462.0");
+        textoSomaTotal.setEditable(false);
+        textoSomaTotal.setBounds(986, 51, 62, 25);
+        panel.add(textoSomaTotal);
+        textoSomaTotal.setText(String.valueOf(db.getSomaTotal()));
+
+        JLabel somaTotalLabel = new JLabel("Soma Total");
+        somaTotalLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        somaTotalLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        somaTotalLabel.setBounds(911, 56, 71, 14);
+        panel.add(somaTotalLabel);
+
+        JTextPane textoQuantElementos = new JTextPane();
+        textoQuantElementos.setText("462.0");
+        textoQuantElementos.setEditable(false);
+        textoQuantElementos.setBounds(987, 87, 62, 25);
+        textoQuantElementos.setText(String.valueOf(da.getFrequenciaTotal()));
+        panel.add(textoQuantElementos);
+
+        JLabel lblQuantElementos = new JLabel("Quant. Elementos");
+        lblQuantElementos.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblQuantElementos.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        lblQuantElementos.setBounds(877, 91, 104, 14);
+        panel.add(lblQuantElementos);
         textoSeparatriz.setVisible(false);
 
         separatriz.addActionListener((ActionListener) new ActionListener() {
