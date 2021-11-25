@@ -311,6 +311,7 @@ public class EntradaDadosGUI {
                 ArrayList<Double> lista = new ArrayList<Double>();
                 String dados = textField.getText();
                 String[] dadosSplit = dados.split(" ");
+                System.out.println(dadosSplit.length);
                 if (padraoBrasileiroCheck.isSelected()){
                     for(int i = 0; i < dadosSplit.length; i++){
                         dadosSplit[i] = dadosSplit[i].replace(".","");
@@ -338,6 +339,7 @@ public class EntradaDadosGUI {
     }
 
     private void arredondarEInicializar(BufferedReader bufReader, ArrayList<Double> listaDouble, JComboBox comboBoxRA, JComboBox comboBoxRC) throws IOException {
+        System.out.println(listaDouble.size());
         int arredondar = comboBoxRA.getSelectedIndex();
         int arredondarClasse = comboBoxRC.getSelectedIndex();
         DadosBrutos.setIndexRound(arredondar);
