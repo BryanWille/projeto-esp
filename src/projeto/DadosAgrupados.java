@@ -6,9 +6,9 @@ public class DadosAgrupados {
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
-    private static int indexRoundClasse;
-    private static int indexRound;
     private Leitura leitor = new Leitura();
+    private static int IndexRound;
+    private static int IndexRoundClasse;
     private Double K;
     private Double amplitude;
     private Double amplitudeClasse;
@@ -24,35 +24,12 @@ public class DadosAgrupados {
 
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
-    public DadosAgrupados(){
-        this(2);
-    }
+    public DadosAgrupados(int indexRound, int indexRoundClasse) {
 
-    public DadosAgrupados(int arredondamento) {
-
-        leitor.criarLista();
-        this.setIndexRound(arredondamento);
-        this.fazerAmplitudeClasse(leitor.getLista());
-        this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
-
-        this.calcularFrequenciaTotal(this.getTabela());
-
-        this.calcularMedia(this.getTabela());
-        this.calcularMediana(this.getTabela());
-        this.calcularModa(this.getTabela());
-
-        this.calcularVariancia(this.getTabela(), this.getMedia());
-        this.calcularDesvioPadrao(this.getVariancia());
-        this.calcularCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
-
-        this.calcularSeparatriz(100, 90);
-    }
-
-    public DadosAgrupados(int arredondamento, int arredondamentoClasse) {
+        this.setIndexRound(indexRound);
+        this.setIndexRoundClasse(indexRoundClasse);
 
         leitor.criarLista();
-        this.setIndexRound(arredondamento);
-        this.setIndexRoundClasse(arredondamentoClasse);
         this.fazerAmplitudeClasse(leitor.getLista());
         this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
 
@@ -124,7 +101,7 @@ public class DadosAgrupados {
         for(int i = 1; i < tabela.size(); i++) {
             if (frequenciaMeio > tabela.get(i-1).get(3) && frequenciaMeio < tabela.get(i).get(3)) {
                 freqMediana = tabela.get(i).get(2);
-                fAgrClaAnt = tabela.get(i - 1).get(3);;
+                fAgrClaAnt = tabela.get(i - 1).get(3);
                 limiteInferior = tabela.get(i).get(0);
             }
         }
@@ -175,7 +152,6 @@ public class DadosAgrupados {
         this.coeficienteVariacao = this.arredondar(coefVar);
     }
 
-
     private void calcularFrequenciaTotal(ArrayList<ArrayList<Double>> tabela) {
         this.frequenciaTotal = tabela.get(tabela.size() - 1).get(3);
     }
@@ -198,24 +174,14 @@ public class DadosAgrupados {
         return matriz;
     }
 
-    private void fazerAmplitudeClasse(ArrayList<Double> lista) {
-        int maiorCasaDecimal = 0;
-        for (int i = 0; i < lista.size(); i++) {
-                String converter = String.valueOf(lista.get(i));
-                int index = converter.indexOf('.');
-                int casaDecimal = (converter.length() - 1) - index;
-                if (casaDecimal > maiorCasaDecimal) {
-                    maiorCasaDecimal = casaDecimal;
-                }
-        }
-        this.setIndexRoundClasse(maiorCasaDecimal);
+    private void fazerAmplitudeClasse(ArrayList<Double> lista){
         double amplitudeTotal, raizAmostra, a;
         amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
         raizAmostra = Math.sqrt(lista.size());
         this.setK(raizAmostra);
         this.setAmplitude(amplitudeTotal);
         a = this.arredondamentoClasse(amplitudeTotal / raizAmostra);
-        this.setAmplitudeClasse(a);
+        this.setAmplitudeClasse(this.arredondamentoClasse(a));
     }
 
     private void fazerTabela(ArrayList<Double> lista, Double distriContinua) {
@@ -254,32 +220,6 @@ public class DadosAgrupados {
 
     // ----------------------------- METODOS GETTERS ---------------------------- //
 
-    public double arredondamentoClasse(double numero){
-        double decimal = Math.pow(10, this.getIndexRoundClasse());
-        return Math.round(numero * decimal) / decimal;
-    }
-
-    public double arredondar(double numero){
-        double decimal = Math.pow(10, this.getIndexRound());
-        return Math.round(numero * decimal) / decimal;
-    }
-
-    public static int getIndexRoundClasse() {
-        return indexRoundClasse;
-    }
-
-    public static void setIndexRoundClasse(int newIndexRoundClasse) {
-        indexRoundClasse = newIndexRoundClasse;
-    }
-
-    public static int getIndexRound() {
-        return indexRound;
-    }
-
-    public static void setIndexRound(int newIndexRound) {
-        indexRound = newIndexRound;
-    }
-
     public Double getAmplitudeClasse() {
         return amplitudeClasse;
     }
@@ -291,7 +231,6 @@ public class DadosAgrupados {
     public ArrayList<ArrayList<Double>> getTabela() {
         return tabela;
     }
-
 
     public Double getK() {
         return K;
@@ -341,4 +280,29 @@ public class DadosAgrupados {
         return this.frequenciaTotal;
     }
 
+    public double arredondamentoClasse(double numero){
+        double decimal = Math.pow(10, getIndexRoundClasse());
+        return Math.round(numero * decimal) / decimal;
+    }
+
+    public double arredondar(double numero){
+        double decimal = Math.pow(10, getIndexRound());
+        return Math.round(numero * decimal) / decimal;
+    }
+
+    public static int getIndexRoundClasse() {
+        return IndexRoundClasse;
+    }
+
+    public static int getIndexRound() {
+        return IndexRound;
+    }
+
+    public static void setIndexRound(int indexRound) {
+        IndexRound = indexRound;
+    }
+
+    public static void setIndexRoundClasse(int indexRoundClasse) {
+        IndexRoundClasse = indexRoundClasse;
+    }
 }

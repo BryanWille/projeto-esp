@@ -329,7 +329,7 @@ public class EntradaDadosGUI {
                 int arredondarClasse = comboBoxRC.getSelectedIndex();
 
                 new Leitura(lista);
-                new DadosAgrupados(arredondar);
+                new DadosAgrupados(arredondar, arredondarClasse);
                 new DadosBrutos(arredondar);
                 new InterfaceGrafica();
             }
@@ -339,7 +339,6 @@ public class EntradaDadosGUI {
     }
 
     private void arredondarEInicializar(BufferedReader bufReader, ArrayList<Double> listaDouble, JComboBox comboBoxRA, JComboBox comboBoxRC) throws IOException {
-        System.out.println(listaDouble.size());
         int arredondar = comboBoxRA.getSelectedIndex();
         int arredondarClasse = comboBoxRC.getSelectedIndex();
         DadosBrutos.setIndexRound(arredondar);
