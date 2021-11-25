@@ -1,5 +1,6 @@
 package projeto;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DadosAgrupados {
@@ -25,11 +26,18 @@ public class DadosAgrupados {
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
     public DadosAgrupados(int indexRound, int indexRoundClasse) {
+        leitor.criarLista();
 
         this.setIndexRound(indexRound);
-        this.setIndexRoundClasse(indexRoundClasse);
 
-        leitor.criarLista();
+        System.out.println(indexRoundClasse);
+        if(indexRoundClasse != 0){
+            setIndexRoundClasse(indexRoundClasse);
+        } else {
+            System.out.println(this.calcularCasasDecimais(leitor.getLista()));
+            setIndexRoundClasse(this.calcularCasasDecimais(leitor.getLista()));
+        }
+
         this.fazerAmplitudeClasse(leitor.getLista());
         this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
 
@@ -46,8 +54,8 @@ public class DadosAgrupados {
         this.calcularSeparatriz(100, 90);
     }
 
-    // ----------------------------- METODOS CALCULOS -----------------------------
-    // //
+    // ----------------------------- METODOS CALCULOS ----------------------------- //
+
     public Object calcularSeparatriz(int separatriz, int index) {
         Object sep;
         if (separatriz == 10 || separatriz == 100 || separatriz == 4) {
@@ -154,6 +162,19 @@ public class DadosAgrupados {
 
     private void calcularFrequenciaTotal(ArrayList<ArrayList<Double>> tabela) {
         this.frequenciaTotal = tabela.get(tabela.size() - 1).get(3);
+    }
+
+    private int calcularCasasDecimais(ArrayList<Double> lista){
+        int maiorCasaDecimal = 0;
+        for (int i = 0; i < lista.size(); i++) {
+            String converter = String.valueOf(lista.get(i));
+            int index = converter.indexOf('.');
+            int casaDecimal = (converter.length() - 1) - index;
+            if (casaDecimal > maiorCasaDecimal) {
+                maiorCasaDecimal = casaDecimal;
+            }
+        }
+        return maiorCasaDecimal;
     }
 
     // ----------------------------- METODOS TABELA ----------------------------- //
