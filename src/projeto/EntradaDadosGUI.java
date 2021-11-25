@@ -58,18 +58,7 @@ public class EntradaDadosGUI {
         textField.setColumns(10);
 
         JButton btnNewButton = new JButton("Enviar");
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ArrayList<Double> lista = new ArrayList<Double>();
-                String dados = textField.getText();
-                String[] dadosSplit = dados.split(" ");
-                for(int i = 0; i < dadosSplit.length; i++){
-                    lista.add(Double.parseDouble(dadosSplit[i]));
-                }
-                new Leitura(lista);
-                new InterfaceGrafica();
-            }
-        });
+
         btnNewButton.setForeground(SystemColor.text);
         btnNewButton.setBounds(216, 162, 95, 25);
         btnNewButton.setBackground(SystemColor.windowText);
@@ -109,54 +98,7 @@ public class EntradaDadosGUI {
         panel_2.add(checkBox);
 
         JButton btnNewButton_1 = new JButton("Importar");
-        btnNewButton_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
-                jfc.setDialogTitle("Escolha o diretório do arquivo de texto: ");
-                jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Arquivo de texto", "txt", "text");
-                jfc.setFileFilter(filtro);
-
-                int returnValue = jfc.showSaveDialog(null);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    textField_1.setText(jfc.getSelectedFile().getAbsolutePath());
-                    if(checkBox.isSelected()){
-                        try {
-                            BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
-                            ArrayList<Double> listaDouble = new ArrayList<>();
-                            String linha = bufReader.readLine();
-                            String[] linhaSplit = linha.split(" ");
-                            for(int i = 0; i < linhaSplit.length; i++){
-                                listaDouble.add(Double.parseDouble(linhaSplit[i]));
-                            }
-                            new Leitura(listaDouble);
-                            new InterfaceGrafica();
-                            bufReader.close();
-                        } catch (IOException ex){
-                        ex.printStackTrace();
-                    }
-                    }else{
-                    try {
-                        BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
-                        ArrayList<Double> listaDouble = new ArrayList<>();
-                        double linhaDouble;
-                        String linha = bufReader.readLine();
-                        while (linha != null) {
-                            linhaDouble = Double.parseDouble(linha);
-                            listaDouble.add(linhaDouble);
-                            linha = bufReader.readLine();
-                        }
-                        new Leitura(listaDouble);
-                        new InterfaceGrafica();
-                        bufReader.close();
-                    } catch (IOException ex){
-                        ex.printStackTrace();
-                    }
-                }
-                }
-            }
-        });
         btnNewButton_1.setBackground(SystemColor.windowText);
         btnNewButton_1.setForeground(SystemColor.text);
         btnNewButton_1.setFont(new Font("Verdana", Font.BOLD, 12));
@@ -198,20 +140,16 @@ public class EntradaDadosGUI {
         textPane.setText("1");
         textPane.setBounds(636, 64, 39, 20);
         panel_3.add(textPane);
-        int arredondar = Integer.parseInt(textPane.getText());
-        Configuracoes.setArredondamento(arredondar);
 
         JLabel lblNewLabel_8 = new JLabel("Arredondar dados de classe:");
         lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblNewLabel_8.setBounds(472, 120, 154, 20);
+        lblNewLabel_8.setBounds(472, 95, 154, 20);
         panel_3.add(lblNewLabel_8);
 
         JTextPane textPane_1 = new JTextPane();
         textPane_1.setText("1");
-        textPane_1.setBounds(636, 120, 39, 20);
+        textPane_1.setBounds(636, 95, 39, 20);
         panel_3.add(textPane_1);
-        int arredondarClasse = Integer.parseInt(textPane_1.getText());
-        Configuracoes.setArredondamentoClasse(arredondarClasse);
 
         JLabel lblNewLabel_9 = new JLabel("Instru\u00E7\u00F5es: O padr\u00E3o do programa \u00E9 arredondar para uma casa decimal, portanto o n\u00FAmero 1.");
         lblNewLabel_9.setFont(new Font("Cambria", Font.ITALIC, 15));
@@ -222,6 +160,168 @@ public class EntradaDadosGUI {
         lblNewLabel_10.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_10.setBounds(321, 223, 724, 14);
         panel_3.add(lblNewLabel_10);
+
+        JRadioButton padraoBrasileiro = new JRadioButton("Dados padr\u00E3o brasileiro");
+        padraoBrasileiro.setBounds(472, 130, 203, 23);
+        panel_3.add(padraoBrasileiro);
+
+        JRadioButton padraoAmericano = new JRadioButton("Dados padr\u00E3o americano");
+        padraoAmericano.setBounds(472, 155, 203, 23);
+        panel_3.add(padraoAmericano);
+
+        ButtonGroup group = new ButtonGroup();
+        group.add(padraoBrasileiro);
+        group.add(padraoAmericano);
+
+        padraoBrasileiro.setSelected(true);
+
+        btnNewButton_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+                jfc.setDialogTitle("Escolha o diretório do arquivo de texto: ");
+                jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Arquivo de texto", "txt", "text");
+                jfc.setFileFilter(filtro);
+
+                int returnValue = jfc.showSaveDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    textField_1.setText(jfc.getSelectedFile().getAbsolutePath());
+                    if(padraoBrasileiro.isSelected()){
+                        if(checkBox.isSelected()){
+                            try {
+                                BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
+                                ArrayList<Double> listaDouble = new ArrayList<>();
+                                String linha = bufReader.readLine();
+                                String[] linhaSplit = linha.split(" ");
+                                for(int i = 0; i < linhaSplit.length; i++){
+                                    linhaSplit[i] = linhaSplit[i].replace(".","");
+                                    linhaSplit[i] = linhaSplit[i].replace(",",".");
+                                    listaDouble.add(Double.parseDouble(linhaSplit[i]));
+                                }
+
+                                arredondarEInicializar(bufReader, listaDouble, textPane, textPane_1);
+                            } catch (IOException ex){
+                                ex.printStackTrace();
+                            }
+                        }else{
+                            try {
+                                BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
+                                ArrayList<Double> listaDouble = new ArrayList<>();
+                                double linhaDouble;
+                                String linha = bufReader.readLine();
+                                linha = linha.replace(".","");
+                                linha = linha.replace(",",".");
+                                while (linha != null) {
+                                    linhaDouble = Double.parseDouble(linha);
+                                    listaDouble.add(linhaDouble);
+                                    linha = bufReader.readLine();
+                                    if(linha == null){
+                                        break;
+                                    }
+                                    linha = linha.replace(".","");
+                                    linha = linha.replace(",",".");
+                                }
+
+                                arredondarEInicializar(bufReader, listaDouble, textPane, textPane_1);
+                            } catch (IOException ex){
+                                ex.printStackTrace();
+                            }
+                        }
+                    }else{
+                        if(checkBox.isSelected()){
+                            try {
+                                BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
+                                ArrayList<Double> listaDouble = new ArrayList<>();
+                                String linha = bufReader.readLine();
+                                String[] linhaSplit = linha.split(" ");
+                                for(int i = 0; i < linhaSplit.length; i++){
+                                    linhaSplit[i] = linhaSplit[i].replace(",","");
+                                    listaDouble.add(Double.parseDouble(linhaSplit[i]));
+                                }
+
+                                arredondarEInicializar(bufReader, listaDouble, textPane, textPane_1);
+                            } catch (IOException ex){
+                                ex.printStackTrace();
+                            }
+                        }else{
+                            try {
+                                BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
+                                ArrayList<Double> listaDouble = new ArrayList<>();
+                                double linhaDouble;
+                                String linha = bufReader.readLine();
+                                linha = linha.replace(",","");
+                                while (linha != null) {
+                                    linhaDouble = Double.parseDouble(linha);
+                                    listaDouble.add(linhaDouble);
+                                    linha = bufReader.readLine();
+                                    if(linha == null){
+                                        break;
+                                    }
+                                    linha = linha.replace(",","");
+                                }
+
+                                arredondarEInicializar(bufReader, listaDouble, textPane, textPane_1);
+                            } catch (IOException ex){
+                                ex.printStackTrace();
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        });
+
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Double> lista = new ArrayList<Double>();
+                String dados = textField.getText();
+                String[] dadosSplit = dados.split(" ");
+                if (padraoBrasileiro.isSelected()){
+                    for(int i = 0; i < dadosSplit.length; i++){
+                        dadosSplit[i] = dadosSplit[i].replace(".","");
+                        dadosSplit[i] = dadosSplit[i].replace(",",".");
+                        lista.add(Double.parseDouble(dadosSplit[i]));
+                    }
+                }else{
+                    for(int i = 0; i < dadosSplit.length; i++){
+                        dadosSplit[i] = dadosSplit[i].replace(",","");
+                        lista.add(Double.parseDouble(dadosSplit[i]));
+                    }
+                }
+
+                int arredondar = Integer.parseInt(textPane.getText());
+                Configuracoes.setArredondamento(arredondar);
+
+                int arredondarClasse = Integer.parseInt(textPane_1.getText());
+                Configuracoes.setArredondamentoClasse(arredondarClasse);
+
+                new Leitura(lista);
+                new InterfaceGrafica();
+            }
+        });
+
+        JLabel lblNewLabel_20 = new JLabel("Ex: 1.234,56");
+        lblNewLabel_20.setBounds(681, 134, 136, 14);
+        panel_3.add(lblNewLabel_20);
+
+        JLabel lblNewLabel_21 = new JLabel("Ex: 1,235.56");
+        lblNewLabel_21.setBounds(681, 160, 100, 14);
+        panel_3.add(lblNewLabel_21);
+
         janela.setVisible(true);
+    }
+
+    private void arredondarEInicializar(BufferedReader bufReader, ArrayList<Double> listaDouble, JTextPane textPane, JTextPane textPane_1) throws IOException {
+        int arredondar = Integer.parseInt(textPane.getText());
+        Configuracoes.setArredondamento(arredondar);
+
+        int arredondarClasse = Integer.parseInt(textPane_1.getText());
+        Configuracoes.setArredondamentoClasse(arredondarClasse);
+
+        new Leitura(listaDouble);
+        new InterfaceGrafica();
+        bufReader.close();
     }
 }
