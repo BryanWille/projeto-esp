@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Collections;
 import java.util.Scanner;
 
 
@@ -327,6 +328,7 @@ public class EntradaDadosGUI {
                 setLista(lista);
                 int arredondar = comboBoxRA.getSelectedIndex();
                 int arredondarClasse = comboBoxRC.getSelectedIndex();
+                System.out.println("chego aq");
 
                 new DadosAgrupados(arredondar, getLista(), arredondarClasse);
                 new DadosBrutos(arredondar, getLista());
@@ -354,18 +356,9 @@ public class EntradaDadosGUI {
     }
 
     public void setLista(ArrayList<Double> lista) {
-        double chave;
-        int j;
-        for(int i = 1; i < lista.size(); i++) {
-            chave = lista.get(i);
-            j = i - 1;
-            while(j >= 0 && lista.get(j) > chave) {
-                lista.add(j+1, lista.get(j));
-                j -= 1;
-            }
-            lista.add(j+1, chave);
-        }
+        Collections.sort(lista);
         System.out.println(lista);
         this.lista = lista;
     }
+
 }
