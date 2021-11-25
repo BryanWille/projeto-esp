@@ -315,11 +315,12 @@ public class EntradaDadosGUI {
 
     private void arredondarEInicializar(BufferedReader bufReader, ArrayList<Double> listaDouble, JTextPane textPane, JTextPane textPane_1) throws IOException {
         int arredondar = Integer.parseInt(textPane.getText());
-
+        int arredondarClasse = Integer.parseInt(textPane_1.getText());
+        DadosBrutos.setIndexRound(arredondar);
+        DadosAgrupados.setIndexRound(arredondar);
+        DadosAgrupados.setIndexRoundClasse(arredondarClasse);
 
         new Leitura(listaDouble);
-        new DadosAgrupados(arredondar);
-        new DadosBrutos(arredondar);
         new InterfaceGrafica();
         bufReader.close();
     }

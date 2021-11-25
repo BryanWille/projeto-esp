@@ -6,8 +6,8 @@ public class DadosAgrupados {
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
-    private int indexRoundClasse;
-    private int indexRound;
+    private static int indexRoundClasse;
+    private static int indexRound;
     private Leitura leitor = new Leitura();
     private Double K;
     private Double amplitude;
@@ -32,6 +32,27 @@ public class DadosAgrupados {
 
         leitor.criarLista();
         this.setIndexRound(arredondamento);
+        this.fazerAmplitudeClasse(leitor.getLista());
+        this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
+
+        this.calcularFrequenciaTotal(this.getTabela());
+
+        this.calcularMedia(this.getTabela());
+        this.calcularMediana(this.getTabela());
+        this.calcularModa(this.getTabela());
+
+        this.calcularVariancia(this.getTabela(), this.getMedia());
+        this.calcularDesvioPadrao(this.getVariancia());
+        this.calcularCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
+
+        this.calcularSeparatriz(100, 90);
+    }
+
+    public DadosAgrupados(int arredondamento, int arredondamentoClasse) {
+
+        leitor.criarLista();
+        this.setIndexRound(arredondamento);
+        this.setIndexRoundClasse(arredondamentoClasse);
         this.fazerAmplitudeClasse(leitor.getLista());
         this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
 
@@ -243,20 +264,20 @@ public class DadosAgrupados {
         return Math.round(numero * decimal) / decimal;
     }
 
-    public int getIndexRoundClasse() {
+    public static int getIndexRoundClasse() {
         return indexRoundClasse;
     }
 
-    public void setIndexRoundClasse(int indexRoundClasse) {
-        this.indexRoundClasse = indexRoundClasse;
+    public static void setIndexRoundClasse(int newIndexRoundClasse) {
+        indexRoundClasse = newIndexRoundClasse;
     }
 
-    public int getIndexRound() {
+    public static int getIndexRound() {
         return indexRound;
     }
 
-    public void setIndexRound(int indexRound) {
-        this.indexRound = indexRound;
+    public static void setIndexRound(int newIndexRound) {
+        indexRound = newIndexRound;
     }
 
     public Double getAmplitudeClasse() {

@@ -8,7 +8,7 @@ public class DadosBrutos {
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
     private Leitura leitor = new Leitura();
-    private int indexRound;
+    private static int indexRound;
     private double media;
     private double mediana;
     private double variancia;
@@ -151,12 +151,12 @@ public class DadosBrutos {
         return Math.round(numero * decimal) / decimal;
     }
 
-    public int getIndexRound() {
+    public static int getIndexRound() {
         return indexRound;
     }
 
-    public void setIndexRound(int indexRound) {
-        this.indexRound = indexRound;
+    public static void setIndexRound(int newIndexRound) {
+        indexRound = newIndexRound;
     }
 
 }
