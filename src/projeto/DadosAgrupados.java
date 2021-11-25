@@ -2,10 +2,12 @@ package projeto;
 
 import java.util.ArrayList;
 
-public class DadosAgrupados extends Configuracoes {
+public class DadosAgrupados {
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
+    private int indexRoundClasse;
+    private int indexRound;
     private Leitura leitor = new Leitura();
     private Double K;
     private Double amplitude;
@@ -22,10 +24,14 @@ public class DadosAgrupados extends Configuracoes {
 
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
-    public DadosAgrupados() {
-        super();
+    public DadosAgrupados(){
+        this(2);
+    }
+
+    public DadosAgrupados(int arredondamento) {
 
         leitor.criarLista();
+        this.setIndexRound(arredondamento);
         this.fazerAmplitudeClasse(leitor.getLista());
         this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
 
@@ -174,16 +180,14 @@ public class DadosAgrupados extends Configuracoes {
     private void fazerAmplitudeClasse(ArrayList<Double> lista) {
         int maiorCasaDecimal = 0;
         for (int i = 0; i < lista.size(); i++) {
-            if (Math.round(lista.get(i)) != lista.get(i)) {
                 String converter = String.valueOf(lista.get(i));
                 int index = converter.indexOf('.');
                 int casaDecimal = (converter.length() - 1) - index;
                 if (casaDecimal > maiorCasaDecimal) {
                     maiorCasaDecimal = casaDecimal;
                 }
-            }
         }
-        this.setArredondamentoClasse(maiorCasaDecimal);
+        this.setIndexRoundClasse(maiorCasaDecimal);
         double amplitudeTotal, raizAmostra, a;
         amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
         raizAmostra = Math.sqrt(lista.size());
@@ -228,6 +232,32 @@ public class DadosAgrupados extends Configuracoes {
     }
 
     // ----------------------------- METODOS GETTERS ---------------------------- //
+
+    public double arredondamentoClasse(double numero){
+        double decimal = Math.pow(10, this.getIndexRoundClasse());
+        return Math.round(numero * decimal) / decimal;
+    }
+
+    public double arredondar(double numero){
+        double decimal = Math.pow(10, this.getIndexRound());
+        return Math.round(numero * decimal) / decimal;
+    }
+
+    public int getIndexRoundClasse() {
+        return indexRoundClasse;
+    }
+
+    public void setIndexRoundClasse(int indexRoundClasse) {
+        this.indexRoundClasse = indexRoundClasse;
+    }
+
+    public int getIndexRound() {
+        return indexRound;
+    }
+
+    public void setIndexRound(int indexRound) {
+        this.indexRound = indexRound;
+    }
 
     public Double getAmplitudeClasse() {
         return amplitudeClasse;

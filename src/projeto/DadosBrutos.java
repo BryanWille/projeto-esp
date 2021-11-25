@@ -2,12 +2,13 @@ package projeto;
 
 import java.util.ArrayList;
 
-public class DadosBrutos extends Configuracoes{
+public class DadosBrutos {
 
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
     private Leitura leitor = new Leitura();
+    private int indexRound;
     private double media;
     private double mediana;
     private double variancia;
@@ -19,9 +20,12 @@ public class DadosBrutos extends Configuracoes{
 
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
+    public DadosBrutos(){
+        this(2);
+    }
 
-    public DadosBrutos() {
-        super();
+    public DadosBrutos(int arredondamento) {
+        this.setIndexRound(arredondamento);
         leitor.criarLista();
         this.calcularMedia(leitor.getLista());
         this.calcularMediana(leitor.getLista());
@@ -142,5 +146,17 @@ public class DadosBrutos extends Configuracoes{
         return this.coeficienteVariacao;
     }
 
+    public double arredondar(double numero){
+        double decimal = Math.pow(10, this.getIndexRound());
+        return Math.round(numero * decimal) / decimal;
+    }
+
+    public int getIndexRound() {
+        return indexRound;
+    }
+
+    public void setIndexRound(int indexRound) {
+        this.indexRound = indexRound;
+    }
 
 }

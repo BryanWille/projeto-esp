@@ -293,12 +293,11 @@ public class EntradaDadosGUI {
                 }
 
                 int arredondar = Integer.parseInt(textPane.getText());
-                Configuracoes.setArredondamento(arredondar);
-
                 int arredondarClasse = Integer.parseInt(textPane_1.getText());
-                Configuracoes.setArredondamentoClasse(arredondarClasse);
 
                 new Leitura(lista);
+                new DadosAgrupados(arredondar);
+                new DadosBrutos(arredondar);
                 new InterfaceGrafica();
             }
         });
@@ -316,13 +315,11 @@ public class EntradaDadosGUI {
 
     private void arredondarEInicializar(BufferedReader bufReader, ArrayList<Double> listaDouble, JTextPane textPane, JTextPane textPane_1) throws IOException {
         int arredondar = Integer.parseInt(textPane.getText());
-        da.setArredondamento(arredondar);
-        db.setArredondamento(arredondar);
 
-        int arredondarClasse = Integer.parseInt(textPane_1.getText());
-        //Configuracoes.setArredondamentoClasse(arredondarClasse);
 
         new Leitura(listaDouble);
+        new DadosAgrupados(arredondar);
+        new DadosBrutos(arredondar);
         new InterfaceGrafica();
         bufReader.close();
     }
