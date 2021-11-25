@@ -31,6 +31,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JScrollBar;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.UIManager;
+import javax.swing.JTextField;
 
 public class InterfaceGrafica {
     private DadosBrutos db = new DadosBrutos();
@@ -58,17 +60,18 @@ public class InterfaceGrafica {
     private void initialize() {
         frame = new JFrame("PresP");
         frame.setResizable(false);
-        frame.setBounds(100, 100, 1171, 585);
+        frame.setBounds(100, 100, 1216, 629);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
         ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("logo.png")));
         frame.setIconImage(img.getImage());
 
-        JLabel lblNewLabel = new JLabel("Distribuicao de Frequencia");
-        lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 18));
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        frame.getContentPane().add(lblNewLabel, BorderLayout.NORTH);
+        JLabel mainLabel = new JLabel("PresP ");
+        mainLabel.setForeground(Color.RED);
+        mainLabel.setFont(new Font("Verdana", Font.BOLD, 20));
+        mainLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        frame.getContentPane().add(mainLabel, BorderLayout.NORTH);
 
         JPanel panel = new JPanel();
         frame.getContentPane().add(panel, BorderLayout.CENTER);
@@ -76,7 +79,7 @@ public class InterfaceGrafica {
 
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportBorder(null);
-        scrollPane.setBounds(123, 9, 745, 147);
+        scrollPane.setBounds(28, 47, 745, 213);
         scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         panel.add(scrollPane);
 
@@ -103,7 +106,7 @@ public class InterfaceGrafica {
 
         JPanel dadosAgrupados = new JPanel();
         dadosAgrupados.setBorder(new EmptyBorder(0, 0, 0, 0));
-        dadosAgrupados.setBounds(83, 173, 431, 191);
+        dadosAgrupados.setBounds(82, 305, 431, 191);
         panel.add(dadosAgrupados);
         dadosAgrupados.setLayout(null);
 
@@ -237,6 +240,7 @@ public class InterfaceGrafica {
         lblDistribuicao.setFont(new Font("Verdana", Font.BOLD, 13));
 
         JLabel labelDadosAgrupados = new JLabel("Dados Agrupados");
+        labelDadosAgrupados.setForeground(new Color(255, 165, 0));
         labelDadosAgrupados.setBounds(147, 12, 162, 41);
         dadosAgrupados.add(labelDadosAgrupados);
         labelDadosAgrupados.setFont(new Font("Verdana", Font.BOLD, 16));
@@ -244,7 +248,7 @@ public class InterfaceGrafica {
 
         JPanel analiseDados = new JPanel();
         analiseDados.setBorder(new EmptyBorder(0, 0, 0, 0));
-        analiseDados.setBounds(107, 365, 407, 136);
+        analiseDados.setBounds(772, 54, 407, 136);
         panel.add(analiseDados);
         analiseDados.setLayout(null);
 
@@ -285,7 +289,7 @@ public class InterfaceGrafica {
         lblAnaliseDeDados.setBounds(128, -2, 149, 32);
         analiseDados.add(lblAnaliseDeDados);
         lblAnaliseDeDados.setHorizontalAlignment(SwingConstants.CENTER);
-        lblAnaliseDeDados.setForeground(Color.DARK_GRAY);
+        lblAnaliseDeDados.setForeground(Color.BLACK);
         lblAnaliseDeDados.setFont(new Font("Verdana", Font.BOLD, 16));
 
 
@@ -306,11 +310,12 @@ public class InterfaceGrafica {
 
         JPanel dadosBrutos = new JPanel();
         dadosBrutos.setBorder(new EmptyBorder(0, 0, 0, 0));
-        dadosBrutos.setBounds(669, 227, 431, 238);
+        dadosBrutos.setBounds(667, 316, 431, 238);
         panel.add(dadosBrutos);
         dadosBrutos.setLayout(null);
 
         JLabel lblDadosBrutos = new JLabel("Dados Brutos");
+        lblDadosBrutos.setForeground(new Color(255, 165, 0));
         lblDadosBrutos.setBounds(147, 0, 162, 41);
         dadosBrutos.add(lblDadosBrutos);
         lblDadosBrutos.setHorizontalAlignment(SwingConstants.CENTER);
@@ -410,28 +415,40 @@ public class InterfaceGrafica {
         JTextPane textoSomaTotal = new JTextPane();
         textoSomaTotal.setText("462.0");
         textoSomaTotal.setEditable(false);
-        textoSomaTotal.setBounds(986, 51, 62, 25);
+        textoSomaTotal.setBounds(289, 267, 62, 25);
         panel.add(textoSomaTotal);
         textoSomaTotal.setText(String.valueOf(db.getSomaTotal()));
 
         JLabel somaTotalLabel = new JLabel("Soma Total");
         somaTotalLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         somaTotalLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        somaTotalLabel.setBounds(911, 56, 71, 14);
+        somaTotalLabel.setBounds(214, 272, 71, 14);
         panel.add(somaTotalLabel);
 
         JTextPane textoQuantElementos = new JTextPane();
         textoQuantElementos.setText("462.0");
         textoQuantElementos.setEditable(false);
-        textoQuantElementos.setBounds(987, 87, 62, 25);
+        textoQuantElementos.setBounds(502, 267, 62, 25);
         textoQuantElementos.setText(String.valueOf(da.getFrequenciaTotal()));
         panel.add(textoQuantElementos);
 
         JLabel lblQuantElementos = new JLabel("Quant. Elementos");
         lblQuantElementos.setHorizontalAlignment(SwingConstants.RIGHT);
         lblQuantElementos.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        lblQuantElementos.setBounds(877, 91, 104, 14);
+        lblQuantElementos.setBounds(392, 271, 104, 14);
         panel.add(lblQuantElementos);
+
+        JLabel createdBy = new JLabel("Criado por: Bryan Wille e Pedro Gabriel");
+        createdBy.setForeground(Color.GRAY);
+        createdBy.setBounds(24, 538, 231, 16);
+        panel.add(createdBy);
+
+        JLabel lblDistr = new JLabel("Tabela de Distribuicao de Frequencia");
+        lblDistr.setHorizontalAlignment(SwingConstants.CENTER);
+        lblDistr.setForeground(Color.BLACK);
+        lblDistr.setFont(new Font("Verdana", Font.BOLD, 16));
+        lblDistr.setBounds(229, 12, 366, 32);
+        panel.add(lblDistr);
         textoSeparatriz.setVisible(false);
 
         separatriz.addActionListener((ActionListener) new ActionListener() {
