@@ -49,9 +49,9 @@ public class DadosBrutos extends Configuracoes{
     private void calcularMediana(ArrayList<Double> lista) {
         Double mediana;
         if (lista.size() % 2 != 0) {
-            mediana = lista.get(lista.size() / 2);
+            mediana = lista.get( ((lista.size() + 1) / 2) -1);
         } else {
-            mediana = lista.get((lista.size() - 1) / 2) + (lista.get((lista.size() - 1) / 2) + 1.0D) / 2.0D;
+            mediana = ( lista.get((lista.size() / 2)-1) + lista.get(lista.size() / 2) ) / 2;
         }
 
         this.mediana = this.arredondar(mediana);
