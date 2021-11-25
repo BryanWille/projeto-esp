@@ -357,7 +357,6 @@ public class EntradaDadosGUI {
 
     public void setLista(ArrayList<Double> lista) {
         Collections.sort(lista);
-        System.out.println(lista);
         this.lista = lista;
     }
 
