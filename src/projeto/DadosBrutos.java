@@ -22,7 +22,6 @@ public class DadosBrutos extends Configuracoes{
 
     public DadosBrutos() {
         super();
-
         leitor.criarLista();
         this.calcularMedia(leitor.getLista());
         this.calcularMediana(leitor.getLista());

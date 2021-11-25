@@ -15,6 +15,8 @@ import java.util.Scanner;
 public class EntradaDadosGUI {
     private static JTextField textField;
     private static JTextField textField_1;
+    private DadosAgrupados da;
+    private DadosBrutos db;
 
     public EntradaDadosGUI(){
         criarGUI();
@@ -199,7 +201,6 @@ public class EntradaDadosGUI {
                                     linhaSplit[i] = linhaSplit[i].replace(",",".");
                                     listaDouble.add(Double.parseDouble(linhaSplit[i]));
                                 }
-
                                 arredondarEInicializar(bufReader, listaDouble, textPane, textPane_1);
                             } catch (IOException ex){
                                 ex.printStackTrace();
@@ -315,10 +316,11 @@ public class EntradaDadosGUI {
 
     private void arredondarEInicializar(BufferedReader bufReader, ArrayList<Double> listaDouble, JTextPane textPane, JTextPane textPane_1) throws IOException {
         int arredondar = Integer.parseInt(textPane.getText());
-        Configuracoes.setArredondamento(arredondar);
+        da.setArredondamento(arredondar);
+        db.setArredondamento(arredondar);
 
         int arredondarClasse = Integer.parseInt(textPane_1.getText());
-        Configuracoes.setArredondamentoClasse(arredondarClasse);
+        //Configuracoes.setArredondamentoClasse(arredondarClasse);
 
         new Leitura(listaDouble);
         new InterfaceGrafica();

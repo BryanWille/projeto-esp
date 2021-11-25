@@ -106,127 +106,127 @@ public class InterfaceGrafica {
 
         JPanel dadosAgrupados = new JPanel();
         dadosAgrupados.setBorder(new EmptyBorder(0, 0, 0, 0));
-        dadosAgrupados.setBounds(55, 341, 431, 179);
+        dadosAgrupados.setBounds(28, 341, 502, 179);
         panel.add(dadosAgrupados);
         dadosAgrupados.setLayout(null);
 
         JTextPane textoCoefVarAG = new JTextPane();
-        textoCoefVarAG.setBounds(358, 140, 62, 25);
+        textoCoefVarAG.setBounds(398, 140, 100, 25);
         dadosAgrupados.add(textoCoefVarAG);
         textoCoefVarAG.setEditable(false);
         textoCoefVarAG.setText(String.valueOf(da.getCoeficienteVariacao()));
 
         JLabel lblCoefVariacao = new JLabel("Coef Variacao");
-        lblCoefVariacao.setBounds(264, 144, 90, 14);
+        lblCoefVariacao.setBounds(304, 144, 90, 14);
         dadosAgrupados.add(lblCoefVariacao);
         lblCoefVariacao.setHorizontalAlignment(SwingConstants.RIGHT);
         lblCoefVariacao.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoDesvioAG = new JTextPane();
-        textoDesvioAG.setBounds(357, 108, 63, 25);
+        textoDesvioAG.setBounds(397, 108, 101, 25);
         dadosAgrupados.add(textoDesvioAG);
         textoDesvioAG.setEditable(false);
         textoDesvioAG.setText(String.valueOf(da.getDesvioPadrao()));
 
         JLabel lblDesvioPadrao = new JLabel("Desvio Padrao");
-        lblDesvioPadrao.setBounds(264, 112, 90, 14);
+        lblDesvioPadrao.setBounds(304, 112, 90, 14);
         dadosAgrupados.add(lblDesvioPadrao);
         lblDesvioPadrao.setHorizontalAlignment(SwingConstants.RIGHT);
         lblDesvioPadrao.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoVarianciaAG = new JTextPane();
-        textoVarianciaAG.setBounds(358, 76, 62, 25);
+        textoVarianciaAG.setBounds(398, 76, 100, 25);
         dadosAgrupados.add(textoVarianciaAG);
         textoVarianciaAG.setEditable(false);
         textoVarianciaAG.setText(String.valueOf(da.getVariancia()));
 
         JLabel lblVariancia = new JLabel("Variancia");
-        lblVariancia.setBounds(292, 80, 62, 14);
+        lblVariancia.setBounds(332, 80, 62, 14);
         dadosAgrupados.add(lblVariancia);
         lblVariancia.setHorizontalAlignment(SwingConstants.RIGHT);
         lblVariancia.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoModaAG = new JTextPane();
-        textoModaAG.setBounds(190, 140, 62, 25);
+        textoModaAG.setBounds(198, 140, 100, 25);
         dadosAgrupados.add(textoModaAG);
         textoModaAG.setEditable(false);
         textoModaAG.setText(String.valueOf(da.getModa()));
 
         JLabel lblModa = new JLabel("Moda");
-        lblModa.setBounds(148, 145, 35, 14);
+        lblModa.setBounds(156, 145, 35, 14);
         dadosAgrupados.add(lblModa);
         lblModa.setHorizontalAlignment(SwingConstants.RIGHT);
         lblModa.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoMedianaAG = new JTextPane();
-        textoMedianaAG.setBounds(190, 108, 62, 25);
+        textoMedianaAG.setBounds(198, 108, 100, 25);
         dadosAgrupados.add(textoMedianaAG);
         textoMedianaAG.setEditable(false);
         textoMedianaAG.setText(String.valueOf(da.getMediana()));
 
         JLabel lblMediana = new JLabel("Mediana");
-        lblMediana.setBounds(135, 114, 49, 14);
+        lblMediana.setBounds(143, 114, 49, 14);
         dadosAgrupados.add(lblMediana);
         lblMediana.setHorizontalAlignment(SwingConstants.RIGHT);
         lblMediana.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoMediaAG = new JTextPane();
-        textoMediaAG.setBounds(190, 76, 62, 25);
+        textoMediaAG.setBounds(198, 76, 100, 25);
         dadosAgrupados.add(textoMediaAG);
         textoMediaAG.setEditable(false);
         textoMediaAG.setText(String.valueOf(da.getMedia()));
 
         JLabel lblMedia = new JLabel("Media");
-        lblMedia.setBounds(148, 82, 35, 14);
+        lblMedia.setBounds(156, 82, 35, 14);
         dadosAgrupados.add(lblMedia);
         lblMedia.setHorizontalAlignment(SwingConstants.RIGHT);
         lblMedia.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoa = new JTextPane();
-        textoa.setBounds(44, 140, 62, 25);
+        textoa.setBounds(31, 140, 100, 25);
         dadosAgrupados.add(textoa);
         textoa.setEditable(false);
         textoa.setText(String.valueOf(da.getAmplitudeClasse()));
 
         JTextPane textoAmplitude = new JTextPane();
-        textoAmplitude.setBounds(44, 108, 62, 25);
+        textoAmplitude.setBounds(31, 108, 100, 25);
         dadosAgrupados.add(textoAmplitude);
         textoAmplitude.setEditable(false);
         textoAmplitude.setText(String.valueOf(da.getAmplitude()));
 
         JTextPane textoK = new JTextPane();
-        textoK.setBounds(44, 76, 62, 25);
+        textoK.setBounds(31, 76, 100, 25);
         dadosAgrupados.add(textoK);
         textoK.setEditable(false);
         textoK.setText(String.valueOf(da.getK()));
 
         JLabel lblK = new JLabel("K");
-        lblK.setBounds(19, 81, 17, 14);
+        lblK.setBounds(6, 81, 17, 14);
         dadosAgrupados.add(lblK);
         lblK.setHorizontalAlignment(SwingConstants.RIGHT);
         lblK.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JLabel lblAmplitude = new JLabel("A");
-        lblAmplitude.setBounds(20, 111, 17, 14);
+        lblAmplitude.setBounds(7, 111, 17, 14);
         dadosAgrupados.add(lblAmplitude);
         lblAmplitude.setHorizontalAlignment(SwingConstants.RIGHT);
         lblAmplitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JLabel lbla = new JLabel("a");
-        lbla.setBounds(19, 143, 17, 14);
+        lbla.setBounds(6, 143, 17, 14);
         dadosAgrupados.add(lbla);
         lbla.setHorizontalAlignment(SwingConstants.RIGHT);
         lbla.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JLabel lblDispersao = new JLabel("Dispersao");
-        lblDispersao.setBounds(335, 36, 108, 32);
+        lblDispersao.setBounds(390, 36, 108, 32);
         dadosAgrupados.add(lblDispersao);
         lblDispersao.setHorizontalAlignment(SwingConstants.CENTER);
         lblDispersao.setForeground(Color.GRAY);
         lblDispersao.setFont(new Font("Verdana", Font.BOLD, 13));
 
         JLabel lblPosicao = new JLabel("Posicao");
-        lblPosicao.setBounds(165, 38, 108, 32);
+        lblPosicao.setBounds(190, 36, 108, 32);
         dadosAgrupados.add(lblPosicao);
         lblPosicao.setHorizontalAlignment(SwingConstants.CENTER);
         lblPosicao.setForeground(Color.GRAY);
@@ -333,31 +333,31 @@ public class InterfaceGrafica {
         lblDadosBrutos.setFont(new Font("Verdana", Font.BOLD, 16));
 
         JTextPane textoMediaBR = new JTextPane();
-        textoMediaBR.setBounds(123, 75, 62, 25);
+        textoMediaBR.setBounds(67, 75, 100, 25);
         dadosBrutos.add(textoMediaBR);
         textoMediaBR.setText(String.valueOf(db.getMedia()));
         textoMediaBR.setEditable(false);
 
         JLabel lblMediaBR = new JLabel("Media");
-        lblMediaBR.setBounds(81, 81, 35, 14);
+        lblMediaBR.setBounds(25, 81, 35, 14);
         dadosBrutos.add(lblMediaBR);
         lblMediaBR.setHorizontalAlignment(SwingConstants.RIGHT);
         lblMediaBR.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JLabel lblMedianaBR = new JLabel("Mediana");
-        lblMedianaBR.setBounds(68, 113, 49, 14);
+        lblMedianaBR.setBounds(12, 113, 49, 14);
         dadosBrutos.add(lblMedianaBR);
         lblMedianaBR.setHorizontalAlignment(SwingConstants.RIGHT);
         lblMedianaBR.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoMedianaBR = new JTextPane();
-        textoMedianaBR.setBounds(123, 107, 62, 25);
+        textoMedianaBR.setBounds(67, 107, 100, 25);
         dadosBrutos.add(textoMedianaBR);
         textoMedianaBR.setText(String.valueOf(db.getMediana()));
         textoMedianaBR.setEditable(false);
 
         JTextPane textoModaBR = new JTextPane();
-        textoModaBR.setBounds(68, 139, 117, 82);
+        textoModaBR.setBounds(67, 139, 100, 82);
         dadosBrutos.add(textoModaBR);
         String resultadoModa = "Número(s) moda:";
         for (int i = 0; i < db.getModa().size() - 1; i++) {
@@ -368,13 +368,13 @@ public class InterfaceGrafica {
         textoModaBR.setEditable(false);
 
         JLabel lblModaBR = new JLabel("Moda");
-        lblModaBR.setBounds(28, 164, 35, 14);
+        lblModaBR.setBounds(25, 169, 35, 14);
         dadosBrutos.add(lblModaBR);
         lblModaBR.setHorizontalAlignment(SwingConstants.RIGHT);
         lblModaBR.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoCoefVarBR = new JTextPane();
-        textoCoefVarBR.setBounds(291, 139, 62, 25);
+        textoCoefVarBR.setBounds(291, 139, 120, 25);
         dadosBrutos.add(textoCoefVarBR);
         textoCoefVarBR.setText(String.valueOf(db.getCoeficienteVariacao()));
         textoCoefVarBR.setEditable(false);
@@ -386,7 +386,7 @@ public class InterfaceGrafica {
         lblCoefVariacaoBR.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoDesvioBR = new JTextPane();
-        textoDesvioBR.setBounds(290, 107, 63, 25);
+        textoDesvioBR.setBounds(290, 107, 121, 25);
         dadosBrutos.add(textoDesvioBR);
         textoDesvioBR.setText(String.valueOf(db.getDesvioPadrao()));
         textoDesvioBR.setEditable(false);
@@ -398,7 +398,7 @@ public class InterfaceGrafica {
         lblDesvioPadraoBR.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JTextPane textoVarianciaBR = new JTextPane();
-        textoVarianciaBR.setBounds(291, 75, 62, 25);
+        textoVarianciaBR.setBounds(291, 75, 120, 25);
         dadosBrutos.add(textoVarianciaBR);
         textoVarianciaBR.setText(String.valueOf(db.getVariancia()));
         textoVarianciaBR.setEditable(false);
@@ -410,14 +410,14 @@ public class InterfaceGrafica {
         lblVarianciaBR.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
         JLabel lblDispersaoBR = new JLabel("Dispersao");
-        lblDispersaoBR.setBounds(268, 35, 108, 32);
+        lblDispersaoBR.setBounds(283, 35, 108, 32);
         dadosBrutos.add(lblDispersaoBR);
         lblDispersaoBR.setHorizontalAlignment(SwingConstants.CENTER);
         lblDispersaoBR.setForeground(Color.GRAY);
         lblDispersaoBR.setFont(new Font("Verdana", Font.BOLD, 13));
 
         JLabel lblPosicaoBR = new JLabel("Posicao");
-        lblPosicaoBR.setBounds(98, 37, 108, 32);
+        lblPosicaoBR.setBounds(59, 35, 108, 32);
         dadosBrutos.add(lblPosicaoBR);
         lblPosicaoBR.setHorizontalAlignment(SwingConstants.CENTER);
         lblPosicaoBR.setForeground(Color.GRAY);

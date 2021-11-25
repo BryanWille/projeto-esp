@@ -91,12 +91,19 @@ public class DadosAgrupados extends Configuracoes {
     }
 
     private void calcularMediana(ArrayList<ArrayList<Double>> tabela) {
-        Double mediana = 0.0;
-        int classeMediana = (int) Math.floor(tabela.size() / 2);
-        Double frequenciaClasseAnterior = tabela.get(classeMediana-1).get(3);
-        mediana = tabela.get(classeMediana).get(0)
-                + ((leitor.getLista().size() / 2 - frequenciaClasseAnterior) / tabela.get(classeMediana).get(2))
-                * this.getAmplitudeClasse();
+        double mediana = 0, fAgrClaAnt = 0, freqMediana = 0, limiteInferior = 0;
+        int frequenciaMeio = (int) Math.floor(this.getFrequenciaTotal() / 2);
+        for(int i = 0; i < tabela.size(); i++) {
+            if (frequenciaMeio > tabela.get(i).get(3) && frequenciaMeio < tabela.get(i + 1).get(3)) {
+                freqMediana = tabela.get(i).get(2);
+                fAgrClaAnt = tabela.get(i - 1).get(3);
+                limiteInferior = tabela.get(i).get(0);
+                if (i == 0) {
+                    fAgrClaAnt = 0;
+                }
+            }
+        }
+        mediana = limiteInferior + ( (frequenciaMeio - fAgrClaAnt) / freqMediana ) * this.getAmplitudeClasse();
         this.mediana = this.arredondar(mediana);
     }
 
@@ -139,7 +146,7 @@ public class DadosAgrupados extends Configuracoes {
 
     private void calcularCoeficienteVariacao(Double desvioPadrao, Double media) {
         double coefVar = 0.0;
-        coefVar = (desvioPadrao / media);
+        coefVar = (desvioPadrao / media) * 100;
         this.coeficienteVariacao = this.arredondar(coefVar);
     }
 
@@ -217,6 +224,7 @@ public class DadosAgrupados extends Configuracoes {
             tabela.get(j).add(pontoMedio); // Index: 4 Ponto Medio
             j++;
         }
+        this.frequenciaTotal = frequenciaAgrupada;
 
         this.tabela = tabela;
     }
