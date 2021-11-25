@@ -104,17 +104,23 @@ public class DadosAgrupados extends Configuracoes {
         Double moda, freqMaior = 0.0, limInfModa = 0.0, difFreq1 = 0.0, difFreq2 = 0.0;
 
         for (int i = 0; i < tabela.size(); i++) {
-            if (tabela.get(i).get(2) > freqMaior) {
+            if (tabela.get(i).get(2) > freqMaior) { //Vai procurar a classe modal (a que tem maior frequencia)
                 freqMaior = tabela.get(i).get(2);
                 limInfModa = tabela.get(i).get(0);
-                if (i + 1 < tabela.size() - 1 && i - 1 > 0) {
-                    difFreq1 = tabela.get(i - 1).get(2);
-                    difFreq2 = tabela.get(i + 1).get(2);
+                if (i + 1 < tabela.size() - 1 && i - 1 > 0) { //se i+1 for menor que a tabela
+                    difFreq1 = tabela.get(i).get(2);
+                    difFreq2 = tabela.get(i).get(2);
+                } else if (i == 0){
+                    difFreq1 = tabela.get(i).get(2);
+                    difFreq2 = tabela.get(i).get(2) - tabela.get(i+1).get(2);
+                } else if (i+1 == tabela.size()){
+                    difFreq1 = tabela.get(i).get(2) - tabela.get(i-1).get(2);
+                    difFreq2 = tabela.get(i).get(2);
                 }
             }
         }
 
-        moda = limInfModa + (difFreq1 / (difFreq1 + difFreq2)) * this.getAmplitudeClasse();
+        moda = limInfModa + ( (difFreq1 / (difFreq1 + difFreq2)) * this.getAmplitudeClasse() );
         this.moda = this.arredondar(moda);
     }
 
@@ -133,7 +139,7 @@ public class DadosAgrupados extends Configuracoes {
 
     private void calcularCoeficienteVariacao(Double desvioPadrao, Double media) {
         double coefVar = 0.0;
-        coefVar = (desvioPadrao / media) * 100;
+        coefVar = (desvioPadrao / media);
         this.coeficienteVariacao = this.arredondar(coefVar);
     }
 
