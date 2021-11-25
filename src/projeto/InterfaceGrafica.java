@@ -35,8 +35,8 @@ import javax.swing.UIManager;
 import javax.swing.JTextField;
 
 public class InterfaceGrafica {
-    private DadosBrutos db = new DadosBrutos(DadosBrutos.getIndexRound());
-    private DadosAgrupados da = new DadosAgrupados(DadosAgrupados.getIndexRound(),DadosAgrupados.getIndexRoundClasse());
+    private DadosBrutos db = new DadosBrutos(DadosBrutos.getIndexRound(), DadosAgrupados.getLista());
+    private DadosAgrupados da = new DadosAgrupados(DadosAgrupados.getIndexRound(), DadosAgrupados.getLista(), DadosAgrupados.getIndexRoundClasse());
     private Object[][] dados = da.converterLista(da.getTabela());
     private String[] colunas = { "Classe", "Intervalo de Classe", "Frequencia", "Frequencia Agrupada", "Ponto Medio" };
 

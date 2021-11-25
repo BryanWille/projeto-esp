@@ -8,7 +8,6 @@ public class DadosAgrupados {
 
     private static int indexRoundClasse;
     private static int indexRound;
-    private Leitura leitor = new Leitura();
     private Double K;
     private Double amplitude;
     private Double amplitudeClasse;
@@ -20,41 +19,17 @@ public class DadosAgrupados {
     private Double coeficienteVariacao;
     private Double separatriz;
     private Double frequenciaTotal;
+    private static ArrayList<Double> lista;
     private ArrayList<ArrayList<Double>> tabela;
 
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
-    public DadosAgrupados(){
-        this(2);
-    }
-
-    public DadosAgrupados(int arredondamento) {
-
-        leitor.criarLista();
-        this.setIndexRound(arredondamento);
-        this.fazerAmplitudeClasse(leitor.getLista());
-        this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
-
-        this.calcularFrequenciaTotal(this.getTabela());
-
-        this.calcularMedia(this.getTabela());
-        this.calcularMediana(this.getTabela());
-        this.calcularModa(this.getTabela());
-
-        this.calcularVariancia(this.getTabela(), this.getMedia());
-        this.calcularDesvioPadrao(this.getVariancia());
-        this.calcularCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
-
-        this.calcularSeparatriz(100, 90);
-    }
-
-    public DadosAgrupados(int arredondamento, int arredondamentoClasse) {
-
-        leitor.criarLista();
+    public DadosAgrupados(int arredondamento, ArrayList<Double> lista, int arredondamentoClasse) {
+        this.setLista(lista);
         this.setIndexRound(arredondamento);
         this.setIndexRoundClasse(arredondamentoClasse);
-        this.fazerAmplitudeClasse(leitor.getLista());
-        this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
+        this.fazerAmplitudeClasse(this.lista);
+        this.fazerTabela(this.lista, this.getAmplitudeClasse());
 
         this.calcularFrequenciaTotal(this.getTabela());
 
@@ -69,8 +44,8 @@ public class DadosAgrupados {
         this.calcularSeparatriz(100, 90);
     }
 
-    // ----------------------------- METODOS CALCULOS -----------------------------
-    // //
+
+    // ----------------------------- METODOS CALCULOS ----------------------------- //
     public Object calcularSeparatriz(int separatriz, int index) {
         Object sep;
         if (separatriz == 10 || separatriz == 100 || separatriz == 4) {
@@ -161,7 +136,7 @@ public class DadosAgrupados {
         for (int i = 0; i < tabela.size(); i++) {
             somatorio += Math.pow((tabela.get(i).get(4) - media), 2) * getTabela().get(i).get(2);
         }
-        Double variancia = somatorio / (leitor.getLista().size() - 1);
+        Double variancia = somatorio / (this.getFrequenciaTotal() - 1);
         this.variancia = this.arredondar(variancia);
     }
 
@@ -254,6 +229,15 @@ public class DadosAgrupados {
 
     // ----------------------------- METODOS GETTERS ---------------------------- //
 
+
+    public static ArrayList<Double> getLista() {
+        return lista;
+    }
+
+    public void setLista(ArrayList<Double> lista) {
+        this.lista = lista;
+    }
+
     public double arredondamentoClasse(double numero){
         double decimal = Math.pow(10, this.getIndexRoundClasse());
         return Math.round(numero * decimal) / decimal;
@@ -291,7 +275,6 @@ public class DadosAgrupados {
     public ArrayList<ArrayList<Double>> getTabela() {
         return tabela;
     }
-
 
     public Double getK() {
         return K;

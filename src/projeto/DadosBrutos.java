@@ -7,7 +7,6 @@ public class DadosBrutos {
 
     // ----------------------------- ATRIBUTOS ----------------------------- //
 
-    private Leitura leitor = new Leitura();
     private static int indexRound;
     private double media;
     private double mediana;
@@ -15,22 +14,19 @@ public class DadosBrutos {
     private double coeficienteVariacao;
     private double desvioPadrao;
     private Double somaTotal;
+    private static ArrayList<Double> lista;
     private ArrayList<Double> moda;
 
 
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
-    public DadosBrutos(){
-        this(2);
-    }
-
-    public DadosBrutos(int arredondamento) {
-        this.setIndexRound(arredondamento);
-        leitor.criarLista();
-        this.calcularMedia(leitor.getLista());
-        this.calcularMediana(leitor.getLista());
-        this.calcularModa(leitor.getLista());
-        this.calcularVariancia(leitor.getLista());
+    public DadosBrutos(int arredondamento, ArrayList<Double> lista) {
+        this.setLista(lista);
+        setIndexRound(arredondamento);
+        this.calcularMedia(getLista());
+        this.calcularMediana(getLista());
+        this.calcularModa(getLista());
+        this.calcularVariancia(getLista());
         this.calcularDesvioPadrao(this.getVariancia());
         this.calcularCoeficienteVariacao(this.getDesvioPadrao(), this.getMedia());
     }
@@ -117,6 +113,14 @@ public class DadosBrutos {
 
     // ----------------------------- METODOS GETTERS ----------------------------- //
 
+
+    public static ArrayList<Double> getLista() {
+        return lista;
+    }
+
+    public void setLista(ArrayList<Double> lista) {
+        this.lista = lista;
+    }
 
     public double getSomaTotal() {
         return this.somaTotal;

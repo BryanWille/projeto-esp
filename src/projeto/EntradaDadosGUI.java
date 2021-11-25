@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 
 public class EntradaDadosGUI {
+    private ArrayList<Double> lista;
     private DadosAgrupados da;
     private DadosBrutos db;
     private JTextField textField_1;
@@ -323,13 +324,12 @@ public class EntradaDadosGUI {
                         lista.add(Double.parseDouble(dadosSplit[i]));
                     }
                 }
-
+                setLista(lista);
                 int arredondar = comboBoxRA.getSelectedIndex();
                 int arredondarClasse = comboBoxRC.getSelectedIndex();
 
-                new Leitura(lista);
-                new DadosAgrupados(arredondar);
-                new DadosBrutos(arredondar);
+                new DadosAgrupados(arredondar, getLista(), arredondarClasse);
+                new DadosBrutos(arredondar, getLista());
                 new InterfaceGrafica();
             }
         });
@@ -338,14 +338,34 @@ public class EntradaDadosGUI {
     }
 
     private void arredondarEInicializar(BufferedReader bufReader, ArrayList<Double> listaDouble, JComboBox comboBoxRA, JComboBox comboBoxRC) throws IOException {
+        this.setLista(listaDouble);
         int arredondar = comboBoxRA.getSelectedIndex();
         int arredondarClasse = comboBoxRC.getSelectedIndex();
         DadosBrutos.setIndexRound(arredondar);
         DadosAgrupados.setIndexRound(arredondar);
         DadosAgrupados.setIndexRoundClasse(arredondarClasse);
 
-        new Leitura(listaDouble);
         new InterfaceGrafica();
         bufReader.close();
+    }
+
+    public ArrayList<Double> getLista() {
+        return lista;
+    }
+
+    public void setLista(ArrayList<Double> lista) {
+        double chave;
+        int j;
+        for(int i = 1; i < lista.size(); i++) {
+            chave = lista.get(i);
+            j = i - 1;
+            while(j >= 0 && lista.get(j) > chave) {
+                lista.add(j+1, lista.get(j));
+                j -= 1;
+            }
+            lista.add(j+1, chave);
+        }
+        System.out.println(lista);
+        this.lista = lista;
     }
 }
