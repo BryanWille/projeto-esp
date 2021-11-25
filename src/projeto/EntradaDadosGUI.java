@@ -126,7 +126,7 @@ public class EntradaDadosGUI {
                             BufferedReader bufReader = new BufferedReader(new FileReader(jfc.getSelectedFile()));
                             ArrayList<Double> listaDouble = new ArrayList<>();
                             String linha = bufReader.readLine();
-                            String[] linhaSplit = linha.split("");
+                            String[] linhaSplit = linha.split(" ");
                             for(int i = 0; i < linhaSplit.length; i++){
                                 listaDouble.add(Double.parseDouble(linhaSplit[i]));
                             }

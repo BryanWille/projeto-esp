@@ -49,7 +49,7 @@ public class DadosBrutos extends Configuracoes{
         if (lista.size() % 2 != 0) {
             mediana = lista.get(lista.size() / 2);
         } else {
-            mediana = lista.get((lista.size() - 1) / 2) + (lista.get((lista.size() - 1) / 2) + 1.0D) / 2.0D;
+            mediana = (lista.get((lista.size() - 1) / 2) + (lista.get((lista.size()) / 2))) / 2.0D;
         }
 
         this.mediana = this.arredondar(mediana);
@@ -104,7 +104,7 @@ public class DadosBrutos extends Configuracoes{
     }
 
     private void calcularCoeficienteVariacao(double desvioPadrao, double media) {
-        this.coeficienteVariacao = this.arredondar(desvioPadrao / media * 100.0D);
+        this.coeficienteVariacao = this.arredondar(desvioPadrao / media );
     }
 
 
