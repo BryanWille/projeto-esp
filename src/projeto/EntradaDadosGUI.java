@@ -338,7 +338,20 @@ public class EntradaDadosGUI {
     }
 
     private void arredondarEInicializar(BufferedReader bufReader, ArrayList<Double> listaDouble, JComboBox comboBoxRA, JComboBox comboBoxRC) throws IOException {
+        for (int i = 0; i < listaDouble.size(); i++) {
+            for (int j = 0; j < listaDouble.size() - 1; j++) {
+                if (listaDouble.get(j) > listaDouble.get(j + 1)) {
+                    double aux = listaDouble.get(j);
+                    listaDouble.set(j, listaDouble.get(j + 1));
+                    listaDouble.set(j + 1, aux);
+                }
+            }
+        }
+        for (int i = 0; i < listaDouble.size(); i++){
+            listaDouble.add( i,  (i * 1000 + listaDouble.get(i)));
+        }
         System.out.println(listaDouble);
+
         int arredondar = comboBoxRA.getSelectedIndex();
         int arredondarClasse = comboBoxRC.getSelectedIndex();
         DadosBrutos.setIndexRound(arredondar);

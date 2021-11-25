@@ -30,8 +30,8 @@ public class Leitura {
         }
         int i = 0;
         double aux;
-        for (i = 0; i < v.size() - 1; i++) {
-            for (int j = 0; j < v.size() - 1 - i; j++) {
+        for (i = 0; i < v.size(); i++) {
+            for (int j = 0; j < v.size() - 1; j++) {
                 if (v.get(j) > v.get(j + 1)) {
                     aux = v.get(j);
                     v.set(j, v.get(j + 1));
