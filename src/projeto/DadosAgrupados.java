@@ -91,19 +91,17 @@ public class DadosAgrupados extends Configuracoes {
     }
 
     private void calcularMediana(ArrayList<ArrayList<Double>> tabela) {
-        double mediana = 0, fAgrClaAnt = 0, freqMediana = 0, limiteInferior = 0;
+        double mediana = 0, fAgrClaAnt = 0, freqMediana = tabela.get(0).get(2), limiteInferior = tabela.get(0).get(0);
+        double freqMeioDouble = this.getFrequenciaTotal()/2;
         int frequenciaMeio = (int) Math.floor(this.getFrequenciaTotal() / 2);
-        for(int i = 0; i < tabela.size(); i++) {
-            if (frequenciaMeio > tabela.get(i).get(3) && frequenciaMeio < tabela.get(i + 1).get(3)) {
+        for(int i = 1; i < tabela.size(); i++) {
+            if (frequenciaMeio > tabela.get(i-1).get(3) && frequenciaMeio < tabela.get(i).get(3)) {
                 freqMediana = tabela.get(i).get(2);
-                fAgrClaAnt = tabela.get(i - 1).get(3);
+                fAgrClaAnt = tabela.get(i - 1).get(3);;
                 limiteInferior = tabela.get(i).get(0);
-                if (i == 0) {
-                    fAgrClaAnt = 0;
-                }
             }
         }
-        mediana = limiteInferior + ( (frequenciaMeio - fAgrClaAnt) / freqMediana ) * this.getAmplitudeClasse();
+        mediana = limiteInferior + ( ( freqMeioDouble - fAgrClaAnt) / freqMediana ) * this.getAmplitudeClasse();
         this.mediana = this.arredondar(mediana);
     }
 
