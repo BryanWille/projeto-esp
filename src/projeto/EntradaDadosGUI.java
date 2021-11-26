@@ -83,7 +83,7 @@ public class EntradaDadosGUI {
 
         JPanel panel_2 = new JPanel();
         panel_2.setBackground(SystemColor.menu);
-        panel_2.setBounds(651, 313, 613, 313);
+        panel_2.setBounds(651, 313, 597, 303);
         janela.getContentPane().add(panel_2);
         panel_2.setLayout(null);
 
@@ -91,7 +91,7 @@ public class EntradaDadosGUI {
         lblNewLabel_4.setForeground(Color.BLACK);
         lblNewLabel_4.setBackground(Color.DARK_GRAY);
         lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));
-        lblNewLabel_4.setBounds(137, 63, 227, 14);
+        lblNewLabel_4.setBounds(183, 63, 227, 14);
         panel_2.add(lblNewLabel_4);
 
         JRadioButton checkBoxDadosSeparados = new JRadioButton("Dados separados por espa\u00E7o");

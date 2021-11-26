@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
@@ -33,6 +34,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class InterfaceGrafica {
     private DadosBrutos db = new DadosBrutos(DadosBrutos.getIndexRound());
@@ -42,6 +44,15 @@ public class InterfaceGrafica {
 
     JFrame frame;
     private JTable table;
+
+    public String criarListaRol(ArrayList<Double> lista) {
+        String listaRol = "";
+        for(int i = 0; i < lista.size(); i++) {
+            listaRol += lista.get(i) +", ";
+        }
+        listaRol = listaRol.substring(0, listaRol.lastIndexOf(", "));
+        return listaRol;
+    }
 
     /**
      * Launch the application.
@@ -101,7 +112,6 @@ public class InterfaceGrafica {
         terceiraColuna.setCellRenderer(alinharCelula);
         quartaColuna.setCellRenderer(alinharCelula);
         quintaColuna.setCellRenderer(alinharCelula);
-
         scrollPane.setViewportView(table);
 
         JPanel dadosAgrupados = new JPanel();
@@ -304,7 +314,8 @@ public class InterfaceGrafica {
         analiseDados.add(comboBoxPercentil);
 
         JTextPane textoSeparatriz = new JTextPane();
-        textoSeparatriz.setBounds(103, 139, 165, 58);
+        textoSeparatriz.setFont(new Font("Dialog", Font.PLAIN, 13));
+        textoSeparatriz.setBounds(72, 139, 230, 63);
         analiseDados.add(textoSeparatriz);
         textoSeparatriz.setEditable(false);
 
@@ -426,27 +437,27 @@ public class InterfaceGrafica {
         JTextPane textoSomaTotal = new JTextPane();
         textoSomaTotal.setText("462.0");
         textoSomaTotal.setEditable(false);
-        textoSomaTotal.setBounds(289, 263, 62, 25);
+        textoSomaTotal.setBounds(467, 264, 62, 25);
         panel.add(textoSomaTotal);
         textoSomaTotal.setText(String.valueOf(db.getSomaTotal()));
 
         JLabel somaTotalLabel = new JLabel("Soma Total");
         somaTotalLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         somaTotalLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        somaTotalLabel.setBounds(214, 268, 71, 14);
+        somaTotalLabel.setBounds(392, 270, 71, 14);
         panel.add(somaTotalLabel);
 
         JTextPane textoQuantElementos = new JTextPane();
         textoQuantElementos.setText("462.0");
         textoQuantElementos.setEditable(false);
-        textoQuantElementos.setBounds(502, 263, 62, 25);
+        textoQuantElementos.setBounds(659, 264, 62, 25);
         textoQuantElementos.setText(String.valueOf(da.getFrequenciaTotal()));
         panel.add(textoQuantElementos);
 
         JLabel lblQuantElementos = new JLabel("Quant. Elementos");
         lblQuantElementos.setHorizontalAlignment(SwingConstants.RIGHT);
         lblQuantElementos.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        lblQuantElementos.setBounds(392, 267, 104, 14);
+        lblQuantElementos.setBounds(549, 268, 104, 14);
         panel.add(lblQuantElementos);
 
         JLabel createdBy = new JLabel("Criado por: Bryan Wille e Pedro Gabriel");
@@ -484,6 +495,20 @@ public class InterfaceGrafica {
         panel_1_2.setBackground(Color.GRAY);
         panel_1_2.setBounds(0, 1, 1200, 2);
         panel.add(panel_1_2);
+
+        JLabel labelRol = new JLabel("Dados em Rol:");
+        labelRol.setHorizontalAlignment(SwingConstants.RIGHT);
+        labelRol.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        labelRol.setBounds(60, 268, 84, 14);
+        panel.add(labelRol);
+
+        JScrollPane scrollPane_2 = new JScrollPane();
+        scrollPane_2.setBounds(148, 257, 235, 40);
+        panel.add(scrollPane_2);
+
+        JTextArea textAreaDadosRol = new JTextArea();
+        scrollPane_2.setViewportView(textAreaDadosRol);
+        textAreaDadosRol.setText(this.criarListaRol(Leitura.getLista()));
 
         separatriz.addActionListener((ActionListener) new ActionListener() {
             @Override
