@@ -25,6 +25,10 @@ public class DadosAgrupados {
 
     // ----------------------------- CONSTRUTOR ----------------------------- //
 
+    public DadosAgrupados(){
+        this(2, 2);
+    }
+
     public DadosAgrupados(int indexRound, int indexRoundClasse) {
         leitor.criarLista();
 
