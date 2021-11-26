@@ -322,7 +322,6 @@ public class EntradaDadosGUI {
                 ArrayList<Double> lista = new ArrayList<Double>();
                 String dados = textField.getText();
                 String[] dadosSplit = dados.split(" ");
-                System.out.println(dadosSplit.length);
                 if (padraoBrasileiroCheck.isSelected()){
                     for(int i = 0; i < dadosSplit.length; i++){
                         dadosSplit[i] = dadosSplit[i].replace(".","");

@@ -28,15 +28,8 @@ public class DadosAgrupados {
     public DadosAgrupados(int indexRound, int indexRoundClasse) {
         leitor.criarLista();
 
-        this.setIndexRound(indexRound);
-
-        System.out.println(indexRoundClasse);
-        if(indexRoundClasse != 0){
-            setIndexRoundClasse(indexRoundClasse);
-        } else {
-            System.out.println(this.calcularCasasDecimais(leitor.getLista()));
-            setIndexRoundClasse(this.calcularCasasDecimais(leitor.getLista()));
-        }
+        setIndexRound(indexRound);
+        setIndexRoundClasse(indexRoundClasse);
 
         this.fazerAmplitudeClasse(leitor.getLista());
         this.fazerTabela(leitor.getLista(), this.getAmplitudeClasse());
@@ -164,19 +157,6 @@ public class DadosAgrupados {
         this.frequenciaTotal = tabela.get(tabela.size() - 1).get(3);
     }
 
-    private int calcularCasasDecimais(ArrayList<Double> lista){
-        int maiorCasaDecimal = 0;
-        for (int i = 0; i < lista.size(); i++) {
-            String converter = String.valueOf(lista.get(i));
-            int index = converter.indexOf('.');
-            int casaDecimal = (converter.length() - 1) - index;
-            if (casaDecimal > maiorCasaDecimal) {
-                maiorCasaDecimal = casaDecimal;
-            }
-        }
-        return maiorCasaDecimal;
-    }
-
     // ----------------------------- METODOS TABELA ----------------------------- //
 
     public Object[][] converterLista(ArrayList<ArrayList<Double>> tabela) {
@@ -196,13 +176,26 @@ public class DadosAgrupados {
     }
 
     private void fazerAmplitudeClasse(ArrayList<Double> lista){
+        int maiorCasaDecimal = 0;
+        for (int i = 0; i < lista.size(); i++) {
+            String converter = String.valueOf(lista.get(i));
+            int index = converter.indexOf('.');
+            int casaDecimal = (converter.length() - 1) - index;
+            if (casaDecimal > maiorCasaDecimal) {
+                maiorCasaDecimal = casaDecimal;
+            }
+        }
         double amplitudeTotal, raizAmostra, a;
         amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
         raizAmostra = Math.sqrt(lista.size());
         this.setK(raizAmostra);
         this.setAmplitude(amplitudeTotal);
-        a = this.arredondamentoClasse(amplitudeTotal / raizAmostra);
-        this.setAmplitudeClasse(this.arredondamentoClasse(a));
+        if(maiorCasaDecimal != getIndexRoundClasse()){
+            a = Math.round((amplitudeTotal/raizAmostra) * Math.pow(10, maiorCasaDecimal)) / Math.pow(10, maiorCasaDecimal);
+        } else {
+            a = this.arredondamentoClasse(amplitudeTotal / raizAmostra);
+        }
+        this.setAmplitudeClasse(a);
     }
 
     private void fazerTabela(ArrayList<Double> lista, Double distriContinua) {
