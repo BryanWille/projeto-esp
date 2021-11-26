@@ -43,7 +43,7 @@ public class EntradaDadosGUI {
         panel.add(lblNewLabel);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setBackground(SystemColor.controlShadow);
+        panel_1.setBackground(SystemColor.menu);
         panel_1.setBounds(0, 313, 654, 313);
         janela.getContentPane().add(panel_1);
         panel_1.setLayout(null);
@@ -82,7 +82,7 @@ public class EntradaDadosGUI {
         scrollPane.setViewportView(textField);
 
         JPanel panel_2 = new JPanel();
-        panel_2.setBackground(SystemColor.controlShadow);
+        panel_2.setBackground(SystemColor.menu);
         panel_2.setBounds(651, 313, 613, 313);
         janela.getContentPane().add(panel_2);
         panel_2.setLayout(null);
@@ -219,6 +219,7 @@ public class EntradaDadosGUI {
         lblNewLabel_2_1_1.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_2_1_1.setBounds(10, 190, 519, 18);
         panel_3.add(lblNewLabel_2_1_1);
+
         importarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
