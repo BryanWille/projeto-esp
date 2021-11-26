@@ -26,3 +26,7 @@ Em "Configurações de arredondamento: "
 A box "Arredondar dados: " ficará responsável por definir o número de casas decimais que a Média, Mediana, Moda, Desvio Padrão, Coeficiente de Variação etc serão apresentados.
 E a box "Arredondar dados de classe:" ficará responsável por definir o número de casas decimais dos dados na tabela e da amplitude de classe.
 
+===========================TROUBLESHOOTING===========================
+
+Para evitar quaisquer problemas de execução, tenha sempre a versão mais atualizada do java instalada em seu computador.
+
