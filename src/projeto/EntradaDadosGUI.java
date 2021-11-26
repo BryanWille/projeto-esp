@@ -24,7 +24,7 @@ public class EntradaDadosGUI {
     public void criarGUI(){
         JFrame janela = new JFrame("PresP: Entrada de dados");
         janela.setResizable(false);
-        janela.setSize(1263,655);
+        janela.setSize(1263, 655);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.getContentPane().setLayout(null);
 
@@ -43,25 +43,26 @@ public class EntradaDadosGUI {
         panel.add(lblNewLabel);
 
         JPanel panel_1 = new JPanel();
-        panel_1.setBackground(SystemColor.scrollbar);
-        panel_1.setBounds(0, 56, 648, 313);
+        panel_1.setBackground(SystemColor.controlShadow);
+        panel_1.setBounds(0, 313, 654, 313);
         janela.getContentPane().add(panel_1);
         panel_1.setLayout(null);
 
         JLabel lblNewLabel_1 = new JLabel("Inserir dados manualmente:");
-        lblNewLabel_1.setBounds(218, 55, 242, 19);
+        lblNewLabel_1.setBounds(136, 59, 242, 19);
         lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
         panel_1.add(lblNewLabel_1);
 
         JButton enviarButton = new JButton("Enviar");
 
         enviarButton.setForeground(SystemColor.text);
-        enviarButton.setBounds(474, 128, 109, 31);
+        enviarButton.setBounds(472, 127, 109, 31);
         enviarButton.setBackground(SystemColor.windowText);
         enviarButton.setFont(new Font("Verdana", Font.BOLD, 12));
         panel_1.add(enviarButton);
 
-        JLabel lblNewLabel_2 = new JLabel("Instru\u00E7\u00F5es: Digite os n\u00FAmeros um por um separados por um espa\u00E7o vazio entre eles.");
+        JLabel lblNewLabel_2 = new JLabel(
+                "Instru\u00E7\u00F5es: Digite os n\u00FAmeros um por um separados por um espa\u00E7o vazio entre eles.");
         lblNewLabel_2.setBounds(62, 191, 519, 18);
         lblNewLabel_2.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -81,8 +82,8 @@ public class EntradaDadosGUI {
         scrollPane.setViewportView(textField);
 
         JPanel panel_2 = new JPanel();
-        panel_2.setBackground(SystemColor.scrollbar);
-        panel_2.setBounds(648, 56, 596, 313);
+        panel_2.setBackground(SystemColor.controlShadow);
+        panel_2.setBounds(651, 313, 613, 313);
         janela.getContentPane().add(panel_2);
         panel_2.setLayout(null);
 
@@ -90,47 +91,53 @@ public class EntradaDadosGUI {
         lblNewLabel_4.setForeground(Color.BLACK);
         lblNewLabel_4.setBackground(Color.DARK_GRAY);
         lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 16));
-        lblNewLabel_4.setBounds(212, 62, 227, 14);
+        lblNewLabel_4.setBounds(137, 63, 227, 14);
         panel_2.add(lblNewLabel_4);
 
-        JCheckBox checkBoxDadosSeparados = new JCheckBox("Dados separados por espa\u00E7o");
+        JRadioButton checkBoxDadosSeparados = new JRadioButton("Dados separados por espa\u00E7o");
         checkBoxDadosSeparados.setBounds(301, 135, 202, 23);
         panel_2.add(checkBoxDadosSeparados);
+
+        JRadioButton rdbtnNewRadioButton = new JRadioButton("Dados linha por linha");
+        rdbtnNewRadioButton.setBounds(301, 109, 202, 23);
+        panel_2.add(rdbtnNewRadioButton);
+
+        ButtonGroup group_1 = new ButtonGroup();
+        group_1.add(checkBoxDadosSeparados);
+        group_1.add(rdbtnNewRadioButton);
+
+        rdbtnNewRadioButton.setSelected(true);
 
         JButton importarButton = new JButton("Importar");
 
         importarButton.setBackground(SystemColor.windowText);
         importarButton.setForeground(SystemColor.text);
         importarButton.setFont(new Font("Verdana", Font.BOLD, 12));
-        importarButton.setBounds(136, 126, 126, 36);
+        importarButton.setBounds(137, 122, 126, 36);
         panel_2.add(importarButton);
 
-        JLabel lblNewLabel_5 = new JLabel("Instru\u00E7\u00F5es: Selecione um arquivo .txt presente em seu computador.");
+        JLabel lblNewLabel_5 = new JLabel(
+                "Instru\u00E7\u00F5es: Selecione um arquivo .txt presente em seu computador.");
         lblNewLabel_5.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_5.setBounds(104, 195, 421, 14);
         panel_2.add(lblNewLabel_5);
 
-        JLabel lblNewLabel_11 = new JLabel("Por padr\u00E3o, o programa l\u00EA os arquivos .txt linha por linha, caso os dados do arquivo estejam");
+        JLabel lblNewLabel_11 = new JLabel(
+                "Por padr\u00E3o, o programa l\u00EA os arquivos .txt linha por linha, caso os dados do arquivo estejam");
         lblNewLabel_11.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_11.setBounds(21, 212, 576, 14);
         panel_2.add(lblNewLabel_11);
 
-        JLabel lblNewLabel_12 = new JLabel("na mesma linha ser\u00E1 necess\u00E1rio marcar a op\u00E7\u00E3o \"Dados separados por espa\u00E7o\".");
+        JLabel lblNewLabel_12 = new JLabel(
+                "na mesma linha ser\u00E1 necess\u00E1rio marcar a op\u00E7\u00E3o \"Dados separados por espa\u00E7o\".");
         lblNewLabel_12.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_12.setBounds(68, 230, 496, 14);
         panel_2.add(lblNewLabel_12);
 
-        textField_1 = new JTextField();
-        textField_1.setBackground(new Color(192, 192, 192));
-        textField_1.setVisible(false);
-        textField_1.setBounds(269, 101, 86, 20);
-        panel_2.add(textField_1);
-        textField_1.setColumns(10);
-
         JPanel panel_3 = new JPanel();
-        panel_3.setBackground(SystemColor.controlShadow);
-        panel_3.setBounds(0, 369, 1254, 252);
+        panel_3.setBounds(0, 56, 1264, 252);
         janela.getContentPane().add(panel_3);
+        panel_3.setBackground(SystemColor.text);
         panel_3.setLayout(null);
 
         JLabel lblNewLabel_6 = new JLabel("Configura\u00E7\u00F5es de arredondamento:");
@@ -148,12 +155,14 @@ public class EntradaDadosGUI {
         lblNewLabel_8.setBounds(810, 137, 154, 20);
         panel_3.add(lblNewLabel_8);
 
-        JLabel lblNewLabel_9 = new JLabel("Instru\u00E7\u00F5es: O padr\u00E3o do programa \u00E9 arredondar para uma casa decimal, portanto o n\u00FAmero 1.");
+        JLabel lblNewLabel_9 = new JLabel(
+                "Instru\u00E7\u00F5es: O padr\u00E3o do programa \u00E9 arredondar para uma casa decimal, portanto o n\u00FAmero 1.");
         lblNewLabel_9.setFont(new Font("Cambria", Font.ITALIC, 15));
         lblNewLabel_9.setBounds(612, 168, 609, 27);
         panel_3.add(lblNewLabel_9);
 
-        JLabel lblNewLabel_10 = new JLabel("Caso queria modificar para mais casas decimais, modifique o valor para 2 ou mais.");
+        JLabel lblNewLabel_10 = new JLabel(
+                "Caso queria modificar para mais casas decimais, modifique o valor para 2 ou mais.");
         lblNewLabel_10.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_10.setBounds(654, 194, 517, 14);
         panel_3.add(lblNewLabel_10);
@@ -182,33 +191,34 @@ public class EntradaDadosGUI {
 
         JLabel lblNewLabel_6_1 = new JLabel("Padr\u00E3o de Dados");
         lblNewLabel_6_1.setFont(new Font("Serif", Font.BOLD, 20));
-        lblNewLabel_6_1.setBounds(193, 57, 154, 27);
+        lblNewLabel_6_1.setBounds(162, 57, 154, 27);
         panel_3.add(lblNewLabel_6_1);
 
         JComboBox comboBoxRA = new JComboBox();
-        comboBoxRA.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2", "3", "4"}));
+        comboBoxRA.setModel(new DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4" }));
         comboBoxRA.setSelectedIndex(2);
         comboBoxRA.setBounds(974, 106, 39, 22);
         panel_3.add(comboBoxRA);
 
         JComboBox comboBoxRC = new JComboBox();
-        comboBoxRC.setModel(new DefaultComboBoxModel(new String[] {"Padr\u00E3o", "1", "2", "3", "4"}));
+        comboBoxRC.setModel(new DefaultComboBoxModel(new String[] { "Padr\u00E3o", "1", "2", "3", "4" }));
         comboBoxRC.setSelectedIndex(0);
         comboBoxRC.setBounds(974, 137, 70, 22);
         panel_3.add(comboBoxRC);
 
-        JLabel lblNewLabel_2_1 = new JLabel("Instru\u00E7\u00F5es: No brasil separamos as casas decimais com virgula, j\u00E1 em outros paises ");
+        JLabel lblNewLabel_2_1 = new JLabel(
+                "Instru\u00E7\u00F5es: No brasil separamos as casas decimais com virgula, j\u00E1 em outros paises ");
         lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel_2_1.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_2_1.setBounds(14, 173, 519, 18);
         panel_3.add(lblNewLabel_2_1);
 
-        JLabel lblNewLabel_2_1_1 = new JLabel("como nos EUA \u00E9 separado por ponto, ent\u00E3o selecione qual padr\u00E3o sera utilizado");
+        JLabel lblNewLabel_2_1_1 = new JLabel(
+                "como nos EUA \u00E9 separado por ponto, ent\u00E3o selecione qual padr\u00E3o sera utilizado");
         lblNewLabel_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel_2_1_1.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_2_1_1.setBounds(10, 190, 519, 18);
         panel_3.add(lblNewLabel_2_1_1);
-
         importarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
