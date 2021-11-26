@@ -176,21 +176,30 @@ public class DadosAgrupados {
     }
 
     private void fazerAmplitudeClasse(ArrayList<Double> lista){
-        int maiorCasaDecimal = 0;
+        int maiorCasaDecimal = 0, zeroCont = 0;
         for (int i = 0; i < lista.size(); i++) {
             String converter = String.valueOf(lista.get(i));
             int index = converter.indexOf('.');
             int casaDecimal = (converter.length() - 1) - index;
+            if (converter.substring(index).equalsIgnoreCase(".0")){
+                zeroCont ++;
+            }
             if (casaDecimal > maiorCasaDecimal) {
                 maiorCasaDecimal = casaDecimal;
             }
         }
+        if(zeroCont == lista.size()){
+            maiorCasaDecimal = 0;
+        }
+
         double amplitudeTotal, raizAmostra, a;
         amplitudeTotal = lista.get(lista.size() - 1) - lista.get(0);
         raizAmostra = Math.sqrt(lista.size());
         this.setK(raizAmostra);
         this.setAmplitude(amplitudeTotal);
-        if(maiorCasaDecimal != getIndexRoundClasse()){
+
+
+        if(getIndexRoundClasse() == 0 ){
             a = Math.round((amplitudeTotal/raizAmostra) * Math.pow(10, maiorCasaDecimal)) / Math.pow(10, maiorCasaDecimal);
         } else {
             a = this.arredondamentoClasse(amplitudeTotal / raizAmostra);
@@ -202,8 +211,7 @@ public class DadosAgrupados {
         ArrayList<ArrayList<Double>> tabela = new ArrayList<>();
         int i = 0, frequencia, j = 0;
         double limiteSuperior = lista.get(0), limiteInferior, frequenciaAgrupada = 0;
-        ;
-        while (limiteSuperior < lista.get(lista.size() - 1)) {
+        while (limiteSuperior <= lista.get(lista.size() - 1)) {
             tabela.add(new ArrayList<Double>());
             limiteInferior = limiteSuperior;
             limiteSuperior += distriContinua;

@@ -135,7 +135,7 @@ public class EntradaDadosGUI {
         panel_2.add(lblNewLabel_12);
 
         JPanel panel_3 = new JPanel();
-        panel_3.setBounds(0, 56, 1264, 252);
+        panel_3.setBounds(0, 56, 1247, 252);
         janela.getContentPane().add(panel_3);
         panel_3.setBackground(SystemColor.text);
         panel_3.setLayout(null);
@@ -150,21 +150,21 @@ public class EntradaDadosGUI {
         lblNewLabel_7.setBounds(863, 106, 106, 20);
         panel_3.add(lblNewLabel_7);
 
-        JLabel lblNewLabel_8 = new JLabel("Arredondar dados de classe:");
+        JLabel lblNewLabel_8 = new JLabel("Arredondamento tabela:");
         lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblNewLabel_8.setBounds(810, 137, 154, 20);
+        lblNewLabel_8.setBounds(828, 137, 140, 20);
         panel_3.add(lblNewLabel_8);
 
         JLabel lblNewLabel_9 = new JLabel(
-                "Instru\u00E7\u00F5es: O padr\u00E3o do programa \u00E9 arredondar para uma casa decimal, portanto o n\u00FAmero 1.");
+                "Instru\u00E7\u00F5es: O Padr\u00E3o do Programa \u00E9 arredondar os n\u00FAmeros decimais da tabela de frequencia");
         lblNewLabel_9.setFont(new Font("Cambria", Font.ITALIC, 15));
-        lblNewLabel_9.setBounds(612, 168, 609, 27);
+        lblNewLabel_9.setBounds(634, 166, 609, 27);
         panel_3.add(lblNewLabel_9);
 
         JLabel lblNewLabel_10 = new JLabel(
-                "Caso queria modificar para mais casas decimais, modifique o valor para 2 ou mais.");
+                "com o n\u00FAmero de casas decimais do elemento que tiver mais casas decimais. ");
         lblNewLabel_10.setFont(new Font("Cambria Math", Font.ITALIC, 15));
-        lblNewLabel_10.setBounds(654, 194, 517, 14);
+        lblNewLabel_10.setBounds(690, 193, 479, 14);
         panel_3.add(lblNewLabel_10);
 
         JRadioButton padraoBrasileiroCheck = new JRadioButton("Dados padr\u00E3o brasileiro");
@@ -219,6 +219,11 @@ public class EntradaDadosGUI {
         lblNewLabel_2_1_1.setFont(new Font("Cambria Math", Font.ITALIC, 15));
         lblNewLabel_2_1_1.setBounds(10, 190, 519, 18);
         panel_3.add(lblNewLabel_2_1_1);
+
+        JLabel lblNewLabel_10_1 = new JLabel("J\u00E1 a op\u00E7\u00E3o \"Arredondar dados,\" \u00E9 para arredondar dados gerais como m\u00E9dia, vari\u00E2ncia etc...");
+        lblNewLabel_10_1.setFont(new Font("Cambria Math", Font.ITALIC, 15));
+        lblNewLabel_10_1.setBounds(644, 209, 590, 14);
+        panel_3.add(lblNewLabel_10_1);
 
         importarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
