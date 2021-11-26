@@ -231,7 +231,6 @@ public class EntradaDadosGUI {
 
                 int returnValue = jfc.showSaveDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    textField_1.setText(jfc.getSelectedFile().getAbsolutePath());
                     if(padraoBrasileiroCheck.isSelected()){
                         if(checkBoxDadosSeparados.isSelected()){
                             try {
