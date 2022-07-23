@@ -13,9 +13,9 @@ Funciona de forma simples, podendo receber dados de forma manual (escrita pela p
 
 O programa traz como benefício a facilitação da obtenção de dados estatísticos comumente requeridos em uma pesquisa, como Média, Mediana, Moda, Desvio Padrão, Coeficiente de Variação e etc... com dados brutos, além de proporcionar uma tabela de dados agrupados e demonstrar os valores gerados por ela, poupando o usuário de contas trabalhosas se feitas a mão.
 
-![1638415974589](https://user-images.githubusercontent.com/84272231/180613313-c93ffd38-d485-4d1b-8f74-20ca4a119352.png)
+![1638415974659](https://user-images.githubusercontent.com/84272231/180613322-8e90fa5a-5691-479d-99b0-4da9fe9813e6.png)
 
-## Como usar?
+## ⌨️ Como usar?
 O PresP possui diversas configurações na interface de usuário inicial:
 
 É possível que o usuário inicie o programa importando um arquivo .txt ou que o usuário escolha escrever os dados manualmente em "Inserir dados manualmente: ", desde que os dados sejam separados por um espaço.
@@ -32,7 +32,7 @@ Em "Configurações de arredondamento: "
 A box "Arredondar dados: " ficará responsável por definir o número de casas decimais que a Média, Mediana, Moda, Desvio Padrão, Coeficiente de Variação etc serão apresentados.
 E a box "Arredondar dados de classe:" ficará responsável por definir o número de casas decimais dos dados na tabela e da amplitude de classe.
 
-![1638415974659](https://user-images.githubusercontent.com/84272231/180613322-8e90fa5a-5691-479d-99b0-4da9fe9813e6.png)
+![1638415974589](https://user-images.githubusercontent.com/84272231/180613313-c93ffd38-d485-4d1b-8f74-20ca4a119352.png)
 
 ## Contribuições
 Ideias de melhorias são sempre aceitas!
