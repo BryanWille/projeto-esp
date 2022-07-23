@@ -34,8 +34,8 @@ E a box "Arredondar dados de classe:" ficará responsável por definir o número
 
 ![1638415974589](https://user-images.githubusercontent.com/84272231/180613313-c93ffd38-d485-4d1b-8f74-20ca4a119352.png)
 
-## Contribuições
+## 👪 Contribuições
 Ideias de melhorias são sempre aceitas!
 
-## Licença
+## 📜 Licença
 [MIT](https://choosealicense.com/licenses/mit/)
